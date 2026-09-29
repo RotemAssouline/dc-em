@@ -22,6 +22,7 @@ Source material:
 Observed in the two example decks; assume these carry over unless we decide otherwise.
 
 - **Tech:** Reveal.js 4.6 from jsDelivr, white theme, MathJax 2 via RevealMath, plugins Markdown/Highlight/Notes. `hash: true`, `transition: 'fade'`, progress bar on, default slide numbers off (custom TOC-style indicator instead), controls bottom-right, mouse-wheel navigation.
+- **Self-contained:** the presentation file should be as self-contained as possible, i.e. not contain auxiliary files if possible, such as images and linked pages.
 - **Typography:** Alegreya Sans for text (fonts bundled locally in `fonts/`), Alegreya available too.
 - **Title slide:** title / "Rotem Assouline (IMJ-PRG)" / seminar name / institution / month-year.
 - **Arc of both talks:**
