@@ -36,6 +36,9 @@
   .reveal li { margin: 0.3em 0; line-height: 1.3; }
   .reveal .dense { font-size: 0.8em; }
   .reveal .dense.tight { font-size: 0.72em; }
+  /* the Bochner derivation stacks seven displays; claw back their margins */
+  .reveal .squeeze .MathJax_Display { margin: 0.14em 0 !important; }
+  .reveal .squeeze .thm { padding: 0.2em 0.8em; margin: 0.3em 0; }
   /* MathJax's default 1em display margins are too generous for slides */
   .reveal .MathJax_Display { margin: 0.28em 0 !important; }
   .reveal .small { font-size: 0.75em; }
@@ -44,15 +47,19 @@
   /* inline figures */
   .reveal .figure { margin: 0.5em 0 0; }
   .reveal .figure svg { display: block; width: 100%; height: 288px; overflow: visible; }
+  .reveal .figure.tall svg { height: 330px; }
   .reveal .fig-row { display: flex; align-items: flex-start; justify-content: center; gap: 26px; margin-top: 0.4em; }
   .reveal .fig-row svg { display: block; height: 288px; width: auto; overflow: visible; }
   /* Times rather than Alegreya: lining figures (Alegreya's old-style 0 reads as "o")
      and it sits closer to the MathJax output than the body font does */
   .reveal .figure .fl, .reveal .fig-row .fl { font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 28px; fill: #222; }
   .reveal .figure .sb, .reveal .fig-row .sb { font-size: 0.68em; }
-  .reveal .figure .em, .reveal .fig-row .em { fill: #cf5c36; }
+  .reveal .figure .em, .reveal .fig-row .em { fill: #e08214; }
   .reveal .figure .pt, .reveal .fig-row .pt { fill: #222; }
   .reveal .figure .gy, .reveal .fig-row .gy { fill: #8a8a8a; }
+  /* labels typeset by MathJax inside the drawing */
+  .reveal .fig-row .fo-lab { font-size: 28px; line-height: 1; text-align: center; }
+  .reveal .fig-row .fo-lab.em { color: #e08214; }
   .reveal .figure .ax, .reveal .fig-row .ax { font-family: 'Alegreya Sans', sans-serif; font-style: normal; font-size: 18px; fill: #999; }
 
   /* theorem-like boxes */
@@ -61,7 +68,7 @@
     padding: 0.35em 0.8em; margin: 0.45em 0;
   }
   .reveal .thm p { margin: 0.3em 0; }
-  .reveal .r-stack.thm-stack > * { margin: 0; width: 100%; }
+  .reveal .r-stack.thm-stack > * { margin: 0; width: 100%; box-sizing: border-box; }
   .reveal .r-stack.fig-stack > * { margin: 0; width: 100%; }
   .thm .label { font-weight: 700; color: var(--accent); }
   .def { border-left: 4px solid #888; background: #f6f6f6; padding: 0.5em 0.8em; margin: 0.5em 0; }
@@ -211,7 +218,6 @@
     </p>
     <p>
       $\mu_0,\mu_1$ absolutely continuous and compactly supported, with $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0 \times \operatorname{supp}\mu_1$
-      <span class="gray">($x_0 \ll x_1$: there is a future-directed timelike curve from $x_0$ to $x_1$)</span>.</p>
     <p>
       $$\ell_q(\mu_0,\mu_1)^q \;=\; \max\Big\{\textstyle\int_M \ell(x,\mathrm{T}x)^q\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}$$
       Unique maximizer: $\ \mathrm{T}x = \exp_x\!\big(\nabla\varphi(x)\big)$.
@@ -236,7 +242,7 @@
       </div>
     </div>
 
-    <p class="cite">See also Suhr '18, Braun '23, Braun &amp; McCann '24; survey: Cavalletti &amp; Mondino '22.</p>
+    <p class="cite fragment" data-fragment-index="1">See also Suhr '18, Braun '23, Braun &amp; McCann '24; survey: Cavalletti &amp; Mondino '22.</p>
 
   </div>
 </section>
@@ -276,7 +282,7 @@
     <p><em>Electromagnetic Lagrangian</em>, for $r \in (0,1)$:
       $$L(v) := \begin{cases} -\frac1r|v|^r + \frac1r - 1 - A(v), & v \text{ is future-directed or } v = 0,\\ \infty, & \text{otherwise.}\end{cases}$$</p>
     <p>By considering free-time rather than fixed-time minimizers of the action, we force the minimizers to have unit speed and to minimize the parametrization-invariant functional $\int -|\dot\gamma| - A(\dot\gamma)$.</p>
-    <p class="cite">McCann '18, Braun, Gigli, McCann, Ohanyan &amp; Sämann '26</p>
+    <p class="cite">McCann '20, Braun, Gigli, McCann, Ohanyan &amp; Sämann '26</p>
   </div>
 </section>
 
@@ -292,14 +298,13 @@
       <li>$\ell \ge 0$ is a function on $\operatorname{supp}\mu_0$ (the <em>duration function</em>),</li>
       <li>$\mathrm{T}_1$ is an optimal transport map from $\mu_0$ to $\mu_1$.</li>
     </ul>
-    <p class="fragment" data-fragment-index="1">$\dot\mu_\lambda := (\Phi\circ(V_0,\lambda\ell))_\sharp\mu_0$.</p>
   </div>
   <div class="fig-row">
-    <div class="fragment" data-fragment-index="2">
+    <div class="fragment" data-fragment-index="1">
       <svg viewBox="95 2 640 296" role="img" aria-label="Worldlines of charged test particles carrying mu_0 to mu_1">
       <defs>
         <marker id="vhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#cf5c36"/>
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#e08214"/>
         </marker>
         <marker id="ghead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M 0 0 L 10 5 L 0 10 z" fill="#8a8a8a"/>
@@ -320,9 +325,9 @@
       <path d="M 350 252 Q 375 177 390 150 T 430 48" fill="none" stroke="#8fb0d4" stroke-width="2.2"/>
       <path d="M 450 248 Q 475 173 490 146 T 530 44" fill="none" stroke="#1a4f8b" stroke-width="3"/>
 
-      <line x1="280" y1="248" x2="298" y2="193" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead)"/>
-      <line x1="350" y1="252" x2="368" y2="197" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead)"/>
-      <line x1="450" y1="248" x2="468" y2="193" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead)"/>
+      <line x1="280" y1="248" x2="298" y2="193" stroke="#e08214" stroke-width="2.6" marker-end="url(#vhead)"/>
+      <line x1="350" y1="252" x2="368" y2="197" stroke="#e08214" stroke-width="2.6" marker-end="url(#vhead)"/>
+      <line x1="450" y1="248" x2="468" y2="193" stroke="#e08214" stroke-width="2.6" marker-end="url(#vhead)"/>
 
       <circle class="pt" cx="450" cy="248" r="5"/>
       <circle class="pt" cx="490" cy="146" r="5"/>
@@ -338,18 +343,21 @@
       <text class="fl pt" x="530" y="26" text-anchor="middle">T<tspan class="sb" dy="7">1</tspan><tspan dy="-7">x</tspan><tspan class="sb" dy="7">0</tspan></text>
     </svg>
     </div>
-    <div class="fragment" data-fragment-index="3">
-      <svg viewBox="0 2 330 296" role="img" aria-label="The velocities at stage lambda">
+    <div class="fragment" data-fragment-index="2">
+      <svg viewBox="0 2 420 296" role="img" aria-label="The law of the velocities at stage lambda">
         <defs>
           <marker id="vhead2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#cf5c36"/>
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#222"/>
           </marker>
         </defs>
-        <ellipse cx="190" cy="150" rx="120" ry="15" fill="none" stroke="#aaaaaa" stroke-width="1.8" stroke-dasharray="7 6"/>
-        <line x1="110" y1="153" x2="137" y2="105" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead2)"/>
-        <line x1="190" y1="156" x2="217" y2="108" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead2)"/>
-        <line x1="270" y1="153" x2="297" y2="105" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead2)"/>
-        <text class="fl em" x="60" y="158" text-anchor="end">&#956;&#775;<tspan class="sb" dy="7">&#955;</tspan></text>
+        <ellipse cx="210" cy="150" rx="130" ry="16" fill="none" stroke="#aaaaaa" stroke-width="1.8" stroke-dasharray="7 6"/>
+        <line x1="130" y1="153" x2="157" y2="105" stroke="#222" stroke-width="2.6" marker-end="url(#vhead2)"/>
+        <line x1="210" y1="156" x2="237" y2="108" stroke="#222" stroke-width="2.6" marker-end="url(#vhead2)"/>
+        <line x1="290" y1="153" x2="317" y2="105" stroke="#222" stroke-width="2.6" marker-end="url(#vhead2)"/>
+        <!-- typeset by MathJax rather than drawn: SVG text cannot compose the dot accent -->
+        <foreignObject x="0" y="196" width="420" height="60">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab">$\dmu_\lambda := (\Phi\circ(V_0,\lambda\ell))_\sharp\mu_0$</div>
+        </foreignObject>
       </svg>
     </div>
   </div>
@@ -361,15 +369,66 @@
     <p><em>Monotone</em>: for all $x,y$ and all $\tau \ge 0$,
       $$\Phi(V_0\vert_x,\tau) = V_0\vert_y \quad\implies\quad \ell(x) \le \ell(y) + \tau.$$</p>
     <p>If a solution to the Lorentz force equation issuing from $x$ at velocity $V_0\vert_x$ passes through $y$ after time $\tau$, then it must terminate no later than the trajectory issuing from $y$ at velocity $V_0\vert_y$.</p>
-    <div class="ph fig">monotonicity (deferred to a later session)</div>
-    <div class="fragment">
-      <p>$\mathscr{P}_\ll$: pairs $(\mu_0,\mu_1)$ of compactly supported, absolutely continuous Borel probability measures such that $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0\times\operatorname{supp}\mu_1$.</p>
-      <p>$\mathscr{P}_A \subseteq \mathscr{P}_\ll$: pairs for which no null geodesic joining a point of $\operatorname{supp}\mu_0$ to a point of $\operatorname{supp}\mu_1$ is action-minimizing. The two classes coincide in Minkowski spacetime.</p>
-      <p>For every $(\mu_0,\mu_1) \in \mathscr{P}_A$ there exists a unique monotone displacement interpolation between $\mu_0$ and $\mu_1$. <span class="cite">Assouline &amp; Manini '26</span></p>
-      <p class="small gray">Based on the existence of action-minimizing solutions of the Lorentz force equation joining given pairs of points: Minguzzi &amp; Sánchez '06</p>
+    <div class="figure tall fragment">
+      <svg viewBox="150 30 260 266" role="img" aria-label="Monotonicity: the particle from x terminates no later than the one from y">
+        <defs>
+          <marker id="mhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#8a8a8a"/>
+          </marker>
+        </defs>
+
+        <path d="M 250 272 C 262 196, 312 136, 345 42" fill="none" stroke="#1a4f8b" stroke-width="3"/>
+
+        <!-- extension lines -->
+        <g stroke="#c4c4c4" stroke-width="1.2">
+          <line x1="250" y1="272" x2="222" y2="261"/>
+          <line x1="295" y1="153" x2="267" y2="142"/>
+          <line x1="250" y1="272" x2="274" y2="282"/>
+          <line x1="265" y1="217" x2="289" y2="227"/>
+          <line x1="329" y1="82"  x2="353" y2="92"/>
+        </g>
+
+        <!-- the particle issuing from x runs for proper time l(x) -->
+        <path d="M 222 261 L 267 142" fill="none" stroke="#8a8a8a" stroke-width="1.6" stroke-dasharray="6 5"
+              marker-start="url(#mhead)" marker-end="url(#mhead)"/>
+        <text class="fl gy" x="214" y="196" text-anchor="end">&#8467;(x)</text>
+
+        <!-- the one issuing from y runs on for a further l(y) -->
+        <path d="M 274 282 L 289 227" fill="none" stroke="#8a8a8a" stroke-width="1.6" stroke-dasharray="6 5"
+              marker-start="url(#mhead)" marker-end="url(#mhead)"/>
+        <text class="fl gy" x="292" y="264" text-anchor="start">&#964;</text>
+        <path d="M 289 227 L 353 92" fill="none" stroke="#8a8a8a" stroke-width="1.6" stroke-dasharray="6 5"
+              marker-start="url(#mhead)" marker-end="url(#mhead)"/>
+        <text class="fl gy" x="332" y="156" text-anchor="start">&#8467;(y)</text>
+
+        <circle class="pt" cx="250" cy="272" r="5"/>
+        <circle class="pt" cx="265" cy="217" r="5"/>
+        <circle class="pt" cx="295" cy="153" r="5"/>
+        <circle class="pt" cx="329" cy="82"  r="5"/>
+        <text class="fl" x="240" y="288" text-anchor="end">x</text>
+        <text class="fl" x="276" y="212" text-anchor="start">y</text>
+      </svg>
     </div>
   </div>
-  <div class="cites">cf. Feldman &amp; McCann '02, Bernard &amp; Buffoni '06</div>
+  <div class="cites fragment">cf. Feldman &amp; McCann '02, Bernard &amp; Buffoni '06</div>
+</section>
+
+<section class="run-title" data-section="Electromagnetism on Lorentzian manifolds">
+  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
+  <div>
+    <p>$\mathscr{P}_\ll$: pairs $(\mu_0,\mu_1)$ of compactly supported, absolutely continuous Borel probability measures such that $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0\times\operatorname{supp}\mu_1$.</p>
+    <p>$\mathscr{P}_A \subseteq \mathscr{P}_\ll$: pairs for which no null geodesic joining a point of $\operatorname{supp}\mu_0$ to a point of $\operatorname{supp}\mu_1$ is action-minimizing. $\mathscr{P}_A = \mathscr{P}_\ll$ in Minkowski spacetime.</p>
+
+    <div class="fragment thm" data-fragment-index="1">
+      <p><span class="label">Proposition</span> <span class="cite">(Assouline &amp; Manini '26)</span>. Let $(\mu_0,\mu_1) \in \mathscr{P}_A$. Then there is a unique monotone displacement interpolation $(\mu_\lambda)_{0 \le \lambda \le 1}$ between $\mu_0$ and $\mu_1$, and the pair $(V_0,\ell)$ inducing it is determined $\mu_0$-almost everywhere.</p>
+    </div>
+
+    <div class="fragment thm" data-fragment-index="2">
+      <p><span class="label">Proposition</span> <span class="cite">(Assouline &amp; Manini '26)</span>. Let $(\mu_0,\mu_1) \in \mathscr{P}_\ll$. There exists $s_1 &gt; 0$ such that for every $s \in (-s_1,s_1)$, the pair $(\mu_0,\mu_1)$ lies in $\mathscr{P}_{sA}$.</p>
+    </div>
+
+    <p class="fragment" data-fragment-index="2">Action-minimizing solutions of the Lorentz force equation joining given pairs of points: <span class="cite">Minguzzi &amp; Sánchez '06</span>.</p>
+  </div>
 </section>
 
 <!-- ============================================================
@@ -381,60 +440,45 @@
     $$\mathrm{Ric}_F := \mathrm{Ric} + \delta F + \tfrac14\langle F,F\rangle - \tfrac12 F^2$$
   </div>
   <p class="dense">A function on future-directed unit tangent vectors. Here $\mathrm{Ric}$ is the Ricci curvature of the metric $g$, $\delta$ is the codifferential, and $F^2 := \langle\,\cdot\,,F^\sharp F^\sharp\,\cdot\,\rangle$.</p>
-  <div class="fragment dense">
+  <div class="fragment dense" data-fragment-index="1">
     <p><em>Kaluza–Klein metric</em> on $\tilde M := M\times S^1$: $\ \tilde g = g - (\mathrm{d}\varphi - A)^2$.</p>
     <p>For every future-directed unit vector $V$,
       $$\mathrm{Ric}_F(V) = \mathrm{Ric}_{\tilde g}(\tilde V,\tilde V), \qquad \text{where} \qquad \tilde V := V + (1 + A(V))\partial_\varphi.$$</p>
   </div>
-  <div class="cites">Choquet-Bruhat '09, Williams '15</div>
+  <div class="fragment dense" data-fragment-index="2">
+    <p>Suppose that $n = 4$ and that $M$ is oriented. For an observer $V$, the <em>electric</em> and <em>magnetic</em> fields and the <em>charge density</em> measured by $V$ are
+      $$\mathbf{E}_V := F^\sharp V, \qquad \mathbf{B}_V := (\star F)^\sharp V, \qquad \rho_V := -\delta F(V).$$</p>
+  </div>
+  <div class="fragment thm dense" data-fragment-index="3" style="text-align:center;">
+    $$\mathrm{Ric}_F(V) = \mathrm{Ric}(V,V) - \rho_V + \tfrac12|\mathbf{B}_V|^2 - |\mathbf{E}_V|^2$$
+  </div>
+  <div class="cites fragment" data-fragment-index="3">Choquet-Bruhat '09, Williams '15</div>
 </section>
 
+<!-- one theorem, two states: k = 0 replaced in place by general k -->
 <section data-section="Electromagnetic displacement convexity">
-  <h2>Physical interpretation of $\mathrm{Ric}_F$</h2>
-  <p>Suppose that $n = 4$ and that $M$ is oriented.</p>
-  <p>$\mathbf{E}_V := F^\sharp V$ and $\mathbf{B}_V := (\star F)^\sharp V$ are the <em>electric</em> and <em>magnetic</em> fields measured by the observer $V$.</p>
-  <p>$\rho_V := -\delta F(V)$ is the <em>charge density</em> measured by the observer $V$.</p>
-  <div class="fragment thm" style="text-align:center;">
-    $$\mathrm{Ric}_F(V) = \mathrm{Ric}(V,V) - \rho_V + \frac12|\mathbf{B}_V|^2 - |\mathbf{E}_V|^2$$
+  <h2>Main result</h2>
+  <div class="r-stack thm-stack">
+  <div class="thm dense fragment fade-out" data-fragment-index="1">
+      <p><span class="label">Theorem</span> <span class="cite">(Assouline &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B$ of future-directed unit tangent vectors, the following are equivalent:</p>
+      <p data-id="mt-i">$(i)$ $\ \mathrm{Ric}_F \ge 0$ on the set $B$.</p>
+      <p data-id="mt-ii">$(ii)$ $\ \mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_A$ for which $\dmu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$:
+        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1],$$</p>
+      <p data-id="mt-where">where
+        $$\mathrm{Ent}[\mu] := \int_M \log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
+    </div>
+  <div class="thm dense fragment" data-fragment-index="1">
+      <p><span class="label">Theorem</span> <span class="cite">(Assouline &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B$ of future-directed unit tangent vectors and every ${\color{#b3261e} k} \in \mathbb{R}$, the following are equivalent:</p>
+      <p data-id="mt-i">$(i)$ $\ \mathrm{Ric}_F \ge {\color{#b3261e} k}$ on the set $B$.</p>
+      <p data-id="mt-ii">$(ii)$ $\ \mathrm{Ent}$ is ${\color{#b3261e} k}$-displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_A$ for which $\dmu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$:
+        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] {\color{#b3261e} {} - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M\ell^2\,\mathrm{d}\mu_0},$$</p>
+      <p data-id="mt-where">where
+        $$\mathrm{Ent}[\mu] := \int_M \log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
+    </div>
   </div>
+  <p class="dense fragment" data-fragment-index="2"><span class="label"><em>Remark.</em></span> When $A = 0$, the theorem recovers (the $\ell_1$ version of) the characterization of the strong energy condition via displacement convexity: although our Lagrangian contains the term $|\,\cdot\,|_g^r$ with $r \in (0,1)$, the cost $\mathrm{c}$ corresponds to the cost $\ell_1$, rather than $\ell_r$, in Lorentzian optimal transport. <span class="cite">McCann '20, Cavalletti &amp; Mondino '24, Braun &amp; McCann '24, Suhr '18</span></p>
 </section>
 
-<!-- Main theorem, step 1 (k = 0) -->
-<section data-auto-animate data-section="Electromagnetic displacement convexity">
-  <h2 data-id="mt-title">Main result</h2>
-  <div class="thm dense" data-id="mt-box">
-    <p><span class="label">Theorem</span> <span class="cite">(Assouline &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B$ of future-directed unit tangent vectors, the following are equivalent:</p>
-    <p data-id="mt-i">$(i)$ $\ \mathrm{Ric}_F \ge 0$ on the set $B$.</p>
-    <p data-id="mt-ii">$(ii)$ $\ \mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_A$ for which $\dot\mu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$.</p>
-  </div>
-  <div class="dense" data-id="mt-defs">
-    <p>$\mathrm{Ent}[\mu] := \int_M \log f\,\mathrm{d}\mu$ for $\mu = f\,\mathrm{Vol}_g$.</p>
-    <p>$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\mathrm{Ent}[\mu_1]$ for all $0 \le \lambda \le 1$.</p>
-  </div>
-</section>
-
-<!-- Main theorem, step 2 (general k) -->
-<section data-auto-animate data-section="Electromagnetic displacement convexity">
-  <h2 data-id="mt-title">Main result</h2>
-  <div class="thm dense" data-id="mt-box">
-    <p><span class="label">Theorem</span> <span class="cite">(Assouline &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B$ of future-directed unit tangent vectors and every $k \in \mathbb{R}$, the following are equivalent:</p>
-    <p data-id="mt-i">$(i)$ $\ \mathrm{Ric}_F \ge k$ on the set $B$.</p>
-    <p data-id="mt-ii">$(ii)$ $\ \mathrm{Ent}$ is $k$-displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_A$ for which $\dot\mu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$.</p>
-  </div>
-  <div class="dense" data-id="mt-defs">
-    <p>$\mathrm{Ent}[\mu] := \int_M \log f\,\mathrm{d}\mu$ for $\mu = f\,\mathrm{Vol}_g$.</p>
-    <p>$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\mathrm{Ent}[\mu_1] - \frac{k}{2}\cdot\lambda(1-\lambda)\cdot\int_M\ell^2\,\mathrm{d}\mu_0$ for all $0 \le \lambda \le 1$,</p>
-    <p>where $\ell$ is the duration function of $(\mu_\lambda)$.</p>
-  </div>
-</section>
-
-<section data-section="Electromagnetic displacement convexity">
-  <h2>Remarks</h2>
-  <ul>
-    <li>When $A = 0$, the theorem recovers (the $\ell_1$ version of) the characterization of the strong energy condition via displacement convexity. <span class="cite">McCann '20, Cavalletti &amp; Mondino '20</span></li>
-    <li class="fragment">Although our Lagrangian contains the term $|\,\cdot\,|_g^r$ with $r \in (0,1)$, the cost $\mathrm{c}$ corresponds to the cost $\ell_1$, rather than $\ell_r$, in Lorentzian optimal transport. <span class="cite">Cavalletti &amp; Mondino '20, Braun &amp; McCann '24, Suhr '18</span></li>
-  </ul>
-</section>
 
 <section data-section="Electromagnetic displacement convexity">
   <h2>Pointwise lower bounds on $\mathrm{Ric}_F$</h2>
@@ -443,46 +487,38 @@
   <div class="thm dense">
     <p><span class="label">Lemma.</span> Suppose that $n \ge 3$ and there exists $x \in M$ such that $\mathrm{Ric}\vert_x = 0$ and $F\vert_x \ne 0$. Then $\inf\mathrm{Ric}_F = -\infty$ over future-directed unit vectors $v \in T_xM$.</p>
   </div>
-  <div class="ph">explanation: fast observers see arbitrarily strong fields.</div>
+  <div class="dense fragment">
+    <p>For $\mathrm{Ric}\vert_x = 0$ and a future-directed unit vector $V \in \mathrm{T}_xM$,
+      $$\begin{aligned}
+        \mathrm{Ric}_F(V) &= \mathrm{Ric}(V,V) + \delta F(V) + \tfrac14\langle F,F\rangle - \tfrac12 F^2(V,V)\\[2pt]
+        &= \underbrace{\mathrm{Ric}(V,V)}_{0} \qquad\underbrace{-\ \rho_V}_{\text{linear in } V} \qquad\underbrace{+\ \tfrac14\langle F,F\rangle}_{\text{observer-independent}} \qquad\underbrace{-\ \tfrac12|\mathbf{E}_V|^2}_{\to\, -\infty \text{ under boosts}}
+      \end{aligned}$$</p>
+  </div>
 </section>
 
 <!-- ============================================================
      RAYCHAUDHURI / BOCHNER
      ============================================================ -->
 <section data-section="Electromagnetic displacement convexity">
-  <h2>The Raychaudhuri equation</h2>
-  <p><em>Hamilton–Jacobi equation</em>:
-    $$|\mathrm{d}u + A| = 1 \qquad \text{and } \mathrm{d}u + A \text{ is past-directed.}$$</p>
-  <p class="fragment">$V := -\nabla u - A^\sharp$ is future-directed, $|V| \equiv 1$, and solves the Lorentz force equation
-    $$\nabla_V V = F^\sharp V.$$</p>
-</section>
-
-<section data-section="Electromagnetic displacement convexity">
-  <h2>The Raychaudhuri equation</h2>
-  <div class="dense">
-    <p><em>Kinematic decomposition</em>:
-      $$\nabla V = \sigma + \omega + \frac{\theta}{n-1}\left(\mathrm{Id} - V^\flat\otimes V\right) + V^\flat\otimes F^\sharp V$$</p>
-    <ul>
-      <li>the <em>shear</em> $\sigma$ is a traceless self-adjoint $(1,1)$-tensor satisfying $\sigma V = 0$,</li>
-      <li>the <em>rotation</em> $\omega$ is an anti-self-adjoint $(1,1)$-tensor satisfying $\omega V = 0$,</li>
-      <li>the <em>expansion</em> $\theta$ is the divergence of $V$: $\ \theta = \operatorname{div} V$.</li>
-    </ul>
-    <p>Raychaudhuri equation:
-      $$\dot\theta = -\frac{\theta^2}{n-1} - \langle\sigma,\sigma\rangle + \langle\omega,\omega\rangle - \mathrm{Ric}(V,V) + \operatorname{div}(\nabla_V V), \qquad \dot\theta = V\operatorname{div}V.$$</p>
-    <div class="fragment">
-      <p>$$\color{#b3261e}{2\omega = P_{V^\perp}F^\sharp P_{V^\perp}}, \qquad 2\langle\omega,\omega\rangle = \tfrac12\langle F,F\rangle + F^2(V,V),$$</p>
-      <p>where $P_{V^\perp} := \mathrm{Id} - V^\flat\otimes V$.</p>
-    </div>
-  </div>
-</section>
-
-<section data-section="Electromagnetic displacement convexity">
   <h2>Electromagnetic Bochner inequality</h2>
-  <p>Let $u$ be a smooth solution to the Hamilton–Jacobi equation, i.e.
-    $$\langle V,V\rangle = 1, \qquad \text{where} \qquad V = -\nabla u - A^\sharp.$$</p>
-  <p>Then</p>
-  <div class="thm" style="text-align:center;">
-    $$V\operatorname{div}V + \frac{(\operatorname{div}V)^2}{n-1} + \mathrm{Ric}_F(V) \le 0.$$
+  <div class="dense squeeze">
+    <p><em>Hamilton&ndash;Jacobi equation</em>: $\ |\mathrm{d}u + A| = 1$ $\ $ and $\mathrm{d}u + A$ is past-directed.</p>
+    <p>$V := -\nabla u - A^\sharp$ is future-directed, $|V| \equiv 1$, and solves the Lorentz force equation $\nabla_V V = F^\sharp V$.</p>
+    <p class="fragment" data-fragment-index="1"><em>Kinematic decomposition</em>:
+      $$\nabla V = \underbrace{\sigma}_{\substack{\text{shear}\\ \text{self-adjoint, traceless}}} + \underbrace{\omega}_{\substack{\text{rotation}\\ \text{anti-self-adjoint}}} + \underbrace{\theta}_{\substack{\text{expansion}\\ \theta\, =\, \operatorname{div}V}}\cdot\frac{\mathrm{Id} - V^\flat\otimes V}{n-1} + V^\flat\otimes F^\sharp V$$</p>
+    <div class="thm fragment" data-fragment-index="2">
+      <p><span class="label">Raychaudhuri equation.</span>
+        $$\dot\theta = -\frac{\theta^2}{n-1} - \langle\sigma,\sigma\rangle + \langle\omega,\omega\rangle - \mathrm{Ric}(V,V) + \operatorname{div}(\nabla_V V), \qquad \dot\theta = V\operatorname{div}V.$$</p>
+    </div>
+    <div class="fragment" data-fragment-index="3">
+      <p>$$2\langle\omega,\omega\rangle = \tfrac12\langle F,F\rangle + F^2(V,V), \qquad \operatorname{div}(\nabla_VV) = \operatorname{div}(F^\sharp V) = -\delta F(V) - \tfrac12\langle F,F\rangle$$</p>
+    </div>
+    <div class="fragment" data-fragment-index="4">
+      <p>$$\langle\sigma,\sigma\rangle \ge 0 \quad\implies\quad 0 \ge \dot\theta + \frac{\theta^2}{n-1} + \underbrace{\mathrm{Ric}(V,V) + \delta F(V) + \tfrac14\langle F,F\rangle - \tfrac12F^2(V,V)}_{\textstyle\mathrm{Ric}_F(V)}.$$</p>
+    </div>
+    <div class="thm fragment" data-fragment-index="5" style="text-align:center;">
+      $$V\operatorname{div}V + \frac{(\operatorname{div}V)^2}{n-1} + \mathrm{Ric}_F(V) \le 0.$$
+    </div>
   </div>
 </section>
 
@@ -492,11 +528,12 @@
 <section data-section="Examples">
   <h2>Electromagnetic fields in Minkowski spacetime</h2>
   <p>$M := \mathbb{R}^{1+3}$, $\quad g = \mathrm{dt}^2 - \mathrm{dx}^2 - \mathrm{dy}^2 - \mathrm{dz}^2.$</p>
-  <p>A general electromagnetic field takes the form</p>
   <p class="dense">$$F = \mathrm{dt}\wedge(E^\mathrm{x}\,\mathrm{dx} + E^\mathrm{y}\,\mathrm{dy} + E^\mathrm{z}\,\mathrm{dz}) - B^\mathrm{x}\,\mathrm{dy}\wedge\mathrm{dz} + B^\mathrm{y}\,\mathrm{dx}\wedge\mathrm{dz} - B^\mathrm{z}\,\mathrm{dx}\wedge\mathrm{dy}.$$</p>
   <p>The <em>electric and magnetic fields</em> are the vector fields
     $$\mathbf{E} = E^\mathrm{x}\partial_\mathrm{x} + E^\mathrm{y}\partial_\mathrm{y} + E^\mathrm{z}\partial_\mathrm{z} \quad\text{and}\quad \mathbf{B} = B^\mathrm{x}\partial_\mathrm{x} + B^\mathrm{y}\partial_\mathrm{y} + B^\mathrm{z}\partial_\mathrm{z}.$$</p>
-  <p class="dense">Current: $J = -\delta F$.</p>
+  <p class="dense">Charge and current densities: $\rho := \operatorname{div}_{\mathbb{R}^3}\mathbf{E}$ and $\mathbf{j} := \operatorname{curl}_{\mathbb{R}^3}\mathbf{B} - \partial_\mathrm{t}\mathbf{E}$, $\ $ equivalently $J = \mathbf{J}^\flat$, where $J = -\delta F$ and $\mathbf{J} := \rho\,\partial_\mathrm{t} + \mathbf{j}$.</p>
+  <p class="dense fragment">For every future-directed unit timelike vector $v = v^\mathrm{t}\partial_\mathrm{t} + \mathbf{v}$,
+    $$\mathrm{Ric}_F(v) = \tfrac12|\mathbf{B}|^2 - |\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 - \tfrac12|\mathbf{B}\times\mathbf{v}|^2 + v^\mathrm{t}\langle\mathbf{E}\times\mathbf{B},\mathbf{v}\rangle - \rho\,v^\mathrm{t} + \langle\mathbf{j},\mathbf{v}\rangle.$$</p>
 </section>
 
 <section data-section="Examples">
@@ -506,7 +543,7 @@
     <div class="thm">
       <p><span class="label">Theorem.</span> Let $(M,g)$ be Minkowski spacetime, and suppose that $F = \mathrm{d}A$ is purely magnetic with respect to $\partial_\mathrm{t}$, and source-free:
         $$\iota_{\partial_\mathrm{t}}F \equiv 0, \qquad \delta F \equiv 0.$$
-        Then $\mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ such that $\dot\mu_0$-almost every $v$ has speed less than $1/\sqrt2$ with respect to the observer $\partial_\mathrm{t}$.</p>
+        Then $\mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ such that $\dmu_0$-almost every $v$ has speed less than $1/\sqrt2$ with respect to the observer $\partial_\mathrm{t}$.</p>
     </div>
     <p class="fragment">The speed bound $1/\sqrt2$ is the same for <em>any</em> source-free magnetic field.</p>
     <p class="fragment">$$\mathrm{Ric}_F(v) = \tfrac12\left(|\mathbf{B}|^2 - |\mathbf{B}\times\mathbf{v}|^2\right), \qquad v = v^\mathrm{t}\partial_\mathrm{t} + \mathbf{v}.$$</p>
@@ -520,37 +557,32 @@
     <p><span class="label">Theorem.</span> Let $(M,g) := (\mathbb{R}\times(\mathbb{R}^3\setminus\{0\}),\ \mathrm{dt}^2 - \mathrm{dx}^2 - \mathrm{dy}^2 - \mathrm{dz}^2)$, let $q_0 \in \mathbb{R}$, and consider the Coulomb potential and field
       $$A = \frac{q_0}{r}\,\mathrm{dt} \qquad\text{and}\qquad F = \mathrm{d}A = -\frac{q_0}{r^2}\,\mathrm{d}r\wedge\mathrm{dt}, \qquad \text{where } r = \sqrt{\mathrm{x}^2 + \mathrm{y}^2 + \mathrm{z}^2}.$$</p>
     <p>For a tangent vector $v$, write $\mathbf{v}_\perp := v - \mathrm{dt}(v)\,\partial_\mathrm{t} - \mathrm{d}r(v)\,\partial_r$ for the spatial component of $v$ orthogonal to $\partial_r$, and denote by $v_\perp$ the Euclidean norm of $\mathbf{v}_\perp$. For $r_1 &gt; 0$ and $\sigma &gt; 0$, write $U_{r_1} := \{r &gt; r_1\}$ and $B_{r_1,\sigma}$ the set of future-directed unit vectors $v$ based in $U_{r_1}$ with $v_\perp \lt \sigma$.</p>
+    <div class="fragment" data-fragment-index="1">
     <p>Then for every $Q \ge 0$, the following are equivalent:</p>
     <p>$(i)$ $\ |q_0| \le Q$.</p>
-    <p>$(ii)$ $\ \mathrm{Ent}$ is $k(Q,r_1,\sigma)$-displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ such that $\dot\mu_\lambda(B_{r_1,\sigma}) = 1$ for all $\lambda \in [0,1]$, where
+    <p>$(ii)$ $\ \mathrm{Ent}$ is $k(Q,r_1,\sigma)$-displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ such that $\dmu_\lambda(B_{r_1,\sigma}) = 1$ for all $\lambda \in [0,1]$, where
       $$k(Q,r_1,\sigma) = -\frac{Q^2}{r_1^4}\left(1 + \frac{\sigma^2}{2}\right).$$</p>
+    </div>
   </div>
-</section>
-
-<section data-section="Examples">
-  <h2>Displacement convexity detects the magnitude of point charges</h2>
-  <p>$$\mathrm{Ric}_F(v) = -|\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 = -\frac{q_0^2}{r^4}\left(1 + \frac{v_\perp^2}{2}\right) \qquad \text{for } v \in B_{r_1,\sigma}.$$</p>
-  <p class="fragment"><span class="label"><em>Remark.</em></span> For $Q = 0$, $(i)\Rightarrow(ii)$ recovers (the $\ell^1$ version of) displacement convexity for timelike optimal transport in Minkowski spacetime, while $(ii)\Rightarrow(i)$ shows that for any nonzero background point charge, displacement convexity breaks down.</p>
-</section>
-
-<section data-section="Examples">
-  <h2>Charge-to-mass ratio</h2>
-  <p>Multiplying the field $F$ by a parameter $s \in \mathbb{R}$ has the same effect on the equations of motion as multiplying the charge of the transported particles by $s$ while keeping the field $F$ fixed.</p>
-  <p class="fragment"><em>Displacement interpolations for the charge-to-mass ratio $s$</em>: displacement interpolations corresponding to the electromagnetic potential $sA$.</p>
-  <p class="fragment">If $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ then $(\mu_0,\mu_1) \in \mathscr{P}_{sA}$ for all sufficiently small $|s|$, so there exists a unique monotone displacement interpolation $(\mu^s_\lambda)$ for the charge-to-mass ratio $s$ joining $\mu_0$ to $\mu_1$.</p>
-  <div class="cites">Assouline &amp; Manini '26, based on Minguzzi &amp; Sánchez '06; for Dirac measures: Caponio &amp; Minguzzi '04</div>
+  <p class="small fragment" data-fragment-index="2">$$\mathrm{Ric}_F(v) = -|\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 = -\frac{q_0^2}{r^4}\left(1 + \frac{v_\perp^2}{2}\right) \qquad \text{for } v \in B_{r_1,\sigma}.$$</p>
+  <p class="small fragment" data-fragment-index="3"><span class="label"><em>Remark.</em></span> For $Q = 0$, $(i)\Rightarrow(ii)$ recovers (the $\ell^1$ version of) displacement convexity for timelike optimal transport in Minkowski spacetime, while $(ii)\Rightarrow(i)$ shows that for any nonzero background point charge, displacement convexity breaks down.</p>
 </section>
 
 <section data-section="Examples">
   <h2>Displacement convexity detects the sign of the charge density</h2>
-  <div class="thm small">
+  <div class="dense">
+    <p><em>Displacement interpolations for the charge-to-mass ratio $s$</em> are displacement interpolations corresponding to the electromagnetic potential $sA$.</p>
+    <p>If $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ then $(\mu_0,\mu_1) \in \mathscr{P}_{sA}$ for all sufficiently small $|s|$, so there exists a unique monotone displacement interpolation $(\mu^s_\lambda)$ for the charge-to-mass ratio $s$ joining $\mu_0$ to $\mu_1$.</p>
+  </div>
+  <div class="thm small fragment">
     <p><span class="label">Theorem.</span> Suppose that $(M,g)$ is globally hyperbolic and time-oriented and that $g$ is Ricci flat: $\ \mathrm{Ric} \equiv 0$.</p>
     <p>Let $U \subseteq M$ be a precompact open set and assume that the current $J = -\delta F$ is timelike on the closure of $U$: $\ \langle J,J\rangle &gt; 0$ on $\overline U$.</p>
     <p>Fix a continuous future-directed unit timelike vector field $Z$ on $\overline U$. Then the following are equivalent:</p>
     <p>$(i)$ The current $J$ is future-directed (resp. past-directed) on $\overline U$.</p>
-    <p>$(ii)$ There exist $0 \lt \sigma \lt 1$ and $s_0 &gt; 0$ such that for all $-s_0 \lt s \le 0$ (resp. $0 \le s \lt s_0$), $\mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ for the charge-to-mass ratio $s$ such that $(\mu_0,\mu_1) \in \mathscr{P}_{sA}$ and such that $\mu_\lambda(U) = 1$ and $\dot\mu_\lambda$-almost every $v$ has speed less than $\sigma$ with respect to the observer $Z$ for every $0 \le \lambda \le 1$.</p>
+    <p>$(ii)$ There exist $0 \lt \sigma \lt 1$ and $s_0 &gt; 0$ such that for all $-s_0 \lt s \le 0$ (resp. $0 \le s \lt s_0$), $\mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ for the charge-to-mass ratio $s$ such that $(\mu_0,\mu_1) \in \mathscr{P}_{sA}$ and such that $\mu_\lambda(U) = 1$ and $\dmu_\lambda$-almost every $v$ has speed less than $\sigma$ with respect to the observer $Z$ for every $0 \le \lambda \le 1$.</p>
   </div>
   <p class="fragment small">$$\mathrm{Ric}_{sF}(v) = -s\,J(v) - s^2\left(\tfrac12F^2 - \tfrac14\langle F,F\rangle\right)(v).$$</p>
+  <p class="fragment small"><span class="label"><em>Remark.</em></span> In general the current $J$ need not be timelike even in physically feasible situations. If the field is generated by massive particles whose charges all have the same sign, then it is timelike (or zero).</p>
 </section>
 
 <!-- ============================================================
@@ -563,7 +595,7 @@
       <span class="cite">Evans &amp; Gangbo '99, Caffarelli, Feldman &amp; McCann '02, Feldman &amp; McCann '02, Bernard &amp; Buffoni '06, Figalli '07, Fathi &amp; Figalli '10</span></p>
     <p class="fragment">This can be used to reduce geometric inequalities on weighted manifolds to their one-dimensional counterparts: <em>needle decomposition</em>. <span class="cite">Klartag '17</span></p>
     <p class="fragment small gray">Inspired by the localization technique in convex geometry: Gromov &amp; Milman '87, Kannan, Lovász &amp; Simonovits '95.
-      <br>Extended to: Finsler, Ohta '18; metric measure spaces, Cavalletti &amp; Mondino '17; sub-Riemannian, Milman '21; Lorentzian, Cavalletti &amp; Mondino '20, Braun &amp; McCann '24; Tonelli Lagrangians, Assouline '24.</p>
+      <br>Extended to: Finsler, Ohta '18; metric measure spaces, Cavalletti &amp; Mondino '17; sub-Riemannian, Milman '21; Lorentzian, Cavalletti &amp; Mondino '24, Braun &amp; McCann '24; Tonelli Lagrangians, Assouline '24.</p>
   </div>
   <div class="ph fig">transport rays / needles (deferred to a later session)</div>
 </section>
@@ -579,7 +611,7 @@
       <li class="fragment">a description of the densities of the needles in terms of solutions to the Hamilton–Jacobi equation.</li>
     </ul>
     <p class="fragment">Together with the Bochner inequality, the assumption $\mathrm{Ric}_F \ge k$ implies a curvature-dimension condition for the needles, and the rest of the proof proceeds as in previous works.
-      <span class="cite">Klartag '17, Ohta '17, Cavalletti &amp; Mondino '20, Assouline '24</span></p>
+      <span class="cite">Klartag '17, Ohta '17, Cavalletti &amp; Mondino '24, Assouline '24</span></p>
   </div>
 </section>
 
@@ -609,9 +641,9 @@
     <p>$\mathfrak{m} = e^{-\psi}\mathrm{Vol}_g$, $\qquad \delta_\mathfrak{m}F = \delta F + \iota_{\nabla\psi}F$,</p>
     <p>$$\mathrm{Ric}_{F,\mathfrak{m}} := \mathrm{Ric} + \mathrm{Hess}\,\psi + \delta_\mathfrak{m}F + \tfrac14\langle F,F\rangle - \tfrac12F^2.$$</p>
     <div class="thm">
-      <p><span class="label">Theorem.</span> Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $\mathfrak{m}$ be a measure on $M$ with a smooth density, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. For every relatively open set $B$ of future-directed unit tangent vectors and every $k \in \mathbb{R}$, the following are equivalent:</p>
+      <p><span class="label">Theorem.</span> Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $\mathfrak{m}$ be a measure on $M$ with a smooth density, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. For every relatively open set $B$ of future-directed unit tangent vectors and every ${\color{#b3261e} k} \in \mathbb{R}$, the following are equivalent:</p>
       <p>$(i)$ $\ \mathrm{Ric}_{F,\mathfrak{m}} \ge k$ on the set $B$.</p>
-      <p>$(ii)$ $\ \mathrm{Ent}[\,\cdot\,|\mathfrak{m}]$ is $k$-displacement convex with respect to $\mathfrak{m}$ along every monotone displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ with $(\mu_0,\mu_1) \in \mathscr{P}_A$ such that $\dot\mu_\lambda(B) = 1$ for all $\lambda \in [0,1]$.</p>
+      <p>$(ii)$ $\ \mathrm{Ent}[\,\cdot\,|\mathfrak{m}]$ is $k$-displacement convex with respect to $\mathfrak{m}$ along every monotone displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ with $(\mu_0,\mu_1) \in \mathscr{P}_A$ such that $\dmu_\lambda(B) = 1$ for all $\lambda \in [0,1]$.</p>
     </div>
     <p class="small gray">$\mathrm{Ric}_{F,\mathfrak{m}} \ge K$ is an electromagnetic analogue of the $\mathsf{CD}(K,\infty)$ condition of Lott–Sturm–Villani, and is closely related to the Bakry–Émery curvature-dimension criterion. <span class="cite">Bakry &amp; Émery '85</span></p>
   </div>
@@ -663,7 +695,13 @@
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       },
-      TeX: { extensions: ['color.js'] }
+      TeX: {
+        extensions: ['color.js'],
+        // plain \dot\mu drops the dot over mu's left stem; a trailing kern
+        // inside the accent centres it, and the negative kern after restores
+        // the original spacing
+        Macros: { dmu: ['\\dot{\\mu\\mkern5mu}\\mkern-5mu', 0] }
+      }
     },
     plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax2]
   });
