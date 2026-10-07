@@ -26,29 +26,51 @@
     font-family: 'Alegreya Sans', sans-serif; text-transform: none; font-weight: 500; color: var(--accent);
   }
   .reveal h2 { font-size: 1.45em; margin-bottom: 0.6em; }
+  /* slides carrying a running title are anchored to the top, overriding Reveal's vertical centering */
+  .reveal .slides section.run-title { top: 30px !important; }
   .reveal h3 { font-size: 1.05em; }
   .reveal section { text-align: left; }
   .reveal section.center-text { text-align: center; }
-  .reveal p { margin: 0.45em 0; line-height: 1.3; }
+  .reveal p { margin: 0.33em 0; line-height: 1.3; }
   .reveal ul { margin-left: 1em; }
   .reveal li { margin: 0.3em 0; line-height: 1.3; }
   .reveal .dense { font-size: 0.8em; }
+  .reveal .dense.tight { font-size: 0.72em; }
+  /* MathJax's default 1em display margins are too generous for slides */
+  .reveal .MathJax_Display { margin: 0.28em 0 !important; }
   .reveal .small { font-size: 0.75em; }
   .reveal .gray { color: var(--muted); }
+
+  /* inline figures */
+  .reveal .figure { margin: 0.5em 0 0; }
+  .reveal .figure svg { display: block; width: 100%; height: 288px; overflow: visible; }
+  .reveal .fig-row { display: flex; align-items: flex-start; justify-content: center; gap: 26px; margin-top: 0.4em; }
+  .reveal .fig-row svg { display: block; height: 288px; width: auto; overflow: visible; }
+  /* Times rather than Alegreya: lining figures (Alegreya's old-style 0 reads as "o")
+     and it sits closer to the MathJax output than the body font does */
+  .reveal .figure .fl, .reveal .fig-row .fl { font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 28px; fill: #222; }
+  .reveal .figure .sb, .reveal .fig-row .sb { font-size: 0.68em; }
+  .reveal .figure .em, .reveal .fig-row .em { fill: #cf5c36; }
+  .reveal .figure .pt, .reveal .fig-row .pt { fill: #222; }
+  .reveal .figure .gy, .reveal .fig-row .gy { fill: #8a8a8a; }
+  .reveal .figure .ax, .reveal .fig-row .ax { font-family: 'Alegreya Sans', sans-serif; font-style: normal; font-size: 18px; fill: #999; }
 
   /* theorem-like boxes */
   .thm {
     border-left: 4px solid var(--accent); background: #f3f6fb;
-    padding: 0.5em 0.8em; margin: 0.5em 0;
+    padding: 0.35em 0.8em; margin: 0.45em 0;
   }
+  .reveal .thm p { margin: 0.3em 0; }
+  .reveal .r-stack.thm-stack > * { margin: 0; width: 100%; }
+  .reveal .r-stack.fig-stack > * { margin: 0; width: 100%; }
   .thm .label { font-weight: 700; color: var(--accent); }
   .def { border-left: 4px solid #888; background: #f6f6f6; padding: 0.5em 0.8em; margin: 0.5em 0; }
   .def .label { font-weight: 700; }
   .emph { color: var(--emph); }
 
   /* citations, "Author(s) 'YY" */
-  .cite { color: var(--muted); font-size: 0.72em; }
-  .cites { position: absolute; bottom: -1.4em; right: 0; text-align: right; color: var(--muted); font-size: 0.6em; }
+  .cite { color: var(--muted); font-size: 0.85em; }
+  .cites { position: absolute; bottom: -1.4em; right: 0; padding-right: 72px; text-align: right; color: var(--muted); font-size: 0.75em; }
 
   /* placeholders: text Rotem still has to write, or figures to be drawn */
   .ph {
@@ -113,88 +135,228 @@
 </section>
 
 <!-- ============================================================
-     OPENING (~7 min). Rotem writes this text himself.
+     OPENING (~7 min)
      ============================================================ -->
-<section data-section="Displacement convexity">
-  <h2>$\mathbb{R}^n$</h2>
-  <div class="ph">(a) the optimal transport map.</div>
-  <div class="fragment ph">(b) the displacement interpolation.</div>
-  <div class="fragment ph">(c) what displacement convexity says.</div>
-  <div class="ph fig">figures for the $\mathbb{R}^n$ stage (deferred to a later session)</div>
-  <div class="cites">McCann '97</div>
+<section class="run-title" data-section="Displacement convexity">
+  <h2 data-id="dc-title">Displacement convexity</h2>
+  <div class="dense">
+
+    <p>$$\mu_0,\mu_1 \in \mathscr{P}_2(\mathbb{R}^n) := \Big\{\mu \ll \mathrm{Vol} \;:\; \mu(\mathbb{R}^n) = 1, \;\; \textstyle\int_{\mathbb{R}^n}|x|^2\,\mathrm{d}\mu < \infty\Big\}$$</p>
+
+    <div class="fragment">
+      <p>An <em>optimal transport map</em> from $\mu_0$ to $\mu_1$ is a Borel map $\mathrm{T}$ attaining
+        $$W_2^2(\mu_0,\mu_1) \;=\; \min\Big\{\textstyle\int_{\mathbb{R}^n}|\mathrm{T}x - x|^2\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$</p>
+      <p>The minimizer is unique, and $\mathrm{T} = \nabla\varphi$ for a convex function $\varphi$ on $\mathbb{R}^n$. <span class="cite">Brenier '91, McCann '95</span></p>
+    </div>
+
+    <div class="fragment">
+      <p>The <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
+        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda := (1-\lambda)\,\mathrm{Id} + \lambda\,\mathrm{T}, \qquad 0 \le \lambda \le 1.$$</p>
+    </div>
+
+    <div class="fragment thm">
+      <p><span class="label">Theorem</span> <span class="cite">(McCann '97)</span>. $\mathrm{Ent}$ is <em>displacement convex</em>: for all $\mu_0,\mu_1$ and all $0 \le \lambda \le 1$,
+        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1],$$
+        where $\mu_\lambda$ is the displacement interpolation between $\mu_0$ and $\mu_1$, and
+        $$\mathrm{Ent}[\mu] := \int_{\mathbb{R}^n}\log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}.$$</p>
+    </div>
+
+  </div>
 </section>
 
-<section data-section="Displacement convexity">
-  <h2>Riemannian manifolds</h2>
-  <div class="thm ph">theorem: $\mathrm{Ric} \ge 0$ $\iff$ displacement convexity of entropy.</div>
-  <div class="fragment ph">one sentence: other Ricci lower bounds give correspondingly modified ($K$-)displacement convexity.</div>
-  <div class="cites">Cordero-Erausquin, McCann &amp; Schmuckenschläger '01, von Renesse &amp; Sturm '05, Sturm '06, Lott &amp; Villani '09</div>
+<section class="run-title" data-section="Displacement convexity">
+  <h2 data-id="dc-title">Displacement convexity</h2>
+  <div class="dense tight">
+
+    <p>$(M,g)$ complete Riemannian manifold.
+      $$\mu_0,\mu_1 \in \mathscr{P}_2(M) := \Big\{\mu \ll \mathrm{Vol}_g \;:\; \mu(M) = 1, \;\; \textstyle\int_M d(o,x)^2\,\mathrm{d}\mu(x) < \infty\Big\}$$</p>
+
+    <p>
+      $$W_2^2(\mu_0,\mu_1) \;=\; \min\Big\{\textstyle\int_M d(x,\mathrm{T}x)^2\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}$$
+      Unique minimizer: $\ \mathrm{T}x = \exp_x\!\big(\nabla\varphi(x)\big)$, where $\varphi$ is $\tfrac{d^2}{2}$-concave. <span class="cite">McCann '01</span>
+      $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\nabla\varphi(x)\big), \qquad 0 \le \lambda \le 1.$$</p>
+
+    <!-- one theorem, two states: Ric >= 0 replaced in place by Ric >= k -->
+    <div class="r-stack thm-stack">
+      <div class="thm fragment fade-in-then-out" data-fragment-index="1">
+        <p><span class="label">Theorem</span> <span class="cite">(Cordero-Erausquin, McCann &amp; Schmuckenschläger '01, von Renesse &amp; Sturm '05, Sturm '06, Lott &amp; Villani '09)</span></p>
+        <p> The following are equivalent:</p>
+        <p>$(i)$ $\ \mathrm{Ric} \ge 0$.</p>
+        <p>$(ii)$ $\ \mathrm{Ent}$ is displacement convex along every displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$:
+          $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1],$$</p>
+        <p>where
+          $$\mathrm{Ent}[\mu] := \int_M\log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
+      </div>
+      <div class="thm fragment" data-fragment-index="2">
+        <p><span class="label">Theorem</span> <span class="cite">(Cordero-Erausquin, McCann &amp; Schmuckenschläger '01, von Renesse &amp; Sturm '05, Sturm '06, Lott &amp; Villani '09)</span></p>
+        <p>Let ${\color{#b3261e} k} \in \mathbb{R}$. The following are equivalent:</p>
+        <p>$(i)$ $\ \mathrm{Ric} \ge {\color{#b3261e} k}$.</p>
+        <p>$(ii)$ $\ \mathrm{Ent}$ is ${\color{#b3261e} k}$-displacement convex along every displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$:
+          $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] {\color{#b3261e} {} - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot W_2^2(\mu_0,\mu_1)},$$</p>
+        <p>where
+          $$\mathrm{Ent}[\mu] := \int_M\log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section data-section="Displacement convexity">
-  <h2>Lorentzian manifolds</h2>
-  <div class="thm ph">McCann's theorem in its original $\ell_q$ form ($0 &lt; q &lt; 1$): displacement convexity $\iff$ strong energy condition ($\mathrm{Ric} \ge 0$ on timelike vectors). Stated without precise Lorentzian definitions.</div>
-  <div class="cites">McCann '20</div>
+
+<section class="run-title" data-section="Displacement convexity">
+  <h2 data-id="dc-title">Displacement convexity</h2>
+  <div class="dense tight">
+    <p>
+      $(M,g)$ globally hyperbolic spacetime, $\ 0 &lt; q &lt; 1$. 
+      $$\ell(x,y) := \sup\Big\{\textstyle\int_0^1 |\dot\gamma|\,\mathrm{d}t \;:\; \gamma \text{ future-directed causal},\ \gamma(0) = x,\ \gamma(1) = y\Big\}, \qquad x,y \in M.$$
+    </p>
+    <p>
+      $\mu_0,\mu_1$ absolutely continuous and compactly supported, with $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0 \times \operatorname{supp}\mu_1$
+      <span class="gray">($x_0 \ll x_1$: there is a future-directed timelike curve from $x_0$ to $x_1$)</span>.</p>
+    <p>
+      $$\ell_q(\mu_0,\mu_1)^q \;=\; \max\Big\{\textstyle\int_M \ell(x,\mathrm{T}x)^q\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}$$
+      Unique maximizer: $\ \mathrm{T}x = \exp_x\!\big(\nabla\varphi(x)\big)$.
+      $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\nabla\varphi(x)\big), \qquad 0 \le \lambda \le 1.$$</p>
+
+    <!-- one theorem, two states: the k = 0 statement is replaced in place by the
+         general k one. Superimposed with r-stack, so only what changes is seen to change. -->
+    <div class="r-stack thm-stack">
+      <div class="thm fragment fade-in-then-out" data-fragment-index="1">
+        <p><span class="label">Theorem</span> <span class="cite">(McCann '20, Mondino &amp; Suhr '22, Cavalletti &amp; Mondino '24)</span></p>
+        <p> The following are equivalent:</p>
+        <p>$(i)$ $\ \mathrm{Ric}(v,v) \ge 0$ for every unit timelike $v$ &nbsp;<span class="gray">(the strong energy condition)</span>.</p>
+        <p>$(ii)$ $\ \mathrm{Ent}$ is displacement convex along every displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$:
+          $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1].$$</p>
+      </div>
+      <div class="thm fragment" data-fragment-index="2">
+        <p><span class="label">Theorem</span> <span class="cite">(McCann '20, Mondino &amp; Suhr '22, Cavalletti &amp; Mondino '24)</span></p>
+        <p>Let ${\color{#b3261e} k} \in \mathbb{R}$. The following are equivalent:</p>
+        <p>$(i)$ $\ \mathrm{Ric}(v,v) \ge {\color{#b3261e} k}$ for every unit timelike $v$.</p>
+        <p>$(ii)$ $\ \mathrm{Ent}$ is ${\color{#b3261e} k}$-displacement convex along every displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$:
+          $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] {\color{#b3261e} {} - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M \ell(x,\mathrm{T}x)^2\,\mathrm{d}\mu_0(x)}.$$</p>
+      </div>
+    </div>
+
+    <p class="cite">See also Suhr '18, Braun '23, Braun &amp; McCann '24; survey: Cavalletti &amp; Mondino '22.</p>
+
+  </div>
 </section>
 
-<!-- Transition to the EM setting (how it is made: open). This sentence is the paper's own. -->
-<section data-section="Displacement convexity" class="center-text">
-  <p style="margin-top: 3em;">Whereas those works concern the behavior of mass transportation in a <em>gravitational</em> field, the present work concerns its behavior in an <em>electromagnetic</em> field.</p>
-  <div class="ph" style="text-align:left;">transition to the electromagnetic setting (still open): keep, replace or drop this sentence.</div>
+<section class="run-title" data-section="Electromagnetism on Lorentzian manifolds">
+  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
+  <div>
+    <p>$(M,g)$: $n$-dimensional Lorentzian manifold of signature $(+ - \cdots -)$, time-oriented, i.e. endowed with a timelike vector field $Z$.</p>
+    <p class="fragment">$v \in TM$ is <em>timelike</em> if $\langle v,v\rangle &gt; 0$, <em>null</em> if $\langle v,v\rangle = 0$ and $v \ne 0$, and <em>causal</em> if it is timelike or null.</p>
+    <p class="fragment">A causal vector $v$ is <em>future-directed</em> if $\langle Z,v\rangle &gt; 0$. A curve is timelike, causal or future-directed if its velocity is.</p>
+    <p class="fragment">$x_0 \ll x_1$ if there is a future-directed timelike curve joining $x_0$ to $x_1$.</p>
+    <p class="fragment">$(M,g)$ is <em>globally hyperbolic</em> if there are no closed causal curves and, for all $x,y \in M$, the set
+      $\{z \in M : x \ll z\} \cap \{z \in M : z \ll y\}$
+      is precompact.
+      Equivalently, $M$ admits a <em>Cauchy hypersurface</em>: a spacelike hypersurface met exactly once by every inextendible timelike curve.</p>
+  </div>
 </section>
 
-<!-- ============================================================
-     A LITTLE LORENTZIAN GEOMETRY + BASIC ELECTROMAGNETISM
-     ============================================================ -->
-<section data-section="Electromagnetism on Lorentzian manifolds">
-  <h2>Lorentzian manifolds</h2>
-  <ul class="dense">
-    <li>$(M,g)$: $n$-dimensional Lorentzian manifold of signature $(+ - \cdots -)$, time-oriented, i.e. endowed with a timelike vector field $Z$.</li>
-    <li class="fragment">$v \in TM$ is <em>timelike</em> if $\langle v,v\rangle &gt; 0$ and <em>null</em> if $\langle v,v\rangle = 0$ and $v \ne 0$.</li>
-    <li class="fragment">A timelike or null vector $v$ is <em>future-directed</em> if $\langle Z,v\rangle &gt; 0$.</li>
-    <li class="fragment">$x_0 \ll x_1$ if there exists a future-directed timelike curve joining $x_0$ to $x_1$.</li>
-    <li class="fragment">$(M,g)$ is globally hyperbolic <span class="gray">(<span class="ph-inline">&#9998; definition of global hyperbolicity (Rotem)</span>)</span>.</li>
-  </ul>
-</section>
-
-<section data-section="Electromagnetism on Lorentzian manifolds">
-  <h2>Lorentz force equation</h2>
-  <p>Let $A$ be a one-form on $M$, which will play the role of a vector potential for an electromagnetic field
+<section class="run-title" data-section="Electromagnetism on Lorentzian manifolds">
+  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
+  <p>$A$ one-form on $M$,
     $$F := \mathrm{d}A.$$</p>
   <p class="fragment">A test particle of unit charge and mass moving in the electromagnetic field $F$ is described by a unit-speed timelike curve $\gamma$ solving the <em>Lorentz force equation</em>
     $$\nabla_{\dot\gamma}\dot\gamma = F^\sharp\dot\gamma,$$
     where $F^\sharp$ is the $(1,1)$-tensor defined by $\langle\,\cdot\,,F^\sharp\,\cdot\,\rangle = F$.</p>
-  <p class="fragment small gray">Existence of action-minimizing solutions of the Lorentz force equation joining given pairs of points: Minguzzi &amp; Sánchez '06</p>
+  <p class="fragment">A solution $u$ of the <em>Hamilton&ndash;Jacobi equation</em>
+    $$|\mathrm{d}u + A|_g = 1,$$
+    with $\mathrm{d}u + A$ past-directed, describes a flow of charged test particles: $\ V := -\nabla u - A^\sharp$ is future-directed, $|V| \equiv 1$, and solves $\nabla_V V = F^\sharp V$.</p>
 </section>
 
-<section data-section="Electromagnetism on Lorentzian manifolds">
-  <h2>Action and cost</h2>
+<section class="run-title" data-section="Electromagnetism on Lorentzian manifolds">
+  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
   <p>Cost function:
     $$\mathrm{c}(x,y) := \inf_\gamma \int_\gamma\bigl(-|\dot\gamma| - A(\dot\gamma)\bigr),$$
     the infimum among all future-directed timelike curves joining $x$ to $y$.</p>
-  <div class="fragment dense">
-    <p>Electromagnetic Lagrangian, $r \in (0,1)$:
+  <div class="fragment">
+    <p><em>Electromagnetic Lagrangian</em>, for $r \in (0,1)$:
       $$L(v) := \begin{cases} -\frac1r|v|^r + \frac1r - 1 - A(v), & v \text{ is future-directed or } v = 0,\\ \infty, & \text{otherwise.}\end{cases}$$</p>
     <p>By considering free-time rather than fixed-time minimizers of the action, we force the minimizers to have unit speed and to minimize the parametrization-invariant functional $\int -|\dot\gamma| - A(\dot\gamma)$.</p>
-    <p class="small gray">An analytical-mechanics approach to the Lorentzian optimal transport problem was used in McCann '18, Braun, Gigli, McCann, Ohanyan &amp; Sämann '26, and we shall use a similar Lagrangian.</p>
+    <p class="cite">McCann '18, Braun, Gigli, McCann, Ohanyan &amp; Sämann '26</p>
   </div>
 </section>
 
-<section data-section="Electromagnetism on Lorentzian manifolds">
-  <h2>Displacement interpolations</h2>
+<section class="run-title" data-section="Electromagnetism on Lorentzian manifolds">
+  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
   <div class="dense">
     <p>$\Phi$: the flow map of the Lorentz force equation.</p>
     <p>A <em>displacement interpolation</em> between $\mu_0,\mu_1$:
       $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda := \pi\circ\Phi\circ(V_0,\lambda\ell), \qquad 0 \le \lambda \le 1,$$
-      where $V_0$ is a vector field on $\operatorname{supp}\mu_0$ and $\ell \ge 0$ is a function on $\operatorname{supp}\mu_0$, and where $\mathrm{T}_1$ is an optimal transport map from $\mu_0$ to $\mu_1$.</p>
-    <p class="fragment">$\ell$: the <em>duration function</em>. $\ell(x_0)$ is the proper time elapsed along the worldline of a transported particle whose trajectory begins at $x_0$.</p>
-    <p class="fragment">$\dot\mu_\lambda := (\Phi\circ(V_0,\lambda\ell))_\sharp\mu_0$.</p>
+      where</p>
+    <ul>
+      <li>$V_0$ is a vector field on $\operatorname{supp}\mu_0$,</li>
+      <li>$\ell \ge 0$ is a function on $\operatorname{supp}\mu_0$ (the <em>duration function</em>),</li>
+      <li>$\mathrm{T}_1$ is an optimal transport map from $\mu_0$ to $\mu_1$.</li>
+    </ul>
+    <p class="fragment" data-fragment-index="1">$\dot\mu_\lambda := (\Phi\circ(V_0,\lambda\ell))_\sharp\mu_0$.</p>
   </div>
-  <div class="ph fig">the assignment $x_0 \mapsto (V_0\vert_{x_0},\ell(x_0))$ (deferred to a later session)</div>
+  <div class="fig-row">
+    <div class="fragment" data-fragment-index="2">
+      <svg viewBox="95 2 640 296" role="img" aria-label="Worldlines of charged test particles carrying mu_0 to mu_1">
+      <defs>
+        <marker id="vhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#cf5c36"/>
+        </marker>
+        <marker id="ghead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#8a8a8a"/>
+        </marker>
+      </defs>
+
+
+
+      <ellipse cx="360" cy="252" rx="130" ry="16" fill="#f1f1f1" stroke="#8a8a8a" stroke-width="1.8"/>
+      <ellipse cx="400" cy="150" rx="130" ry="16" fill="none" stroke="#aaaaaa" stroke-width="1.8" stroke-dasharray="7 6"/>
+      <ellipse cx="440" cy="48"  rx="130" ry="16" fill="#f1f1f1" stroke="#8a8a8a" stroke-width="1.8"/>
+      <text class="fl" x="216" y="260" text-anchor="end">&#956;<tspan class="sb" dy="7">0</tspan></text>
+      <text class="fl" x="256" y="158" text-anchor="end">&#956;<tspan class="sb" dy="7">&#955;</tspan></text>
+      <text class="fl" x="296" y="56"  text-anchor="end">&#956;<tspan class="sb" dy="7">1</tspan></text>
+
+      <!-- worldlines: solutions of the Lorentz force equation -->
+      <path d="M 280 248 Q 305 173 320 146 T 360 44" fill="none" stroke="#8fb0d4" stroke-width="2.2"/>
+      <path d="M 350 252 Q 375 177 390 150 T 430 48" fill="none" stroke="#8fb0d4" stroke-width="2.2"/>
+      <path d="M 450 248 Q 475 173 490 146 T 530 44" fill="none" stroke="#1a4f8b" stroke-width="3"/>
+
+      <line x1="280" y1="248" x2="298" y2="193" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead)"/>
+      <line x1="350" y1="252" x2="368" y2="197" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead)"/>
+      <line x1="450" y1="248" x2="468" y2="193" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead)"/>
+
+      <circle class="pt" cx="450" cy="248" r="5"/>
+      <circle class="pt" cx="490" cy="146" r="5"/>
+      <circle class="pt" cx="530" cy="44"  r="5"/>
+
+      <!-- the duration: proper time elapsed along the worldline -->
+      <path d="M 480 259 Q 505 184 520 157 T 560 55" fill="none" stroke="#8a8a8a" stroke-width="1.6" stroke-dasharray="6 5"
+            marker-start="url(#ghead)" marker-end="url(#ghead)"/>
+      <text class="fl gy" x="514" y="206" text-anchor="start">&#8467;(x<tspan class="sb" dy="7">0</tspan><tspan dy="-7">)</tspan></text>
+
+      <text class="fl pt" x="446" y="282" text-anchor="middle">x<tspan class="sb" dy="7">0</tspan></text>
+      <text class="fl em" x="440" y="210" text-anchor="end">V<tspan class="sb" dy="7">0</tspan></text>
+      <text class="fl pt" x="530" y="26" text-anchor="middle">T<tspan class="sb" dy="7">1</tspan><tspan dy="-7">x</tspan><tspan class="sb" dy="7">0</tspan></text>
+    </svg>
+    </div>
+    <div class="fragment" data-fragment-index="3">
+      <svg viewBox="0 2 330 296" role="img" aria-label="The velocities at stage lambda">
+        <defs>
+          <marker id="vhead2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#cf5c36"/>
+          </marker>
+        </defs>
+        <ellipse cx="190" cy="150" rx="120" ry="15" fill="none" stroke="#aaaaaa" stroke-width="1.8" stroke-dasharray="7 6"/>
+        <line x1="110" y1="153" x2="137" y2="105" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead2)"/>
+        <line x1="190" y1="156" x2="217" y2="108" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead2)"/>
+        <line x1="270" y1="153" x2="297" y2="105" stroke="#cf5c36" stroke-width="2.6" marker-end="url(#vhead2)"/>
+        <text class="fl em" x="60" y="158" text-anchor="end">&#956;&#775;<tspan class="sb" dy="7">&#955;</tspan></text>
+      </svg>
+    </div>
+  </div>
 </section>
 
-<section data-section="Electromagnetism on Lorentzian manifolds">
-  <h2>Monotone displacement interpolations</h2>
+<section class="run-title" data-section="Electromagnetism on Lorentzian manifolds">
+  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
   <div class="dense">
     <p><em>Monotone</em>: for all $x,y$ and all $\tau \ge 0$,
       $$\Phi(V_0\vert_x,\tau) = V_0\vert_y \quad\implies\quad \ell(x) \le \ell(y) + \tau.$$</p>
@@ -204,6 +366,7 @@
       <p>$\mathscr{P}_\ll$: pairs $(\mu_0,\mu_1)$ of compactly supported, absolutely continuous Borel probability measures such that $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0\times\operatorname{supp}\mu_1$.</p>
       <p>$\mathscr{P}_A \subseteq \mathscr{P}_\ll$: pairs for which no null geodesic joining a point of $\operatorname{supp}\mu_0$ to a point of $\operatorname{supp}\mu_1$ is action-minimizing. The two classes coincide in Minkowski spacetime.</p>
       <p>For every $(\mu_0,\mu_1) \in \mathscr{P}_A$ there exists a unique monotone displacement interpolation between $\mu_0$ and $\mu_1$. <span class="cite">Assouline &amp; Manini '26</span></p>
+      <p class="small gray">Based on the existence of action-minimizing solutions of the Lorentz force equation joining given pairs of points: Minguzzi &amp; Sánchez '06</p>
     </div>
   </div>
   <div class="cites">cf. Feldman &amp; McCann '02, Bernard &amp; Buffoni '06</div>
