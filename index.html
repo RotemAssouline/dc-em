@@ -202,7 +202,7 @@
       <li class="fragment" data-fragment-index="1">An <em>optimal transport map</em> between two probability measures $\mu_0,\mu_1 \in \mathscr{P}_2(\mathbb{R}^n)$ is a Borel map $\mathrm{T}$ attaining
         $$\min\Big\{\textstyle\int_{\mathbb{R}^n}|\mathrm{T}x - x|^2\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
         <p class="gray" style="font-size:0.88em">$\mathscr{P}_2(\mathbb{R}^n):=$ absolutely continuous probability measures on $\mathbb{R}^n$ with finite second moment.</p></li>
-      <li class="fragment" data-fragment-index="2">The minimizer is unique, and $\mathrm{T} = \nabla\varphi$ for a convex function $\varphi$ on $\mathbb{R}^n$. <span class="cite">Brenier '91, McCann '95</span></li>
+      <li class="fragment" data-fragment-index="2">The minimizer is unique, and given by $\mathrm{T} = \nabla\varphi$ for a convex function $\varphi$ on $\mathbb{R}^n$. <span class="cite">Brenier '91, McCann '95</span></li>
       <li class="fragment" data-fragment-index="3">The <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
         $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda := (1-\lambda)\,\mathrm{Id} + \lambda\,\mathrm{T}, \qquad 0 \le \lambda \le 1.$$</li>
     </ul>
@@ -227,7 +227,7 @@
       <li class="fragment" data-fragment-index="1">An <em>optimal transport map</em> between two probability measures $\mu_0,\mu_1 \in \mathscr{P}_2(M)$ is a Borel map $\mathrm{T}$ attaining
         $$\min\Big\{\textstyle\int_M d(x,\mathrm{T}x)^2\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
         <p class="gray" style="font-size:0.88em">$\mathscr{P}_2(M):=$ absolutely continuous probability measures on $M$ with finite second moment.</p></li>
-      <li class="fragment" data-fragment-index="2">The minimizer is unique, and $\mathrm{T}x = \exp_x\!\big(\nabla\varphi\vert_x\big)$ for a $\tfrac{d^2}{2}$-concave function $\varphi$ on $M$. <span class="cite">McCann '01</span></li>
+      <li class="fragment" data-fragment-index="2">The minimizer is unique, and given by $\mathrm{T}x = \exp_x\!\big(\nabla\varphi\vert_x\big)$ for a $\tfrac{d^2}{2}$-concave function $\varphi$ on $M$. <span class="cite">McCann '01</span></li>
       <li class="fragment" data-fragment-index="3">The <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
         $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\nabla\varphi\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
     </ul>
@@ -251,6 +251,15 @@
           $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] {\color{#d9730d} {} - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot W_2^2(\mu_0,\mu_1)},$$</p>
         <p>where
           $$\mathrm{Ent}[\mu] := \int_M\log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
+      </div>
+      <div class="thm fragment" data-fragment-index="6">
+        <p><span class="label">Theorem</span> <span class="cite">(Cordero-Erausquin, McCann &amp; Schmuckenschläger '01, von Renesse &amp; Sturm '05, Sturm '06, Lott &amp; Villani '09)</span></p>
+        <p>Let $k \in \mathbb{R}$, and let ${\color{#d9730d} \mathfrak{m} = e^{-V}\mathrm{Vol}_g}$ with $V$ smooth. The following are equivalent:</p>
+        <p>$(i)$ $\ \mathrm{Ric}_{\color{#d9730d} \mathfrak{m}} \ge k$.</p>
+        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2(M)$ and all $0 \le \lambda \le 1$,
+          $$\mathrm{Ent}[\mu_\lambda|{\color{#d9730d} \mathfrak{m}}] \le (1-\lambda)\mathrm{Ent}[\mu_0|{\color{#d9730d} \mathfrak{m}}] + \lambda\,\mathrm{Ent}[\mu_1|{\color{#d9730d} \mathfrak{m}}] - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot W_2^2(\mu_0,\mu_1),$$</p>
+        <p>where
+          $$\mathrm{Ent}[\mu|{\color{#d9730d} \mathfrak{m}}] := \int_M\log f\,\mathrm{d}\mu \quad \text{for } \mu = f\,{\color{#d9730d} \mathfrak{m}}, \qquad \mathrm{Ric}_{\color{#d9730d} \mathfrak{m}} := \mathrm{Ric} + \mathrm{Hess}\, V.$$</p>
       </div>
       <!-- <div class="thm fragment fade-in-then-out" data-fragment-index="6">
         <p><span class="label">Theorem</span> <span class="cite">(Sturm '06, Lott &amp; Villani '09, Erbar, Kuwada &amp; Sturm '15)</span></p>
@@ -315,7 +324,7 @@
       <li class="fragment" data-fragment-index="1">An <em>$\ell_q$ optimal transport map</em> between two probability measures $\mu_0,\mu_1$ is a Borel map $\mathrm{T}$ attaining
         $$\ell_q(\mu_0,\mu_1)^q := \max\Big\{\textstyle\int_M \ell(x,\mathrm{T}x)^q\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
         <p class="gray" style="font-size:0.88em">$\mu_0,\mu_1$ absolutely continuous and compactly supported, with $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0 \times \operatorname{supp}\mu_1$.</p></li>
-      <li class="fragment" data-fragment-index="2">The maximizer is unique, and $\mathrm{T}x = \exp_x\!\big(\nabla\varphi\vert_x\big)$ for an $\ell^q$-concave function $\varphi$ on $M$. <span class="cite">McCann '20, Cavalletti &amp; Mondino '24</span></li>
+      <li class="fragment" data-fragment-index="2">The maximizer is unique, and given by $\mathrm{T}x = \exp_x\!\big(\nabla\varphi\vert_x\big)$ for an $\ell^q$-concave function $\varphi$ on $M$. <span class="cite">McCann '20, Cavalletti &amp; Mondino '24</span></li>
       <li class="fragment" data-fragment-index="3">The <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
         $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\nabla\varphi\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
     </ul>
@@ -825,12 +834,14 @@
   <h2 data-id="needle-title">Needle decomposition</h2>
   <h3 class="subtitle">Proof sketch</h3>
   <div class="dense">
+    <p>Lagrangian $L : TM \to \mathbb{R}\cup\{+\infty\}$ satisfying (I)&ndash;(V); $\ $ set $\mathcal{A} \subseteq M\times M$ satisfying (VI)&ndash;(VII); $\ $reference measure $\mathfrak{m}$; $\ $probability measures $\mu_0 = f_0\,\mathfrak{m} \perp \mu_1 = f_1\,\mathfrak{m}$, $\ \operatorname{supp}\mu_0\times\operatorname{supp}\mu_1 \subseteq \mathcal{A}$.</p>
     <ol class="needle">
-      <li class="fragment"><em>Transport rays.</em> The Kantorovich potential $u$ cuts $M$ into disjoint minimizing extremals, the <em>transport rays</em>, which carry all the mass of $\mu_0$ and $\mu_1$. Along a ray $u$ grows exactly by the action, and $\dot\gamma = \mathcal{L}\,\mathrm{d}u$. <span class="cite">Klartag '17</span></li>
-      <li class="fragment"><em>Tonelli case.</em> If $L$ were finite and superlinear, Klartag's argument applies verbatim: disintegrate $\mathfrak{m}$ along the rays and read off the needle densities from the Hamilton&ndash;Jacobi equation. <span class="cite">A. '26</span></li>
-      <li class="fragment"><em>Localize.</em> Near each point of a ray, away from its endpoints, modify $L$ far from the transport direction so that it becomes finite, superlinear and strictly convex, without changing the rays passing nearby.</li>
-      <li class="fragment"><em>Local needles.</em> Apply the Tonelli result in each of countably many such neighborhoods. Since the modified Lagrangian agrees with $L$ along the rays, the local needles are pieces of the global rays and satisfy the original Hamilton&ndash;Jacobi equation.</li>
-      <li class="fragment"><em>Glue.</em> The local disintegrations are all taken with respect to the same ray map, so they patch together along the rays. Their densities match up to multiplicative constants, which gives smooth needle densities and the Hamilton&ndash;Jacobi clause. Mass balance comes from the transport sets, as in Klartag.</li>
+      <li class="fragment">The Kantorovich potential $u$ for $(\mu_0, \mu_1)$ induces a decomposition of $M$ into disjoint minimizing extremals (<em>transport rays</em>), which solve $\dot\gamma = \mathcal{L}\,\mathrm{d}u$ on the set where $u$ is differentiable. <span class="gray">$\mathcal{L}:=$ Legendre transform.</span></li>
+      <!-- <li class="fragment"> If $L$ were finite and superlinear, Klartag's argument applies <span class="cite">(A. '26)</span>: we can disintegrate $\mathfrak{m}$ along the rays and read off the needle densities from the Hamilton&ndash;Jacobi equation.</li> -->
+      <li class="fragment">Near each point on a ray, modify $L$ away from the transport direction so that it becomes finite, superlinear and strictly convex, and rays passing nearby are also transport rays of a Kantorovich potential for the regularized Lagrangian.</li>
+      <li class="fragment"> Apply needle decomposition result for Tonelli Lagrangians <span class="cite">(A. '26)</span> to the regularized Lagrangian. Since it agrees with $L$ along the rays, the local needles are pieces of the global rays, and the Hamilton&ndash;Jacobi equations coincide.</li>
+      <li class="fragment">The densities of the local needle match up to multiplicative constants, so they can be glued together to form a global needle decomposition. 
+      <li class="fragment">Mass balance is proved as usual.</li>
     </ol>
   </div>
 </section>
