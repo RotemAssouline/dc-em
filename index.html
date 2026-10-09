@@ -252,8 +252,7 @@
         <p>where
           $$\mathrm{Ent}[\mu] := \int_M\log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
       </div>
-      <!-- the dimensional version, in the entropic form of Erbar, Kuwada & Sturm (CD^e(K,N), their Def. 3.1 and Prop. 4.21) -->
-      <div class="thm fragment fade-in-then-out" data-fragment-index="6">
+      <!-- <div class="thm fragment fade-in-then-out" data-fragment-index="6">
         <p><span class="label">Theorem</span> <span class="cite">(Sturm '06, Lott &amp; Villani '09, Erbar, Kuwada &amp; Sturm '15)</span></p>
         <p>Let $k \in \mathbb{R}$ and ${\color{#d9730d} N} \in [1,\infty)$. The following are equivalent:</p>
         <p>$(i)$ $\ \mathrm{Ric} \ge k$ ${\color{#d9730d} \text{ and } \dim M \le N}$.</p>
@@ -270,7 +269,7 @@
           $$e^{-\mathrm{Ent}[\mu_\lambda|{\color{#d9730d} \mathfrak{m}}]/N} \ge \sigma^{(1-\lambda)}_{k/N}\big(W_2(\mu_0,\mu_1)\big)\,e^{-\mathrm{Ent}[\mu_0|{\color{#d9730d} \mathfrak{m}}]/N} + \sigma^{(\lambda)}_{k/N}\big(W_2(\mu_0,\mu_1)\big)\,e^{-\mathrm{Ent}[\mu_1|{\color{#d9730d} \mathfrak{m}}]/N},$$</p>
         <p>where
           $$\mathrm{Ent}[\mu|{\color{#d9730d} \mathfrak{m}}] := \int_M\log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,{\color{#d9730d} \mathfrak{m}}.$$</p>
-      </div>
+      </div> -->
     </div>
 
   </div>
@@ -286,29 +285,19 @@
       <li class="fragment" data-fragment-index="1">An <em>${\color{#2e7d32} L^1}$-optimal transport map</em> between two probability measures $\mu_0,\mu_1 \in \mathscr{P}_1(M)$ is a Borel map $\mathrm{T}$ attaining
         $$W_{\color{#2e7d32} 1}(\mu_0,\mu_1) := \min\Big\{\textstyle\int_M {\color{#2e7d32} d(x,\mathrm{T}x)}\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
         <p class="gray" style="font-size:0.88em">$\mathscr{P}_1(M):=$ absolutely continuous probability measures on $M$ with finite first moment.</p></li>
-      <li class="fragment" data-fragment-index="2">Every minimizer has the form
-        $$\mathrm{T}x = \exp_x\!\big(\ell(x)V\vert_x\big), \qquad V = -\nabla u,\ \ |\nabla u| = 1, \qquad \ell(x) = d(x,\mathrm{T}x).$$
-        Minimizers are not unique, but there is a unique <em>monotone</em> one. <span class="cite">Feldman &amp; McCann '02</span></li>
+      <li class="fragment" data-fragment-index="2">A minimizer exists, and every minimizer has the form
+        $\mathrm{T}x = \exp_x\!\big(\ell(x)\nabla u\vert_x\big)$
+        for a 1-Lipschitz function $u$ and a measurable function $\ell$. <span class="cite">Evans &amp; Gangbo '99, Feldman &amp; McCann '02, Caffarelli, Feldman &amp; McCann '02</span></li>
       <li class="fragment" data-fragment-index="3">An <em>$L^1$ displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
-        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\,\ell(x)V\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
+        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\,\ell(x)\nabla u\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
     </ul>
 
-    <!-- one theorem, two states: Ric >= 0 replaced in place by Ric >= k -->
-    <div class="r-stack thm-stack">
-      <div class="thm fragment fade-in-then-out" data-fragment-index="4">
-        <p><span class="label">Theorem</span> <span class="cite">(Klartag '17, Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21, A. '26)</span></p>
-        <p> The following are equivalent:</p>
-        <p>$(i)$ $\ \mathrm{Ric} \ge 0$.</p>
-        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_1(M)$ there exists an $L^1$ displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ along which, for all $0 \le \lambda \le 1$,
-          $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1].$$</p>
-      </div>
-      <div class="thm fragment" data-fragment-index="5">
-        <p><span class="label">Theorem</span> <span class="cite">(Klartag '17, Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21, A. '26)</span></p>
-        <p>Let ${\color{#d9730d} k} \in \mathbb{R}$. The following are equivalent:</p>
-        <p>$(i)$ $\ \mathrm{Ric} \ge {\color{#d9730d} k}$.</p>
-        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_1(M)$ there exists an $L^1$ displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ along which, for all $0 \le \lambda \le 1$,
-          $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] {\color{#d9730d} {} - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M \ell^2\,\mathrm{d}\mu_0}.$$</p>
-      </div>
+    <div class="thm fragment" data-fragment-index="4">
+      <p><span class="label">Theorem</span> <span class="cite">(Klartag '17, Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21, A. '26)</span></p>
+      <p>Let $k \in \mathbb{R}$. The following are equivalent:</p>
+      <p>$(i)$ $\ \mathrm{Ric} \ge k$.</p>
+      <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_1(M)$ there exists an $L^1$ displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ along which, for all $0 \le \lambda \le 1$,
+        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M \ell^2\,\mathrm{d}\mu_0.$$</p>
     </div>
 
   </div>
@@ -326,29 +315,37 @@
       <li class="fragment" data-fragment-index="1">An <em>$\ell_q$ optimal transport map</em> between two probability measures $\mu_0,\mu_1$ is a Borel map $\mathrm{T}$ attaining
         $$\ell_q(\mu_0,\mu_1)^q := \max\Big\{\textstyle\int_M \ell(x,\mathrm{T}x)^q\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
         <p class="gray" style="font-size:0.88em">$\mu_0,\mu_1$ absolutely continuous and compactly supported, with $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0 \times \operatorname{supp}\mu_1$.</p></li>
-      <li class="fragment" data-fragment-index="2">The maximizer is unique, and $\mathrm{T}x = \exp_x\!\big(\nabla\varphi\vert_x\big)$.</li>
+      <li class="fragment" data-fragment-index="2">The maximizer is unique, and $\mathrm{T}x = \exp_x\!\big(\nabla\varphi\vert_x\big)$ for an $\ell^q$-concave function $\varphi$ on $M$. <span class="cite">McCann '20, Cavalletti &amp; Mondino '24</span></li>
       <li class="fragment" data-fragment-index="3">The <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
         $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\nabla\varphi\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
     </ul>
 
-    <!-- one theorem, two states: the k = 0 statement is replaced in place by the
-         general k one. Superimposed with r-stack, so only what changes is seen to change. -->
-    <div class="r-stack thm-stack">
-      <div class="thm fragment fade-in-then-out" data-fragment-index="4">
-        <p><span class="label">Theorem</span> <span class="cite">(McCann '20, Suhr '18, Mondino &amp; Suhr '22, Braun '23, Braun &amp; McCann '24, Cavalletti &amp; Mondino '24)</span></p>
-        <p> The following are equivalent:</p>
-        <p>$(i)$ $\ \mathrm{Ric}(v,v) \ge 0$ for every unit timelike $v$ &nbsp;<span class="gray">(the strong energy condition)</span>.</p>
-        <p>$(ii)$ $\ $For all $\mu_0,\mu_1$ as above and all $0 \le \lambda \le 1$,
-          $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1].$$</p>
-      </div>
-      <div class="thm fragment" data-fragment-index="5">
-        <p><span class="label">Theorem</span> <span class="cite">(McCann '20, Suhr '18, Mondino &amp; Suhr '22, Braun '23, Braun &amp; McCann '24, Cavalletti &amp; Mondino '24)</span></p>
-        <p>Let ${\color{#d9730d} k} \in \mathbb{R}$. The following are equivalent:</p>
-        <p>$(i)$ $\ \mathrm{Ric}(v,v) \ge {\color{#d9730d} k}$ for every unit timelike $v$.</p>
-        <p>$(ii)$ $\ $For all $\mu_0,\mu_1$ as above and all $0 \le \lambda \le 1$,
-          $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] {\color{#d9730d} {} - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M \ell(x,\mathrm{T}x)^2\,\mathrm{d}\mu_0(x)}.$$</p>
-      </div>
+    <div class="thm fragment" data-fragment-index="4">
+      <p><span class="label">Theorem</span> <span class="cite">(McCann '20, Suhr '18, Mondino &amp; Suhr '22, Braun '23, Braun &amp; McCann '24, Cavalletti &amp; Mondino '24)</span></p>
+      <p>Let $k \in \mathbb{R}$. The following are equivalent:</p>
+      <p>$(i)$ $\ \mathrm{Ric}(v,v) \ge k$ for every unit timelike $v$.</p>
+      <p>$(ii)$ $\ $For all $\mu_0,\mu_1$ as above and all $0 \le \lambda \le 1$,
+        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M \ell(x,\mathrm{T}x)^2\,\mathrm{d}\mu_0(x).$$</p>
     </div>
+
+  </div>
+</section>
+
+<section class="run-title" data-section="Background" data-auto-animate data-auto-animate-id="dc" data-auto-animate-duration="0">
+  <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">on Lorentzian manifolds</span></h2>
+  <div class="dense tight">
+    <p>$(M,g)$ globally hyperbolic spacetime, ${\color{#2e7d32}\ q =  1}$.</p>
+    <ul>
+      <li>An <em>$\ell_{\color{#2e7d32} 1}$ optimal transport map</em> between two probability measures $\mu_0,\mu_1$ is a Borel map $\mathrm{T}$ attaining
+        $$\ell_{\color{#2e7d32} 1}(\mu_0,\mu_1) := \max\Big\{\textstyle\int_M {\color{#2e7d32} \ell(x,\mathrm{T}x)}\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
+        <p class="gray" style="font-size:0.88em">$\mu_0,\mu_1$ absolutely continuous and compactly supported, with $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0 \times \operatorname{supp}\mu_1$.</p></li>
+      <li>A maximizer exists, and every maximizer has the form
+        $\mathrm{T}x = \exp_x\!\big(\ell(x,\mathrm{T}x)\,\nabla u\vert_x\big)$
+        for a function $u$ with $u(y) - u(x) \ge \ell(x,y)$ for all $x,y \in M$. <span class="cite">Suhr '18, Kell &amp; Suhr '20, Braun &amp; McCann '24</span></li>
+      <li>An <em>$\ell_1$ displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
+        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\,\ell(x,\mathrm{T}x)\,\nabla u\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
+    </ul>
+
 
   </div>
 </section>
@@ -539,6 +536,9 @@
         <foreignObject x="0" y="196" width="420" height="60">
           <div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab">$\dmu_\lambda := (\Phi\circ(V_0,\lambda\ell))_\sharp\mu_0$</div>
         </foreignObject>
+        <foreignObject x="0" y="242" width="420" height="56">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab">$\mu_\lambda = \pi_\sharp\dmu_\lambda$</div>
+        </foreignObject>
       </svg>
     </div>
   </div>
@@ -702,7 +702,7 @@
   <h2 data-id="ex-title">Electromagnetic displacement convexity in Minkowski spacetime</h2>
   <h3 class="subtitle">Displacement convexity in a source-free magnetic field</h3>
   <div>
-    <p>The <em>speed of a future-directed unit $v \in T_xM$ with respect to the observer $Z$</em> is $\sqrt{1 - \langle v,Z\vert_x\rangle^{-2}}$.</p>
+    <p>The <em>speed of a future-directed unit vector $v$ with respect to an observer $Z$</em> is $\sqrt{1 - \langle v,Z\rangle^{-2}}$.</p>
     <div class="thm">
       <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g)$ be Minkowski spacetime, and suppose that $F = \mathrm{d}A$ is purely magnetic with respect to $\partial_\mathrm{t}$, and source-free:
         $$\iota_{\partial_\mathrm{t}}F \equiv 0, \qquad \delta F \equiv 0.$$
@@ -802,7 +802,7 @@
 
 <section data-section="On the proof" data-auto-animate data-auto-animate-id="needle">
   <h2 data-id="needle-title">Needle decomposition</h2>
-  <div class="dense">
+  <div class="dense tight">
     <div class="thm">
       <p><span class="label">Theorem</span> <span class="cite">(continued)</span>. Let $\mathfrak{m}$ be a measure on $M$ with a smooth positive density, and let $\mu_0 = f_0\,\mathfrak{m}$, $\mu_1 = f_1\,\mathfrak{m}$ be compactly supported, absolutely continuous Borel probability measures with $\mu_0 \perp \mu_1$ and $\operatorname{supp}\mu_0\times\operatorname{supp}\mu_1 \subseteq \mathcal{A}$.</p>
       <p>Then there exist a family $\Gamma$ of minimizing extremals, a probability measure $\nu$ on $\Gamma$, Borel probability measures $(\mathfrak{m}_\gamma)_{\gamma\in\Gamma}$ on $M$, and a Borel set $\mathcal{T}$ of full $(\mu_0+\mu_1)$-measure such that:</p>
@@ -821,11 +821,25 @@
   </div>
 </section>
 
+<section data-section="On the proof" data-auto-animate data-auto-animate-id="needle">
+  <h2 data-id="needle-title">Needle decomposition</h2>
+  <h3 class="subtitle">Proof sketch</h3>
+  <div class="dense">
+    <ol class="needle">
+      <li class="fragment"><em>Transport rays.</em> The Kantorovich potential $u$ cuts $M$ into disjoint minimizing extremals, the <em>transport rays</em>, which carry all the mass of $\mu_0$ and $\mu_1$. Along a ray $u$ grows exactly by the action, and $\dot\gamma = \mathcal{L}\,\mathrm{d}u$. <span class="cite">Klartag '17</span></li>
+      <li class="fragment"><em>Tonelli case.</em> If $L$ were finite and superlinear, Klartag's argument applies verbatim: disintegrate $\mathfrak{m}$ along the rays and read off the needle densities from the Hamilton&ndash;Jacobi equation. <span class="cite">A. '26</span></li>
+      <li class="fragment"><em>Localize.</em> Near each point of a ray, away from its endpoints, modify $L$ far from the transport direction so that it becomes finite, superlinear and strictly convex, without changing the rays passing nearby.</li>
+      <li class="fragment"><em>Local needles.</em> Apply the Tonelli result in each of countably many such neighborhoods. Since the modified Lagrangian agrees with $L$ along the rays, the local needles are pieces of the global rays and satisfy the original Hamilton&ndash;Jacobi equation.</li>
+      <li class="fragment"><em>Glue.</em> The local disintegrations are all taken with respect to the same ray map, so they patch together along the rays. Their densities match up to multiplicative constants, which gives smooth needle densities and the Hamilton&ndash;Jacobi clause. Mass balance comes from the transport sets, as in Klartag.</li>
+    </ol>
+  </div>
+</section>
+
 <!-- ============================================================
      THANK YOU
      ============================================================ -->
 <section class="center-text" data-section="">
-  <h2 style="margin-top: 3em;">Thank you!</h2>
+  <h1>Thank you!</h1>
 </section>
 
 
