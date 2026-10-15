@@ -76,7 +76,7 @@
   .reveal .fig-side > :first-child { flex: 1 1 auto; min-width: 0; }
   .reveal .fig-side > .fig-row { flex: 0 0 auto; margin-top: 0; }
   .reveal .fig-side svg.mag-fig { height: 196px; }
-  .reveal .fig-side svg.coul-fig { height: 300px; }
+  .reveal .fig-side svg.coul-fig { height: 360px; }
   .reveal .thm.tighter { font-size: 0.68em; }
   .reveal .fig-row.big svg { height: 400px; }
   /* Times rather than Alegreya: lining figures (Alegreya's old-style 0 reads as "o")
@@ -536,54 +536,13 @@
   <p>$(M,g)$ Lorentzian manifold, $A \in \Omega^1(M)$ one-form on $M$,
     $$F := \mathrm{d}A,$$
     and $F^\sharp$ is the $(1,1)$-tensor defined by $\langle\,\cdot\,,F^\sharp\,\cdot\,\rangle = F$.</p>
-  <p>If $M$ oriented and $\dim M = 4$, and $V$ is a timelike future-directed vector field (an <em>observer</em>), then the <em>electric</em> and <em>magnetic</em> fields and the <em>charge density</em> measured by \(V\) are
+  <p class="fragment">If $M$ oriented and $\dim M = 4$, and $V$ is a timelike future-directed unit vector field (an <em>observer</em>), then the <em>electric</em> and <em>magnetic</em> fields and the <em>charge density</em> measured by \(V\) are
     $$\mathbf{E}_V := F^\sharp V, \qquad \mathbf{B}_V := (\star F)^\sharp V, \qquad \rho_V := -\delta F(V).$$</p>
   <p class="fragment">A test particle of unit charge and mass moving in the electromagnetic field $F$ is described by a unit-speed timelike curve $\gamma$ solving the <em>Lorentz force equation</em>
     $$\nabla_{\dot\gamma}\dot\gamma = F^\sharp\dot\gamma.$$</p>
   <p class="fragment">A future-directed timelike unit speed curve $\gamma$ minimizing the <em>action</em>
     $$\int_\gamma\bigl(-|\dot\gamma| - A(\dot\gamma)\bigr)$$
     is a solution to the Lorentz force equation.</p>
-  </div>
-</section>
-
-<!-- Minkowski examples. The three figures are drawn and animated by the script at the end of the file;
-     every curve is the exact solution of the Lorentz force equation. -->
-<section class="run-title em-ex" data-section="Electromagnetism on Lorentzian manifolds" data-auto-animate data-auto-animate-id="em">
-  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
-  <h3 class="subtitle">Examples in Minkowski spacetime $\ \mathbb{R}^{1+3}$, $\ g = \mathrm{dt}^2 - \mathrm{dx}^2 - \mathrm{dy}^2 - \mathrm{dz}^2$</h3>
-  <div class="exs">
-    <div>
-      <h4>Constant electric field</h4>
-      <div class="eqs">
-      <p>$A = -E_0\,\mathrm{x}\,\mathrm{dt}$</p>
-      <p>$F = E_0\,\mathrm{dt}\wedge\mathrm{dx}$</p>
-      </div>
-      <svg class="ex-e" viewBox="0 0 360 260" role="img" aria-label="Charges with random initial conditions in the xy-plane, accelerated by a constant electric field pointing along x, drawn as a grid of arrows"></svg>
-    </div>
-    <div class="fragment">
-      <h4>Coulomb field</h4>
-      <div class="eqs">
-      <p>$A = \tfrac{q_0}{r}\,\mathrm{dt}$</p>
-      <p>$F = -\tfrac{q_0}{r^2}\,\mathrm{d}r\wedge\mathrm{dt}$</p>
-      </div>
-      <svg class="ex-q" viewBox="0 0 360 250" role="img" aria-label="Charges with random initial conditions repelled by a positive point charge at the centre, with its radial electric field drawn as field lines"></svg>
-    </div>
-    <div class="fragment">
-      <h4>Constant magnetic field</h4>
-      <div class="eqs">
-      <p>$A = \tfrac{B_0}{2}(\mathrm{y}\,\mathrm{dx} - \mathrm{x}\,\mathrm{dy})$</p>
-      <p>$F = -B_0\,\mathrm{dx}\wedge\mathrm{dy}$</p>
-      </div>
-      <svg class="ex-b" viewBox="0 0 360 250" role="img" aria-label="Charges with random initial conditions circling in the tilted xy-plane, with the constant magnetic field drawn as arrows standing up out of the plane"></svg>
-    </div>
-    <div class="fragment">
-      <h4>Plane wave</h4>
-      <div class="eqs">
-      <p>$A = a\sin(\omega(\mathrm{t} - \mathrm{x}))\,\mathrm{dy}$</p>
-      <p>$F = a\omega\cos(\omega(\mathrm{t} - \mathrm{x}))\,(\mathrm{dt} - \mathrm{dx})\wedge\mathrm{dy}$</p>
-      </div>
-      <svg class="ex-w" viewBox="0 0 360 250" role="img" aria-label="Charges with random initial conditions oscillating along y and drifting along x in the tilted xy-plane, in a plane wave whose electric and magnetic fields are drawn as arrows travelling along x"></svg>
-    </div>
   </div>
 </section>
 
@@ -777,25 +736,27 @@
 </section>
 
 <!-- one theorem, two states: k = 0 replaced in place by general k -->
-<section data-section="Electromagnetic displacement convexity">
+<section class="squeeze" data-section="Electromagnetic displacement convexity">
   <h2>Main result</h2>
+  <div class="def" style="font-size:0.85em">
+    <p>$$\mathrm{Ent}[\mu] := \int_M \log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
+    <p>For $k \in \mathbb{R}$, $\mathrm{Ent}$ is <em>$k$-displacement convex</em> along a monotone displacement interpolation $(\mu_\lambda)$ induced by $(V_0,\ell)$ if for all $0 \le \lambda \le 1$,
+      $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M\ell^2\,\mathrm{d}\mu_0,$$
+      and <em>displacement convex</em> if this holds with $k = 0$.</p>
+  </div>
+  <div class="fragment" data-fragment-index="1">
   <div class="r-stack thm-stack">
-  <div class="thm fragment fade-out" data-fragment-index="1">
+  <div class="thm fragment fade-out" data-fragment-index="2">
       <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B$ of future-directed unit tangent vectors, the following are equivalent:</p>
       <p data-id="mt-i">$(i)$ $\ \mathrm{Ric}_F \ge 0$ on the set $B$.</p>
-      <p data-id="mt-ii">$(ii)$ $\ $For all $(\mu_0,\mu_1) \in \mathscr{P}_A$ and the monotone displacement interpolation $(\mu_\lambda)$ between them for which $\dmu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$,
-        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1],$$</p>
-      <p data-id="mt-where">where
-        $$\mathrm{Ent}[\mu] := \int_M \log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
+      <p data-id="mt-ii">$(ii)$ $\ \mathrm{Ent}$ is displacement convex along the monotone displacement interpolation $(\mu_\lambda)$ between every $(\mu_0,\mu_1) \in \mathscr{P}_A$ for which $\dmu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$.</p>
     </div>
-  <div class="thm fragment" data-fragment-index="1">
+  <div class="thm fragment" data-fragment-index="2">
       <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B$ of future-directed unit tangent vectors and every ${\color{#d9730d} k} \in \mathbb{R}$, the following are equivalent:</p>
       <p data-id="mt-i">$(i)$ $\ \mathrm{Ric}_F \ge {\color{#d9730d} k}$ on the set $B$.</p>
-      <p data-id="mt-ii">$(ii)$ $\ $For all $(\mu_0,\mu_1) \in \mathscr{P}_A$ and the monotone displacement interpolation $(\mu_\lambda)$ between them for which $\dmu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$,
-        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] {\color{#d9730d} {} - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M\ell^2\,\mathrm{d}\mu_0},$$</p>
-      <p data-id="mt-where">where
-        $$\mathrm{Ent}[\mu] := \int_M \log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
+      <p data-id="mt-ii">$(ii)$ $\ \mathrm{Ent}$ is ${\color{#d9730d} k}$-displacement convex along the monotone displacement interpolation $(\mu_\lambda)$ between every $(\mu_0,\mu_1) \in \mathscr{P}_A$ for which $\dmu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$.</p>
     </div>
+  </div>
   </div>
 </section>
 
@@ -857,7 +818,7 @@
         <p class="fragment" data-fragment-index="2">Speed less than $1/\sqrt2$ $\implies$ $\ |\mathbf{v}| \lt 1$ $\implies \ |\mathbf{B}\times\mathbf{v}| \le |\mathbf{B}|\,|\mathbf{v}| \le |\mathbf{B}|$.</p>
       </div>
       <!-- the future-directed unit vectors form the hyperbola t^2 - |x|^2 = 1; those of speed < 1/sqrt2 are exactly the
-           ones with |spatial part| < 1. The vector v sweeps the hyperbola (script at the end of the file). -->
+           ones with |spatial part| < 1. -->
       <div class="fig-row fragment" data-fragment-index="2">
         <svg class="mag-fig" viewBox="0 0 400 260" role="img" aria-label="Unit future-directed vectors on the hyperbola; those with speed less than 1 over root 2 are exactly those whose spatial part has length less than 1">
           <defs>
@@ -870,7 +831,6 @@
           <g stroke="#c4c4c4" stroke-width="1.2" stroke-dasharray="3 4"><line x1="128" y1="232" x2="128" y2="130.2"/><line x1="272" y1="232" x2="272" y2="130.2"/></g>
           <path d="M 27.2 44.8 L 37.0 53.8 L 46.3 62.3 L 55.2 70.3 L 63.7 77.8 L 71.8 84.9 L 79.5 91.6 L 86.8 97.9 L 93.9 103.8 L 100.6 109.3 L 107.0 114.4 L 113.2 119.2 L 119.2 123.7 L 124.8 127.9 L 130.3 131.8 L 135.6 135.4 L 140.7 138.7 L 145.6 141.8 L 150.4 144.6 L 155.0 147.1 L 159.5 149.4 L 163.9 151.4 L 168.1 153.3 L 172.3 154.9 L 176.4 156.2 L 180.5 157.4 L 184.4 158.3 L 188.4 159.1 L 192.3 159.6 L 196.1 159.9 L 200.0 160.0 L 203.9 159.9 L 207.7 159.6 L 211.6 159.1 L 215.6 158.3 L 219.5 157.4 L 223.6 156.2 L 227.7 154.9 L 231.9 153.3 L 236.1 151.4 L 240.5 149.4 L 245.0 147.1 L 249.6 144.6 L 254.4 141.8 L 259.3 138.7 L 264.4 135.4 L 269.7 131.8 L 275.2 127.9 L 280.8 123.7 L 286.8 119.2 L 293.0 114.4 L 299.4 109.3 L 306.1 103.8 L 313.2 97.9 L 320.5 91.6 L 328.2 84.9 L 336.3 77.8 L 344.8 70.3 L 353.7 62.3 L 363.0 53.8 L 372.8 44.8" fill="none" stroke="#8a8a8a" stroke-width="1.8"/>
           <path d="M 128.0 130.2 L 133.9 134.2 L 139.5 138.0 L 144.9 141.3 L 150.2 144.4 L 155.2 147.2 L 160.1 149.7 L 164.9 151.9 L 169.5 153.8 L 174.1 155.5 L 178.5 156.9 L 182.9 158.0 L 187.2 158.9 L 191.5 159.5 L 195.8 159.9 L 200.0 160.0 L 204.2 159.9 L 208.5 159.5 L 212.8 158.9 L 217.1 158.0 L 221.5 156.9 L 225.9 155.5 L 230.5 153.8 L 235.1 151.9 L 239.9 149.7 L 244.8 147.2 L 249.8 144.4 L 255.1 141.3 L 260.5 138.0 L 266.1 134.2 L 272.0 130.2" fill="none" stroke="#1a4f8b" stroke-width="3.4"/>
-          <g class="mg-live"></g>
           <text class="fl gy" x="212" y="40" style="font-size:22px">t</text>
           <text class="fl gy" x="384" y="254" style="font-size:22px">x</text>
           <foreignObject x="222" y="234" width="100" height="34"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab gy" style="font-size:26px">$|\mathbf{v}| = 1$</div></foreignObject>
@@ -889,20 +849,22 @@
     <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g) := (\mathbb{R}\times(\mathbb{R}^3\setminus\{0\}),\ \mathrm{dt}^2 - \mathrm{dx}^2 - \mathrm{dy}^2 - \mathrm{dz}^2)$, let $q_0 \in \mathbb{R}$, and consider the Coulomb potential and field
       $$A = \frac{q_0}{r}\,\mathrm{dt} \qquad\text{and}\qquad F = \mathrm{d}A = -\frac{q_0}{r^2}\,\mathrm{d}r\wedge\mathrm{dt}, \qquad \text{where } r = \sqrt{\mathrm{x}^2 + \mathrm{y}^2 + \mathrm{z}^2}.$$</p>
     <p>For a tangent vector $v$, write $\mathbf{v}_\perp := v - \mathrm{dt}(v)\,\partial_\mathrm{t} - \mathrm{d}r(v)\,\partial_r$ for the spatial component of $v$ orthogonal to $\partial_r$, and denote by $v_\perp$ the Euclidean norm of $\mathbf{v}_\perp$. For $r_1 &gt; 0$ and $\sigma &gt; 0$, write $U_{r_1} := \{r &gt; r_1\}$ and $B_{r_1,\sigma}$ the set of future-directed unit vectors $v$ based in $U_{r_1}$ with $v_\perp \lt \sigma$.</p>
-    <div class="fragment" data-fragment-index="1">
+    <div class="fragment" data-fragment-index="3">
     <p>Then for every $Q \ge 0$, the following are equivalent:</p>
     <p>$(i)$ $\ |q_0| \le Q$.</p>
     <p>$(ii)$ $\ \mathrm{Ent}$ is $k(Q,r_1,\sigma)$-displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ such that $\dmu_\lambda(B_{r_1,\sigma}) = 1$ for all $\lambda \in [0,1]$, where
       $$k(Q,r_1,\sigma) = -\frac{Q^2}{r_1^4}\left(1 + \frac{\sigma^2}{2}\right).$$</p>
     </div>
   </div>
-  <!-- test charges in the Coulomb field, repelled (q_0 > 0); their worldlines are integrated in the script at the end
+  <!-- a test charge in the Coulomb field, repelled (q_0 > 0); its worldline is integrated in the script at the end
        of the file. The trail is solid while the particle is in B_{r_1,sigma}, i.e. while its transverse speed is below sigma. -->
-  <div class="fig-row">
-    <svg class="coul-fig" viewBox="0 0 320 320" role="img" aria-label="Charged test particles repelled by a point charge; the ball of radius r_1 around the charge is excluded">
+  <div class="fig-row fragment" data-fragment-index="1">
+    <svg class="coul-fig" viewBox="0 0 320 320" role="img" aria-label="A charged test particle repelled by a point charge, staying in B_{r_1,sigma}; the ball of radius r_1 around the charge is excluded">
       <defs>
         <marker id="cl-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9fb6d3"/></marker>
       </defs>
+      <!-- U_{r_1}: everything outside the excluded ball -->
+      <path class="fragment" data-fragment-index="2" d="M 0 0 H 320 V 320 H 0 Z M 160 116 A 44 44 0 1 0 160 204 A 44 44 0 1 0 160 116 Z" fill="#eef3fa" fill-rule="evenodd"/>
       <g class="cl-field"></g>
       <circle cx="160" cy="160" r="44" fill="#f1f1f1" stroke="#8a8a8a" stroke-width="1.4" stroke-dasharray="5 4"/>
       <line x1="160" y1="160" x2="191.1" y2="191.1" stroke="#8a8a8a" stroke-width="1.2"/>
@@ -910,10 +872,11 @@
       <circle cx="160" cy="160" r="6" fill="#4a78ad"/>
       <foreignObject x="132" y="118" width="56" height="34"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="font-size:22px;color:#4a78ad">$q_0$</div></foreignObject>
       <foreignObject x="150" y="174" width="40" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab gy" style="font-size:20px">$r_1$</div></foreignObject>
+      <foreignObject class="fragment" data-fragment-index="2" x="4" y="2" width="70" height="36"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="font-size:24px;color:#4a78ad">$U_{r_1}$</div></foreignObject>
     </svg>
   </div>
   </div>
-  <p class="small fragment" data-fragment-index="2">$$\mathrm{Ric}_F(v) = -|\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 = -\frac{q_0^2}{r^4}\left(1 + \frac{v_\perp^2}{2}\right) \qquad \text{for } v \in B_{r_1,\sigma}.$$</p>
+  <p class="small fragment" data-fragment-index="4">$$\mathrm{Ric}_F(v) = -|\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 = -\frac{q_0^2}{r^4}\left(1 + \frac{v_\perp^2}{2}\right) \qquad \text{for } v \in B_{r_1,\sigma}.$$</p>
 </section>
 
 <section data-section="Examples">
@@ -1397,60 +1360,17 @@
     requestAnimationFrame(frame);
   })();
 
-  // ---- source-free magnetic field: a unit vector v = (cosh e, sinh e) sweeping the hyperbola of unit vectors ----
-  // Its spatial part has length |sinh e| < 1 exactly when its speed tanh|e| is below 1/sqrt2. Screen: (200 + 72x, 232 - 72t).
-  (function () {
-    const svg = document.querySelector('svg.mag-fig');
-    if (!svg) return;
-    const sec = svg.closest('section'), NS = 'http://www.w3.org/2000/svg', g = svg.querySelector('.mg-live');
-    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function el(name, attrs) { const e = document.createElementNS(NS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); g.appendChild(e); return e; }
-    const defs = el('defs', {});
-    [['mg-in', '#e08214'], ['mg-out', '#b3261e'], ['mg-gy', '#8a8a8a']].forEach(([id, col]) => {
-      const m = document.createElementNS(NS, 'marker');
-      [['id', id], ['viewBox', '0 0 10 10'], ['refX', 9], ['refY', 5], ['markerWidth', 6], ['markerHeight', 6], ['orient', 'auto-start-reverse']].forEach(a => m.setAttribute(a[0], a[1]));
-      const p = document.createElementNS(NS, 'path'); p.setAttribute('d', 'M 0 0 L 10 5 L 0 10 z'); p.setAttribute('fill', col);
-      m.appendChild(p); defs.appendChild(m);
-    });
-    const sp = el('line', { stroke: '#8a8a8a', 'stroke-width': 1.6, 'stroke-dasharray': '5 4', 'marker-end': 'url(#mg-gy)' });
-    const vec = el('line', { x1: 200, y1: 232, 'stroke-width': 2.8 });
-    const dot = el('circle', { r: 4.5 });
-    const lv = el('text', { class: 'fl', style: 'font-size:24px' }); lv.textContent = 'v';
-    const ls = el('text', { class: 'fl gy', style: 'font-size:22px;font-style:normal;font-weight:bold', 'text-anchor': 'middle' }); ls.textContent = 'v';
-    function draw(t) {
-      const e = 1.3 * Math.sin(2 * Math.PI * t / 9), x = 200 + 72 * Math.sinh(e), y = 232 - 72 * Math.cosh(e);
-      const inside = Math.abs(Math.sinh(e)) < 1, col = inside ? '#e08214' : '#b3261e';
-      vec.setAttribute('x2', x.toFixed(1)); vec.setAttribute('y2', y.toFixed(1)); vec.setAttribute('stroke', col);
-      vec.setAttribute('marker-end', inside ? 'url(#mg-in)' : 'url(#mg-out)');
-      dot.setAttribute('cx', x.toFixed(1)); dot.setAttribute('cy', y.toFixed(1)); dot.setAttribute('fill', col);
-      const long = Math.abs(x - 200) > 14;
-      sp.setAttribute('visibility', long ? 'visible' : 'hidden');
-      sp.setAttribute('x1', 200); sp.setAttribute('y1', y.toFixed(1)); sp.setAttribute('x2', x.toFixed(1)); sp.setAttribute('y2', y.toFixed(1));
-      ls.setAttribute('visibility', long ? 'visible' : 'hidden');
-      ls.setAttribute('x', ((200 + x) / 2).toFixed(1)); ls.setAttribute('y', (y - 8).toFixed(1));
-      lv.setAttribute('x', (x + (x >= 200 ? 8 : -22)).toFixed(1)); lv.setAttribute('y', (y - 6).toFixed(1)); lv.style.fill = col;
-    }
-    let t0 = null;
-    function frame(now) {
-      requestAnimationFrame(frame);
-      if (!sec.classList.contains('present')) { t0 = null; return; }
-      if (t0 === null) t0 = now;
-      draw(still ? 1.6 : (now - t0) / 1000);
-    }
-    draw(1.6);
-    requestAnimationFrame(frame);
-  })();
-
-  // ---- point charge: test charges of unit charge and mass in the Coulomb field E = q0 x / |x|^3 (q0 > 0, repulsive) ----
+  // ---- point charge: one test charge of unit charge and mass in the Coulomb field E = q0 x / |x|^3 (q0 > 0, repulsive) ----
   // Coordinate time in px (speed of light: C px per second), p = gamma u: dx/dt = p / sqrt(1 + |p|^2), dp/dt = E (RK4).
-  // A trail is drawn solid where the transverse part of the unit velocity, |p x x| / |x|, is below SIGMA.
+  // The angular momentum L = |x × p| is conserved, so v_perp = |p_perp| = L / r <= L / r_min: with L = 18 and r_min ≈ 67 > r_1
+  // the charge stays in B_{r_1,sigma} (v_perp <= 0.27 < sigma = 0.3).
   (function () {
     const svg = document.querySelector('svg.coul-fig');
     if (!svg) return;
     const sec = svg.closest('section'), NS = 'http://www.w3.org/2000/svg';
     const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const O = 160, Q = 42, R1 = 44, RIN = 150, C = 70, SIGMA = 0.3, LIFE = 7, FADE = 0.6, DT = 1;
-    const SHADES = ['#8c3d00', '#b35806', '#e08214', '#f1a340'];
+    const O = 160, Q = 15, R1 = 44, C = 110, SIGMA = 0.3, DT = 1, P0 = 0.6, B = 30, TH = Math.PI, PAUSE = 1;
+    const COL = '#e08214';
     function el(parent, name, attrs) { const e = document.createElementNS(NS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
     // the field lines
     const fg = svg.querySelector('.cl-field');
@@ -1459,56 +1379,46 @@
       el(fg, 'line', { x1: O + (R1 + 6) * c, y1: O + (R1 + 6) * s, x2: O + 156 * c, y2: O + 156 * s, stroke: '#cfdbea', 'stroke-width': 1.2 });
       el(fg, 'line', { x1: O + 92 * c, y1: O + 92 * s, x2: O + 104 * c, y2: O + 104 * s, stroke: '#9fb6d3', 'stroke-width': 1.2, 'marker-end': 'url(#cl-e)' });
     }
-    const live = svg.querySelector('.cl-live');
-    const acc = (x, y) => { const r = Math.hypot(x, y); return [Q * x / (r * r * r), Q * y / (r * r * r)]; };
-    function orbit() {   // from the rim, heading inwards at speed u with a small transverse component
-      const a = Math.random() * 2 * Math.PI, u = 0.45 + 0.3 * Math.random(), off = (Math.random() - 0.5) * 0.8;
-      const g = 1 / Math.sqrt(1 - u * u), dx = -Math.cos(a + off), dy = -Math.sin(a + off);
-      let S = [RIN * Math.cos(a), RIN * Math.sin(a), g * u * dx, g * u * dy];
-      const f = Z => { const n = Math.sqrt(1 + Z[2] * Z[2] + Z[3] * Z[3]), e = acc(Z[0], Z[1]); return [Z[2] / n, Z[3] / n, e[0], e[1]]; };
-      const pts = [];
-      for (let n = 0; n <= LIFE * C; n += DT) {
-        const r = Math.hypot(S[0], S[1]), perp = Math.abs(S[2] * S[1] - S[3] * S[0]) / r;
-        pts.push([O + S[0], O + S[1], perp < SIGMA && r > R1]);
+    // the orbit: from the rim, momentum P0 with impact parameter B, rotated by TH
+    const pts = [];
+    (function () {
+      const c = Math.cos(TH), s = Math.sin(TH), rot = (x, y) => [c * x - s * y, s * x + c * y];
+      let S = [...rot(-160, B), ...rot(P0, 0)];
+      const f = Z => { const n = Math.sqrt(1 + Z[2] * Z[2] + Z[3] * Z[3]), r = Math.hypot(Z[0], Z[1]), q = Q / (r * r * r); return [Z[2] / n, Z[3] / n, q * Z[0], q * Z[1]]; };
+      for (let n = 0; n < 4000; n++) {
+        const r = Math.hypot(S[0], S[1]);
+        if (n > 10 && r > 165) break;
+        pts.push({ x: S[0], y: S[1], inB: r > R1 && Math.abs(S[2] * S[1] - S[3] * S[0]) / r < SIGMA });
         const k1 = f(S), k2 = f(S.map((v, i) => v + DT / 2 * k1[i])), k3 = f(S.map((v, i) => v + DT / 2 * k2[i])), k4 = f(S.map((v, i) => v + DT * k3[i]));
         S = S.map((v, i) => v + DT / 6 * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]));
       }
-      return pts;
-    }
-    let parts = [], next = 0, count = 0;
+    })();
+    const T = pts.length * DT / C, live = svg.querySelector('.cl-live'), g = el(live, 'g', {});
+    const solid = el(g, 'path', { fill: 'none', stroke: COL, 'stroke-width': 2.2 });
+    const faint = el(g, 'path', { fill: 'none', stroke: '#8a8a8a', 'stroke-width': 1.6, 'stroke-dasharray': '3 4' });
+    const dot = el(g, 'circle', { r: 5, fill: COL });
     function draw(t) {
-      if (t >= next) {
-        const g = el(live, 'g', {}), col = SHADES[count++ % SHADES.length];
-        parts.push({ born: t, pts: orbit(), g, col, solid: el(g, 'path', { fill: 'none', stroke: col, 'stroke-width': 2.2 }),
-                     faint: el(g, 'path', { fill: 'none', stroke: '#8a8a8a', 'stroke-width': 1.6, 'stroke-dasharray': '3 4' }),
-                     dot: el(g, 'circle', { r: 4.5, fill: col }) });
-        next = t + 1.6;
+      const tt = t % (T + PAUSE), n = Math.min(pts.length - 1, Math.floor(tt * C / DT));
+      let ds = '', df = '';
+      for (let j = 0; j <= n; j += 2) {
+        const P = pts[j], Pr = pts[Math.max(0, j - 2)];
+        const seg = (j ? 'M ' + (O + Pr.x).toFixed(1) + ' ' + (O + Pr.y).toFixed(1) + ' L ' : 'M ') + (O + P.x).toFixed(1) + ' ' + (O + P.y).toFixed(1) + ' ';
+        if (P.inB) ds += seg; else df += seg;
       }
-      parts = parts.filter(P => { if (t - P.born < LIFE) return true; P.g.remove(); return false; });
-      parts.forEach(P => {
-        const age = t - P.born, n = Math.min(P.pts.length - 1, Math.floor(age * C / DT));
-        let ds = '', df = '';
-        for (let j = 0; j <= n; j += 2) {
-          const q = P.pts[j], prev = P.pts[Math.max(0, j - 2)], seg = (j ? 'M ' + prev[0].toFixed(1) + ' ' + prev[1].toFixed(1) + ' L ' : 'M ') + q[0].toFixed(1) + ' ' + q[1].toFixed(1) + ' ';
-          if (q[2]) ds += seg; else df += seg;
-        }
-        P.solid.setAttribute('d', ds); P.faint.setAttribute('d', df);
-        const q = P.pts[n];
-        P.dot.setAttribute('cx', q[0].toFixed(1)); P.dot.setAttribute('cy', q[1].toFixed(1));
-        const off = q[0] < 0 || q[0] > 320 || q[1] < 0 || q[1] > 320;
-        P.g.setAttribute('opacity', off ? 0 : Math.max(0, Math.min(1, age / FADE, (LIFE - age) / FADE)).toFixed(3));
-      });
+      solid.setAttribute('d', ds); faint.setAttribute('d', df);
+      const P = pts[n];
+      dot.setAttribute('cx', (O + P.x).toFixed(1)); dot.setAttribute('cy', (O + P.y).toFixed(1));
+      const op = Math.max(0, Math.min(1, tt / 0.4, (T - tt) / 0.4)).toFixed(3);
+      g.setAttribute('opacity', op);
     }
     let t0 = null;
     function frame(now) {
       requestAnimationFrame(frame);
-      if (!sec.classList.contains('present')) {
-        if (t0 !== null) { t0 = null; parts.forEach(P => P.g.remove()); parts = []; next = 0; }
-        return;
-      }
+      if (!sec.classList.contains('present')) { t0 = null; return; }
       if (t0 === null) t0 = now;
-      draw(still ? 2.5 : (now - t0) / 1000);
+      draw(still ? T / 2 : (now - t0) / 1000);
     }
+    draw(T / 2);
     requestAnimationFrame(frame);
   })();
 
