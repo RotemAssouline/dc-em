@@ -327,7 +327,7 @@
     </ul>
 
     <div class="thm fragment" data-fragment-index="4">
-      <p><span class="label">Theorem</span> <span class="cite">(Klartag '17, Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21, A. '26)</span></p>
+      <p><span class="label">Theorem</span> <span class="cite">(Klartag '17, Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21)</span></p>
       <p>Let $k \in \mathbb{R}$. The following are equivalent:</p>
       <p>$(i)$ $\ \mathrm{Ric} \ge k$.</p>
       <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_1(M)$ there exists an $L^1$ displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ along which, for all $0 \le \lambda \le 1$,
@@ -534,7 +534,7 @@
   <p class="fragment">If $M$ oriented and $\dim M = 4$, and $V$ is a future-directed unit vector field (an <em>observer</em>), then the <em>electric</em> and <em>magnetic</em> fields and the <em>charge density</em> measured by \(V\) are
     $$\mathbf{E}_V := F^\sharp V, \qquad \mathbf{B}_V := (\star F)^\sharp V, \qquad \rho_V := -\delta F(V).$$</p>
   <p class="fragment">A test particle of unit charge and mass moving in the electromagnetic field $F$ is described by a unit-speed timelike curve $\gamma$ solving the <em>Lorentz force equation</em>
-    $$\nabla_{\dot\gamma}\dot\gamma = F^\sharp\dot\gamma.$$</p>
+    $$\nabla_{\dot\gamma}\dot\gamma = F^\sharp\dot\gamma. \tag{LFE}$$</p>
   <p class="fragment">A future-directed timelike unit speed curve $\gamma$ minimizing the <em>action</em>
     $$\int_\gamma\bigl(-|\dot\gamma| - A(\dot\gamma)\bigr)$$
     is a solution to the Lorentz force equation.</p>
@@ -554,11 +554,26 @@
   </div>
 </section>
 
+<!-- probabilistic description of displacement interpolations (candidate replacement for the next slide) -->
+<section class="run-title" data-section="Electromagnetism on Lorentzian manifolds" data-auto-animate data-auto-animate-id="em">
+  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
+  <h3 class="subtitle">Displacement interpolations</h3>
+  <div>
+    <p>A family $(\mu_\lambda)_{0 \le \lambda \le 1}$ of probability measures on $M$ is a <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ if there exists a random unit-speed, action-minimizing solution $\gamma : [0,\ell_\gamma] \to M$ to (LFE), where the <em>duration</em> $\ell \ge 0$ is also random, such that</p>
+    <ul>
+      <li class="fragment" data-fragment-index="1">For all $0 \le \lambda \le 1$, the law of $\gamma(\lambda\ell)$ is $\mu_\lambda$.</li>
+      <li class="fragment" data-fragment-index="2">There exists a function $\ell:\operatorname{supp}\mu_0 \to (0,\infty)$ (the <em>duration function</em>) such that $\ell_\gamma = \ell(\gamma(0))$,</li>
+      <li class="fragment" data-fragment-index="3">The coupling $(\gamma(0),\gamma(\ell))$ minimizes $\mathbb{E}\,\mathrm{c}(X_0,X_1)$ among couplings $(X_0,X_1)$ with $X_0 \sim \mu_0$ and $X_1 \sim \mu_1$.</li>
+    </ul>
+    <p class="fragment" data-fragment-index="5">We also write $\dmu_\lambda$ for the law of $\dot\gamma(\lambda\ell)$, so that $\mu_\lambda = \pi_\sharp\dmu_\lambda$.</p>
+  </div>
+</section>
+
 <section class="run-title" data-section="Electromagnetism on Lorentzian manifolds" data-auto-animate data-auto-animate-id="em">
   <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
   <h3 class="subtitle">Displacement interpolations</h3>
   <div class="dense">
-    <p>$\Phi : TM \times \mathbb{R} \to M$: the flow of the LFE, i.e. $\Phi(v,t) = \gamma_v(t)$ where $\gamma_v$ is the solution to LFE with $\dot\gamma_v(0) = v$.</p>
+    <p>$\Phi : TM \times \mathbb{R} \to M$: the flow of (LFE), i.e. $\Phi(v,t) = \gamma_v(t)$ where $\gamma_v$ is the solution to (LFE) with $\dot\gamma_v(0) = v$.</p>
     <div class="fragment" data-fragment-index="1">
     <p>A <em>displacement interpolation</em> between $\mu_0,\mu_1$ is a family of probability measures $(\mu_\lambda)_{0\le\lambda\le1}$ of the form
       $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda := \pi\circ\Phi\circ(V_0,\lambda\ell), \qquad 0 \le \lambda \le 1;$$
@@ -703,7 +718,7 @@
       <p><span class="label">Proposition</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(\mu_0,\mu_1) \in \mathscr{P}_\ll$. There exists $s_1 &gt; 0$ such that for every $s \in (-s_1,s_1)$, the pair $(\mu_0,\mu_1)$ lies in $\mathscr{P}_{sA}$.</p>
     </div>
 
-    <p class="fragment">Action-minimizing solutions of LFE joining given pairs of points: <span class="cite">Minguzzi &amp; Sánchez '06</span>.</p>
+    <p class="fragment">Action-minimizing solutions of (LFE) joining given pairs of points: <span class="cite">Minguzzi &amp; Sánchez '06</span>.</p>
   </div>
 </section>
 
@@ -848,23 +863,71 @@
       $$k(Q,r_1,\sigma) = -\frac{Q^2}{r_1^4}\left(1 + \frac{\sigma^2}{2}\right).$$</p>
     </div>
   </div>
-  <!-- a test charge in the Coulomb field, repelled (q_0 > 0); its worldline is integrated in the script at the end
-       of the file. The trail is solid while the particle is in B_{r_1,sigma}, i.e. while its transverse speed is below sigma. -->
+  <!-- spacetime picture (x, y, t) in a slanted view: the slice {t = 0} with the Coulomb field of q_0 > 0, the excluded
+       world-tube {r <= r_1}, and a tangent vector v with its component v_perp -->
   <div class="fig-row fragment" data-fragment-index="1">
-    <svg class="coul-fig" viewBox="0 0 320 320" role="img" aria-label="A charged test particle repelled by a point charge, staying in B_{r_1,sigma}; the ball of radius r_1 around the charge is excluded">
+    <svg class="coul-fig" viewBox="0 4 320 284" role="img" aria-label="Spacetime picture: the worldline of the point charge, the excluded tube of radius r_1 around it, the radial field in a time slice, and a tangent vector v with its component v_perp orthogonal to the radial and time directions">
       <defs>
         <marker id="cl-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9fb6d3"/></marker>
+        <marker id="cl-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4a78ad"/></marker>
+        <marker id="cl-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#e08214"/></marker>
+        <marker id="cl-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1a4f8b"/></marker>
       </defs>
-      <!-- U_{r_1}: everything outside the excluded ball -->
-      <path class="fragment" data-fragment-index="2" d="M 0 0 H 320 V 320 H 0 Z M 160 116 A 44 44 0 1 0 160 204 A 44 44 0 1 0 160 116 Z" fill="#eef3fa" fill-rule="evenodd"/>
-      <g class="cl-field"></g>
-      <circle cx="160" cy="160" r="44" fill="#f1f1f1" stroke="#8a8a8a" stroke-width="1.4" stroke-dasharray="5 4"/>
-      <line x1="160" y1="160" x2="191.1" y2="191.1" stroke="#8a8a8a" stroke-width="1.2"/>
-      <g class="cl-live"></g>
-      <circle cx="160" cy="160" r="6" fill="#4a78ad"/>
-      <foreignObject x="132" y="118" width="56" height="34"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="font-size:22px;color:#4a78ad">$q_0$</div></foreignObject>
-      <foreignObject x="150" y="174" width="40" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab gy" style="font-size:20px">$r_1$</div></foreignObject>
-      <foreignObject class="fragment" data-fragment-index="2" x="4" y="2" width="70" height="36"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="font-size:24px;color:#4a78ad">$U_{r_1}$</div></foreignObject>
+      <!-- U_{r_1} in the slice {t = 0}: the disc of radius 140 minus the ball of radius r_1 -->
+      <path class="fragment" data-fragment-index="2" d="M 20 215 A 140 59.2 0 1 0 300 215 A 140 59.2 0 1 0 20 215 Z M 116 215 A 44 18.6 0 1 0 204 215 A 44 18.6 0 1 0 116 215 Z" fill="#eef3fa" fill-rule="evenodd"/>
+      <ellipse cx="160" cy="215" rx="140" ry="59.2" fill="none" stroke="#c4c4c4" stroke-width="1.2"/>
+      <!-- the Coulomb field E in the slice {t = 0}: radial -->
+      <g stroke="#cfdbea" stroke-width="1.2">
+        <line x1="188.7" y1="232.3" x2="240.3" y2="263.5" />
+        <line x1="209.2" y1="218.7" x2="297.9" y2="225.3" />
+        <line x1="201.0" y1="202.9" x2="274.7" y2="181.1" />
+        <line x1="168.7" y1="194.2" x2="184.3" y2="156.7" />
+        <line x1="131.3" y1="197.7" x2="79.7" y2="166.5" />
+        <line x1="110.8" y1="211.3" x2="22.1" y2="204.7" />
+        <line x1="119.0" y1="227.1" x2="45.3" y2="248.9" />
+        <line x1="151.3" y1="235.8" x2="135.7" y2="273.3" />
+      </g>
+      <g stroke="#9fb6d3" stroke-width="1.2" marker-end="url(#cl-e)">
+        <line x1="227.7" y1="255.9" x2="234.6" y2="260.0" />
+        <line x1="258.5" y1="222.3" x2="270.3" y2="223.2" />
+        <line x1="241.9" y1="190.8" x2="251.7" y2="187.9" />
+        <line x1="177.4" y1="173.4" x2="179.4" y2="168.4" />
+        <line x1="102.6" y1="180.4" x2="95.8" y2="176.2" />
+        <line x1="61.5" y1="207.7" x2="49.7" y2="206.8" />
+        <line x1="78.1" y1="239.2" x2="68.3" y2="242.1" />
+        <line x1="142.6" y1="256.6" x2="140.6" y2="261.6" />
+      </g>
+      <!-- the excluded world-tube {r <= r_1} around the worldline of q_0 -->
+      <g opacity="0.85">
+        <rect x="116" y="60.9" width="88" height="154.1" fill="#f1f1f1"/>
+        <ellipse cx="160" cy="215" rx="44" ry="18.6" fill="#f1f1f1"/>
+        <ellipse cx="160" cy="60.9" rx="44" ry="18.6" fill="#f1f1f1"/>
+      </g>
+      <path d="M 116 215 A 44 18.6 0 0 1 204 215" fill="none" stroke="#8a8a8a" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <path d="M 116 215 A 44 18.6 0 0 0 204 215" fill="none" stroke="#8a8a8a" stroke-width="1.4"/>
+      <ellipse cx="160" cy="60.9" rx="44" ry="18.6" fill="none" stroke="#8a8a8a" stroke-width="1.4"/>
+      <g stroke="#8a8a8a" stroke-width="1.4"><line x1="116.0" y1="215.0" x2="116.0" y2="60.9" /><line x1="204.0" y1="215.0" x2="204.0" y2="60.9" /></g>
+      <line x1="160.0" y1="60.9" x2="191.1" y2="74.1" stroke="#8a8a8a" stroke-width="1.2"/>
+      <!-- the worldline of q_0, along the t-axis -->
+      <line x1="160.0" y1="215.0" x2="160.0" y2="33.7" stroke="#4a78ad" stroke-width="2.2" marker-end="url(#cl-t)"/>
+      <circle cx="160" cy="215" r="4" fill="#4a78ad"/>
+      <!-- a future-directed tangent vector v = 110 d_t + 28 d_r + v_perp at a point of {t = 0} at distance 95 from q_0,
+           and its spatial component v_perp orthogonal to d_r -->
+      <g stroke="#bbbbbb" stroke-width="1.2" stroke-dasharray="4 4">
+        <line x1="214.5" y1="247.9" x2="230.5" y2="257.6" />
+        <line x1="230.5" y1="257.6" x2="275.6" y2="244.2" />
+        <line x1="259.5" y1="234.6" x2="275.6" y2="244.2" />
+        <line x1="275.6" y1="244.2" x2="275.6" y2="144.6" />
+      </g>
+      <polyline points="218.5,250.3 224.2,248.6 220.2,246.2" fill="none" stroke="#8a8a8a" stroke-width="1.2"/>
+      <line x1="214.5" y1="247.9" x2="259.5" y2="234.6" stroke="#1a4f8b" stroke-width="2.4" marker-end="url(#cl-p)"/>
+      <line x1="214.5" y1="247.9" x2="275.6" y2="144.6" stroke="#e08214" stroke-width="2.4" marker-end="url(#cl-v)"/>
+      <circle class="pt" cx="214.5" cy="247.9" r="4"/>
+      <foreignObject x="166" y="10" width="30" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab gy" style="font-size:22px">$t$</div></foreignObject>
+      <foreignObject x="166" y="70" width="40" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab gy" style="font-size:20px">$r_1$</div></foreignObject>
+      <foreignObject x="272" y="112" width="36" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab em" style="font-size:22px">$v$</div></foreignObject>
+      <foreignObject x="280" y="220" width="40" height="34"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="font-size:22px;color:#1a4f8b">$\mathbf{v}_\perp$</div></foreignObject>
+      <foreignObject class="fragment" data-fragment-index="2" x="14" y="236" width="70" height="36"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="font-size:24px;color:#4a78ad">$U_{r_1}$</div></foreignObject>
     </svg>
   </div>
   </div>
@@ -1349,68 +1412,6 @@
       draw(still ? 1.5 : (now - t0) / 1000);
     }
     draw(1.5);
-    requestAnimationFrame(frame);
-  })();
-
-  // ---- point charge: one test charge of unit charge and mass in the Coulomb field E = q0 x / |x|^3 (q0 > 0, repulsive) ----
-  // Coordinate time in px (speed of light: C px per second), p = gamma u: dx/dt = p / sqrt(1 + |p|^2), dp/dt = E (RK4).
-  // The angular momentum L = |x × p| is conserved, so v_perp = |p_perp| = L / r <= L / r_min: with L = 18 and r_min ≈ 67 > r_1
-  // the charge stays in B_{r_1,sigma} (v_perp <= 0.27 < sigma = 0.3).
-  (function () {
-    const svg = document.querySelector('svg.coul-fig');
-    if (!svg) return;
-    const sec = svg.closest('section'), NS = 'http://www.w3.org/2000/svg';
-    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const O = 160, Q = 15, R1 = 44, C = 110, SIGMA = 0.3, DT = 1, P0 = 0.6, B = 30, TH = Math.PI, PAUSE = 1;
-    const COL = '#e08214';
-    function el(parent, name, attrs) { const e = document.createElementNS(NS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
-    // the field lines
-    const fg = svg.querySelector('.cl-field');
-    for (let k = 0; k < 12; k++) {
-      const a = (k + 0.5) * Math.PI / 6, c = Math.cos(a), s = Math.sin(a);
-      el(fg, 'line', { x1: O + (R1 + 6) * c, y1: O + (R1 + 6) * s, x2: O + 156 * c, y2: O + 156 * s, stroke: '#cfdbea', 'stroke-width': 1.2 });
-      el(fg, 'line', { x1: O + 92 * c, y1: O + 92 * s, x2: O + 104 * c, y2: O + 104 * s, stroke: '#9fb6d3', 'stroke-width': 1.2, 'marker-end': 'url(#cl-e)' });
-    }
-    // the orbit: from the rim, momentum P0 with impact parameter B, rotated by TH
-    const pts = [];
-    (function () {
-      const c = Math.cos(TH), s = Math.sin(TH), rot = (x, y) => [c * x - s * y, s * x + c * y];
-      let S = [...rot(-160, B), ...rot(P0, 0)];
-      const f = Z => { const n = Math.sqrt(1 + Z[2] * Z[2] + Z[3] * Z[3]), r = Math.hypot(Z[0], Z[1]), q = Q / (r * r * r); return [Z[2] / n, Z[3] / n, q * Z[0], q * Z[1]]; };
-      for (let n = 0; n < 4000; n++) {
-        const r = Math.hypot(S[0], S[1]);
-        if (n > 10 && r > 165) break;
-        pts.push({ x: S[0], y: S[1], inB: r > R1 && Math.abs(S[2] * S[1] - S[3] * S[0]) / r < SIGMA });
-        const k1 = f(S), k2 = f(S.map((v, i) => v + DT / 2 * k1[i])), k3 = f(S.map((v, i) => v + DT / 2 * k2[i])), k4 = f(S.map((v, i) => v + DT * k3[i]));
-        S = S.map((v, i) => v + DT / 6 * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]));
-      }
-    })();
-    const T = pts.length * DT / C, live = svg.querySelector('.cl-live'), g = el(live, 'g', {});
-    const solid = el(g, 'path', { fill: 'none', stroke: COL, 'stroke-width': 2.2 });
-    const faint = el(g, 'path', { fill: 'none', stroke: '#8a8a8a', 'stroke-width': 1.6, 'stroke-dasharray': '3 4' });
-    const dot = el(g, 'circle', { r: 5, fill: COL });
-    function draw(t) {
-      const tt = t % (T + PAUSE), n = Math.min(pts.length - 1, Math.floor(tt * C / DT));
-      let ds = '', df = '';
-      for (let j = 0; j <= n; j += 2) {
-        const P = pts[j], Pr = pts[Math.max(0, j - 2)];
-        const seg = (j ? 'M ' + (O + Pr.x).toFixed(1) + ' ' + (O + Pr.y).toFixed(1) + ' L ' : 'M ') + (O + P.x).toFixed(1) + ' ' + (O + P.y).toFixed(1) + ' ';
-        if (P.inB) ds += seg; else df += seg;
-      }
-      solid.setAttribute('d', ds); faint.setAttribute('d', df);
-      const P = pts[n];
-      dot.setAttribute('cx', (O + P.x).toFixed(1)); dot.setAttribute('cy', (O + P.y).toFixed(1));
-      const op = Math.max(0, Math.min(1, tt / 0.4, (T - tt) / 0.4)).toFixed(3);
-      g.setAttribute('opacity', op);
-    }
-    let t0 = null;
-    function frame(now) {
-      requestAnimationFrame(frame);
-      if (!sec.classList.contains('present')) { t0 = null; return; }
-      if (t0 === null) t0 = now;
-      draw(still ? T / 2 : (now - t0) / 1000);
-    }
-    draw(T / 2);
     requestAnimationFrame(frame);
   })();
 
