@@ -231,7 +231,7 @@
 <!-- ============================================================
      OPENING (~7 min)
      ============================================================ -->
-<section class="run-title" data-section="Background" data-auto-animate data-auto-animate-id="dc">
+<section class="run-title" data-section="Background" data-transition="none">
   <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">in $\mathbb{R}^n$</span></h2>
   <div class="dense">
 
@@ -282,7 +282,7 @@
   </div>
 </section>
 
-<section class="run-title" data-section="Background" data-auto-animate data-auto-animate-id="dc">
+<section class="run-title" data-section="Background" data-transition="none">
   <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">on Riemannian manifolds</span></h2>
   <div class="dense tight">
 
@@ -340,7 +340,7 @@
   </div>
 </section>
 
-<section class="run-title" data-section="Background" data-auto-animate data-auto-animate-id="dc">
+<section class="run-title" data-section="Background" data-transition="none">
   <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">in $L^1$ optimal transport</span></h2>
   <div class="dense tight">
 
@@ -369,7 +369,7 @@
 </section>
 
 
-<section class="run-title" data-section="Background" data-auto-animate data-auto-animate-id="dc">
+<section class="run-title" data-section="Background" data-transition="none">
   <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">on Lorentzian manifolds</span></h2>
   <div class="dense tight">
     <p>
@@ -395,7 +395,7 @@
   </div>
 </section>
 
-<section class="run-title" data-section="Background" data-auto-animate data-auto-animate-id="dc" data-auto-animate-duration="0">
+<section class="run-title" data-section="Background" data-transition="none">
   <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">on Lorentzian manifolds</span></h2>
   <div class="dense tight">
     <p>$(M,g)$ globally hyperbolic Lorentzian manifold</p>
@@ -413,7 +413,7 @@
   </div>
 </section>
 
-<section class="run-title" data-section="Background" data-auto-animate data-auto-animate-id="dc">
+<section class="run-title" data-section="Background" data-transition="none">
   <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">in an electromagnetic field</span></h2>
   <div class="big-q">?</div>
 </section>
@@ -555,52 +555,39 @@
 
 <section class="run-title" data-section="Electromagnetism on Lorentzian manifolds" data-auto-animate data-auto-animate-id="em">
   <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
-  <h3 class="subtitle">Background: electromagnetic fields</h3>
+  <h3 class="subtitle">Electromagnetic fields</h3>
   <div class="dense">
   <p>$(M,g)$ Lorentzian manifold, $A \in \Omega^1(M)$ one-form on $M$,
     $$F := \mathrm{d}A.$$</p>
   <p class="fragment">If $M$ oriented and $\dim M = 4$, and $V$ is a future-directed unit vector field (an <em>observer</em>), then the <em>electric</em> and <em>magnetic</em> fields measured by \(V\) are
     $$\mathbf{E}_V := F^\sharp V, \qquad \mathbf{B}_V := (\star F)^\sharp V,$$
     where $F^\sharp$ is the $(1,1)$-tensor defined by $\langle\,\cdot\,,F^\sharp\,\cdot\,\rangle = F$.</p>
-  <p class="fragment">A test particle of unit charge and mass moving in the electromagnetic field $F$ is described by a unit-speed timelike curve $\gamma$ solving the <em>Lorentz force equation</em>
-    $$\nabla_{\dot\gamma}\dot\gamma = F^\sharp\dot\gamma. \tag{LFE}$$</p>
-  <p class="fragment">A future-directed timelike unit speed curve $\gamma$ minimizing the <em>action</em>
-    $$\int_\gamma\bigl(-|\dot\gamma| - A(\dot\gamma)\bigr)$$
-    is a solution to the Lorentz force equation.</p>
-  </div>
-</section>
-
-<section class="run-title" data-section="Electromagnetism on Lorentzian manifolds" data-auto-animate data-auto-animate-id="em">
-  <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
-  <h3 class="subtitle">Background: charges and currents</h3>
-  <div class="dense">
   <p class="fragment">The <em>current</em>  is the one-form
-    $$J := -\delta F,$$
-  where
-    $$\delta F = \star^{-1}\mathrm{d}\star F = -\operatorname{div} F^\sharp = -\mathrm{tr}(\nabla F)$$
-    is the <em>codifferential</em> of $F$. Here $\star$ is the Hodge star.</p>
+    $$J := -\delta F = \operatorname{div} F^\sharp = \mathrm{tr}(\nabla F),$$
+    where $\delta F = \star^{-1}\mathrm{d}\star F$ is the <em>codifferential</em> of $F$ and $\star$ is the Hodge star.</p>
     <!-- The field is <em>source-free</em> if
     $$\delta F = 0.$$</p> -->
   <p class="fragment">Given an observer $V$, write
     $$J^\sharp = \rho_V\,V + \mathbf{j}_V, \qquad \mathbf{j}_V \perp V, \qquad \rho_V := J(V).$$
     Then $\rho_V$ is the <em>charge density</em> and $\mathbf{j}_V$ the <em>current density</em> measured by $V$. In Minkowski spacetime with $V = \partial_\mathrm{t}$:
     $$\rho = \operatorname{div}_{\mathbb{R}^3}(\mathbf{E}), \qquad \mathbf{j} = \mathrm{curl}_{\mathbb{R}^3}(\mathbf{B}) - \partial_\mathrm{t}\mathbf{E}.$$</p>
-  <p class="fragment">Background charges are described by $J$ and generate the field $F$ through Maxwell's equations
-    $$\mathrm{d}F = 0, \qquad \delta F = -J.$$
-    Test particles move in the field $F$ according to (LFE), but do not affect $F$.</p>
   </div>
 </section>
 
 <section class="run-title" data-section="Electromagnetism on Lorentzian manifolds" data-auto-animate data-auto-animate-id="em">
   <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
-  <h3 class="subtitle">Background: the electromagnetic cost function</h3>
-  <p>Cost function:
+  <h3 class="subtitle">Electromagnetic fields</h3>
+  <div class="dense">
+  <p>Background charges are described by $J$ and generate the field $F$ through Maxwell's equations
+    $$\mathrm{d}F = 0, \qquad \delta F = -J.$$</p>
+  <p class="fragment">Test particles move in the field $F$ according to the <em>Lorentz force equation</em>, but do not affect $F$: a test particle of unit charge and mass is described by a unit-speed timelike curve $\gamma$ solving
+    $$\nabla_{\dot\gamma}\dot\gamma = F^\sharp\dot\gamma. \tag{LFE}$$</p>
+  <p class="fragment">Define a <em>cost function</em> by:
     $$\mathrm{c}(x,y) := \inf_\gamma \int_\gamma\bigl(-|\dot\gamma| - A(\dot\gamma)\bigr),$$
-    where the infimum is over all future-directed timelike curves joining $x$ to $y$.</p>
-  <div class="fragment">
-    <p>For every $r \in (0,1)$, timelike curves attaining the infimum and parametrized by unit speed, are exactly free-time minimizers of the action $\int L(\dot\gamma)$, where $L$ is the Lagrangian
-      $$L(v) := \begin{cases} -\frac1r|v|^r + \frac1r - 1 - A(v), & v \text{ is future-directed or } v = 0,\\ \infty, & \text{otherwise.}\end{cases}$$
-    </p>
+    where the infimum is over future-directed timelike curves joining $x$ to $y$. Unit-speed minimizers solve (LFE).</p>
+  <p class="fragment">For every $r \in (0,1)$, timelike curves attaining the infimum and parametrized by unit speed, are exactly free-time minimizers of the action $\int L(\dot\gamma)$, where $L$ is the Lagrangian
+    $$L(v) := \begin{cases} -\frac1r|v|^r + \frac1r - 1 - A(v), & v \text{ is future-directed or } v = 0,\\ \infty, & \text{otherwise.}\end{cases}$$
+  </p>
   </div>
 </section>
 
@@ -608,6 +595,7 @@
   <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
   <h3 class="subtitle">Displacement interpolations</h3>
   <div class="dense">
+    $$\nabla_{\dot\gamma}\dot\gamma = F^\sharp\dot\gamma \tag{LFE}$$
     <p>For $v \in TM$, denote by $\gamma_v$ the solution to (LFE) with $\dot\gamma_v(0) = v$.</p>
     <div class="fragment" data-fragment-index="1">
     <p>A <em>displacement interpolation</em> between $\mu_0,\mu_1$ is a family of probability measures $(\mu_\lambda)_{0\le\lambda\le1}$ of the form
