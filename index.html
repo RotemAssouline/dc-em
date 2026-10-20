@@ -248,7 +248,7 @@
         $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda := (1-\lambda)\,\mathrm{Id} + \lambda\,\mathrm{T}, \qquad 0 \le \lambda \le 1.$$</li>
     </ul>
 
-    <!-- the static figure (the two measures, then mu_{1/2} with the third bullet) holds the theorem's place until it appears -->
+    <!-- the static figure (the two measures, the map T with the second bullet, then mu_{1/2} with the third) holds the theorem's place until it appears -->
     <div class="r-stack thm-stack">
     <div class="fragment" data-fragment-index="1"><div class="fragment fade-out" data-fragment-index="4">
     <div class="fig-row ot-fig">
@@ -259,6 +259,12 @@
         <g>
           <foreignObject x="267" y="124" width="80" height="40"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="color:#1a4f8b">$\mu_0$</div></foreignObject>
           <foreignObject x="617" y="134" width="80" height="40"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="color:#e08214">$\mu_1$</div></foreignObject>
+        </g>
+        <!-- the transport map, with the second bullet; mu_{1/2} replaces it -->
+        <g class="fragment fade-in-then-out" data-fragment-index="2">
+          <defs><marker id="ot-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8a8a8a"/></marker></defs>
+          <path d="M 372 205 Q 450 160 528 236" fill="none" stroke="#8a8a8a" stroke-width="2.2" marker-end="url(#ot-head)"/>
+          <foreignObject x="425" y="140" width="50" height="40"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab gy">$\mathrm{T}$</div></foreignObject>
         </g>
         <!-- the displacement interpolation at lambda = 1/2, with the third bullet; its density is computed by the script at the end of the file -->
         <g class="fragment ot-di-trigger" data-fragment-index="3">
@@ -341,18 +347,17 @@
   <h2><span data-id="dc-title">Displacement convexity</span></h2>
   <div class="dense">
 
-    <h3>Lorentzian optimal transport</h3>
+    <h3>$L^1$ optimal transport</h3>
     <ul>
-      <li class="fragment" data-fragment-index="0">Optimal transport on <em>Lorentzian manifolds</em>, with time-separation cost $\ell^q$, $0 < q < 1$. <span class="cite">McCann '20, Cavalletti &amp; Mondino '24, Braun &amp; McCann '24</span></li>
-      <li class="fragment" data-fragment-index="1">Characterization of <em>timelike Ricci curvature lower bounds</em> by displacement convexity of the entropy. <span class="cite">McCann '20, Mondino &amp; Suhr '22, Cavalletti &amp; Mondino '24</span></li>
+      <li class="fragment" data-fragment-index="0">Solution of the <em>Monge</em> problem $$\min\left\{\int {\color{#2e7d32} d(x,T(x))}\,\mathrm{d}\mu_0(x)\,\,\colon \,\, T_\sharp\mu_0 = \mu_1\right\}:$$ optimal maps move mass along disjoint transport rays. <span class="cite">Evans &amp; Gangbo '99, Feldman &amp; McCann '02, Caffarelli, Feldman &amp; McCann '02</span></li>
+      <li class="fragment" data-fragment-index="1"><em>Localization (needle decomposition)</em> <span class="cite">Klartag '17</span>: combine with Ricci curvature bounds to prove geometric inequalities. <span class="cite">Cavalletti &amp; Mondino '17, Ohta '18, Milman '21</span></li>
+      <li class="fragment" data-fragment-index="2">$L^1$ displacement convexity. <span class="cite">Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21</span></li>
     </ul>
 
-    <h3 class="fragment" data-fragment-index="2" style="margin-top:0.6em">$L^1$ optimal transport</h3>
+    <h3 class="fragment" data-fragment-index="3" style="margin-top:0.6em">Lorentzian optimal transport</h3>
     <ul>
-      <li class="fragment" data-fragment-index="2">Solution of the <em>Monge</em> problem $\min\left\{\int d(x,T(x))\,\mathrm{d}\mu_0(x)\,\,\colon \,\, T_\sharp\mu_0 = \mu_1\right\}$: optimal maps move mass along transport rays. <span class="cite">Evans &amp; Gangbo '99, Feldman &amp; McCann '02, Caffarelli, Feldman &amp; McCann '02</span></li>
-      <li class="fragment" data-fragment-index="3"><em>Localization (needle decomposition)</em> <span class="cite">Klartag '17</span>: combine with Ricci curvature bounds to prove geometric inequalities. <span class="cite">Cavalletti &amp; Mondino '17, Ohta '18, Milman '21</span></li>
-      <li class="fragment" data-fragment-index="4">$L^1$ displacement convexity. <span class="cite">Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21</span></li>
-      <li class="fragment" data-fragment-index="5">Lorentzian $L^1$ optimal transport and localization. <span class="cite">Suhr '18, Kell &amp; Suhr '20, Cavalletti &amp; Mondino '24, Braun &amp; McCann '24</span></li>
+      <li class="fragment" data-fragment-index="3">Optimal transport on <em>Lorentzian manifolds</em>, with time-separation cost $\ell^q$, $0 < q < 1$, and characterization of <em>timelike Ricci curvature lower bounds</em> by displacement convexity of the entropy. <span class="cite">McCann '20, Mondino &amp; Suhr '22, Cavalletti &amp; Mondino '24, Braun &amp; McCann '24</span></li>
+      <li class="fragment" data-fragment-index="4">Lorentzian $L^1$ optimal transport and localization. <span class="cite">Suhr '18, Kell &amp; Suhr '20, Cavalletti &amp; Mondino '24, Braun &amp; McCann '24</span></li>
     </ul>
 
   </div>
@@ -567,7 +572,7 @@
   <h3 class="subtitle">Displacement interpolations</h3>
   <div class="fig-row big">
     <div>
-      <svg viewBox="95 2 640 296" role="img" aria-label="Worldlines of charged test particles carrying mu_0 to mu_1">
+      <svg viewBox="95 2 520 296" role="img" aria-label="Worldlines of charged test particles carrying mu_0 to mu_1">
       <defs>
         <marker id="vhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M 0 0 L 10 5 L 0 10 z" fill="#e08214"/>
@@ -610,7 +615,7 @@
     </svg>
     </div>
     <div class="fragment">
-      <svg viewBox="0 2 420 296" role="img" aria-label="The law of the velocities at stage lambda">
+      <svg viewBox="70 2 290 296" role="img" aria-label="The law of the velocities at stage lambda">
         <defs>
           <marker id="vhead2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#222"/>
@@ -802,11 +807,13 @@
 <section class="run-title airy" data-section="Examples" data-auto-animate data-auto-animate-id="ex">
   <h2 data-id="ex-title">Electromagnetic displacement convexity in Minkowski space</h2>
   <p>$M := \mathbb{R}^{1+3}$, $\quad g = \mathrm{dt}^2 - \mathrm{dx}^2 - \mathrm{dy}^2 - \mathrm{dz}^2.$</p>
-  <p>$$F = \mathrm{dt}\wedge(E^\mathrm{x}\,\mathrm{dx} + E^\mathrm{y}\,\mathrm{dy} + E^\mathrm{z}\,\mathrm{dz}) - B^\mathrm{x}\,\mathrm{dy}\wedge\mathrm{dz} + B^\mathrm{y}\,\mathrm{dx}\wedge\mathrm{dz} - B^\mathrm{z}\,\mathrm{dx}\wedge\mathrm{dy}.$$</p>
+  <p>$$F = \mathrm{dt}\wedge(E^\mathrm{x}\,\mathrm{dx} + E^\mathrm{y}\,\mathrm{dy} + E^\mathrm{z}\,\mathrm{dz}) - B^\mathrm{x}\,\mathrm{dy}\wedge\mathrm{dz} + B^\mathrm{y}\,\mathrm{dx}\wedge\mathrm{dz} - B^\mathrm{z}\,\mathrm{dx}\wedge\mathrm{dy}.$$
+    <!-- star F, for the orientation -dt^dx^dy^dz (so that (star F)^sharp d_t = B):
+    $$\star F = \mathrm{dt}\wedge(B^\mathrm{x}\,\mathrm{dx} + B^\mathrm{y}\,\mathrm{dy} + B^\mathrm{z}\,\mathrm{dz}) + E^\mathrm{x}\,\mathrm{dy}\wedge\mathrm{dz} - E^\mathrm{y}\,\mathrm{dx}\wedge\mathrm{dz} + E^\mathrm{z}\,\mathrm{dx}\wedge\mathrm{dy}.$$ --></p>
   <p>Electric and magnetic fields:
     $$\mathbf{E} = E^\mathrm{x}\partial_\mathrm{x} + E^\mathrm{y}\partial_\mathrm{y} + E^\mathrm{z}\partial_\mathrm{z} \quad\text{and}\quad \mathbf{B} = B^\mathrm{x}\partial_\mathrm{x} + B^\mathrm{y}\partial_\mathrm{y} + B^\mathrm{z}\partial_\mathrm{z}.$$</p>
   <p>Charge and current densities:
-    $$\rho := \operatorname{div}_{\mathbb{R}^3}\mathbf{E} \quad\text{and}\quad \mathbf{j} := \operatorname{curl}_{\mathbb{R}^3}\mathbf{B} - \partial_\mathrm{t}\mathbf{E}.$$</p>
+    $$\rho = \operatorname{div}_{\mathbb{R}^3}\mathbf{E} \quad\text{and}\quad \mathbf{j} = \operatorname{curl}_{\mathbb{R}^3}\mathbf{B} - \partial_\mathrm{t}\mathbf{E}.$$</p>
   <p class="fragment">For every future-directed unit vector $v = v^\mathrm{t}\partial_\mathrm{t} + \mathbf{v}$,
     $$\mathrm{Ric}_F(v) = \tfrac12|\mathbf{B}|^2 - |\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 - \tfrac12|\mathbf{B}\times\mathbf{v}|^2 + v^\mathrm{t}\langle\mathbf{E}\times\mathbf{B},\mathbf{v}\rangle - \rho\,v^\mathrm{t} + \langle\mathbf{j},\mathbf{v}\rangle.$$</p>
 </section>
