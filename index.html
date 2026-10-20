@@ -126,6 +126,10 @@
                    display: flex; align-items: center; justify-content: center;
                    font-family: 'Alegreya', serif; font-size: 200px; line-height: 1; color: #222; }
   .reveal h2 .h2-setting { color: #222; }
+  /* the three opening questions: unnumbered, large, left-aligned under the title */
+  .reveal .qs { font-size: 1.1em; margin-top: 1em; }
+  .reveal .qs ol { list-style: none; margin: 0; padding: 0; }
+  .reveal .qs li { margin: 0 0 1.2em; line-height: 1.3; }
   /* subtitle under a running title */
   .reveal h2 + h3.subtitle { color: var(--accent); font-size: 1.2em; font-weight: 500; margin: -0.35em 0 0.7em; }
 
@@ -232,47 +236,40 @@
      OPENING (~7 min)
      ============================================================ -->
 <section class="run-title" data-section="Background" data-transition="none">
-  <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">in $\mathbb{R}^n$</span></h2>
+  <h2><span data-id="dc-title">Displacement convexity</span></h2>
   <div class="dense">
 
     <ul>
-      <li class="fragment" data-fragment-index="0">An <em>optimal transport map</em> between two probability measures $\mu_0,\mu_1 \in \mathscr{P}_2(\mathbb{R}^n)$ is a Borel map $\mathrm{T}$ attaining
+      <li class="fragment" data-fragment-index="0">An <em>optimal transport map</em> between two probability measures $\mu_0,\mu_1 \in \mathscr{P}_2^{\mathrm{ac}}(\mathbb{R}^n)$ is a Borel map $\mathrm{T}$ attaining
         $$\min\Big\{\textstyle\int_{\mathbb{R}^n}|\mathrm{T}x - x|^2\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
-        <p class="gray" style="font-size:0.88em">$\mathscr{P}_2(\mathbb{R}^n):=$ absolutely continuous probability measures on $\mathbb{R}^n$ with finite second moment.</p></li>
+        <p class="gray" style="font-size:0.88em">$\mathscr{P}_2^{\mathrm{ac}}(\mathbb{R}^n):=$ absolutely continuous probability measures on $\mathbb{R}^n$ with finite second moment.</p></li>
       <li class="fragment" data-fragment-index="2">The minimizer is unique, and given by $\mathrm{T} = \nabla\varphi$ for a convex function $\varphi$ on $\mathbb{R}^n$. <span class="cite">Brenier '91, McCann '95</span></li>
       <li class="fragment" data-fragment-index="3">The <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
         $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda := (1-\lambda)\,\mathrm{Id} + \lambda\,\mathrm{T}, \qquad 0 \le \lambda \le 1.$$</li>
     </ul>
 
-    <!-- the figure (the two measures, the transport map, then the displacement interpolation) holds the theorem's place until it appears -->
+    <!-- the static figure (the two measures, then mu_{1/2} with the third bullet) holds the theorem's place until it appears -->
     <div class="r-stack thm-stack">
     <div class="fragment" data-fragment-index="1"><div class="fragment fade-out" data-fragment-index="4">
     <div class="fig-row ot-fig">
-      <svg class="ot-di" viewBox="60 80 900 230" role="img" aria-label="Two probability measures on the line and the displacement interpolation between them, sliding from one to the other">
+      <svg class="ot-di" viewBox="60 80 900 230" role="img" aria-label="Two probability measures on the line">
         <line x1="100" y1="290" x2="860" y2="290" stroke="#bbbbbb" stroke-width="1.4"/>
         <path d="M 95.0 290 L 95.0 289.8 L 97.1 289.7 L 99.2 289.7 L 101.4 289.7 L 103.5 289.6 L 105.6 289.6 L 107.8 289.5 L 109.9 289.5 L 112.0 289.4 L 114.1 289.4 L 116.2 289.3 L 118.4 289.2 L 120.5 289.1 L 122.6 289.0 L 124.8 288.9 L 126.9 288.8 L 129.0 288.7 L 131.1 288.6 L 133.2 288.4 L 135.4 288.3 L 137.5 288.1 L 139.6 287.9 L 141.8 287.7 L 143.9 287.5 L 146.0 287.3 L 148.1 287.1 L 150.2 286.8 L 152.4 286.5 L 154.5 286.2 L 156.6 285.9 L 158.8 285.5 L 160.9 285.2 L 163.0 284.8 L 165.1 284.3 L 167.2 283.9 L 169.4 283.4 L 171.5 282.9 L 173.6 282.4 L 175.8 281.8 L 177.9 281.2 L 180.0 280.5 L 182.1 279.9 L 184.2 279.2 L 186.4 278.4 L 188.5 277.6 L 190.6 276.8 L 192.8 275.9 L 194.9 275.1 L 197.0 274.1 L 199.1 273.1 L 201.2 272.1 L 203.4 271.1 L 205.5 270.0 L 207.6 268.9 L 209.8 267.7 L 211.9 266.5 L 214.0 265.2 L 216.1 264.0 L 218.2 262.7 L 220.4 261.3 L 222.5 259.9 L 224.6 258.5 L 226.7 257.1 L 228.9 255.6 L 231.0 254.2 L 233.1 252.7 L 235.2 251.1 L 237.4 249.6 L 239.5 248.1 L 241.6 246.5 L 243.8 244.9 L 245.9 243.4 L 248.0 241.8 L 250.1 240.3 L 252.2 238.7 L 254.4 237.2 L 256.5 235.7 L 258.6 234.2 L 260.8 232.7 L 262.9 231.3 L 265.0 229.8 L 267.1 228.5 L 269.2 227.1 L 271.4 225.9 L 273.5 224.6 L 275.6 223.4 L 277.8 222.3 L 279.9 221.3 L 282.0 220.3 L 284.1 219.3 L 286.2 218.5 L 288.4 217.7 L 290.5 217.0 L 292.6 216.3 L 294.8 215.8 L 296.9 215.3 L 299.0 214.9 L 301.1 214.6 L 303.2 214.4 L 305.4 214.2 L 307.5 214.2 L 309.6 214.2 L 311.8 214.4 L 313.9 214.6 L 316.0 214.9 L 318.1 215.3 L 320.2 215.8 L 322.4 216.3 L 324.5 217.0 L 326.6 217.7 L 328.8 218.5 L 330.9 219.3 L 333.0 220.3 L 335.1 221.3 L 337.2 222.3 L 339.4 223.4 L 341.5 224.6 L 343.6 225.9 L 345.8 227.1 L 347.9 228.5 L 350.0 229.8 L 352.1 231.3 L 354.2 232.7 L 356.4 234.2 L 358.5 235.7 L 360.6 237.2 L 362.8 238.7 L 364.9 240.3 L 367.0 241.8 L 369.1 243.4 L 371.2 244.9 L 373.4 246.5 L 375.5 248.1 L 377.6 249.6 L 379.8 251.1 L 381.9 252.7 L 384.0 254.2 L 386.1 255.6 L 388.2 257.1 L 390.4 258.5 L 392.5 259.9 L 394.6 261.3 L 396.8 262.7 L 398.9 264.0 L 401.0 265.2 L 403.1 266.5 L 405.2 267.7 L 407.4 268.9 L 409.5 270.0 L 411.6 271.1 L 413.8 272.1 L 415.9 273.1 L 418.0 274.1 L 420.1 275.1 L 422.3 275.9 L 424.4 276.8 L 426.5 277.6 L 428.6 278.4 L 430.7 279.2 L 432.9 279.9 L 435.0 280.5 L 437.1 281.2 L 439.2 281.8 L 441.4 282.4 L 443.5 282.9 L 445.6 283.4 L 447.8 283.9 L 449.9 284.3 L 452.0 284.8 L 454.1 285.2 L 456.2 285.5 L 458.4 285.9 L 460.5 286.2 L 462.6 286.5 L 464.8 286.8 L 466.9 287.1 L 469.0 287.3 L 471.1 287.5 L 473.2 287.7 L 475.4 287.9 L 477.5 288.1 L 479.6 288.3 L 481.8 288.4 L 483.9 288.6 L 486.0 288.7 L 488.1 288.8 L 490.2 288.9 L 492.4 289.0 L 494.5 289.1 L 496.6 289.2 L 498.8 289.3 L 500.9 289.4 L 503.0 289.4 L 505.1 289.5 L 507.2 289.5 L 509.4 289.6 L 511.5 289.6 L 513.6 289.7 L 515.8 289.7 L 517.9 289.7 L 520.0 289.8 L 520.0 290 Z" transform="translate(0 290) scale(1 1.6) translate(0 -290)" vector-effect="non-scaling-stroke" fill="#1a4f8b" fill-opacity="0.16" stroke="#1a4f8b" stroke-width="2"/>
         <path d="M 457.5 70 L 457.5 70.0 L 501.8 70.0 L 505.0 69.4 L 506.8 67.3 L 509.0 63.1 L 512.0 61.7 L 526.2 61.5 L 528.5 60.8 L 529.8 58.9 L 530.5 56.2 L 531.2 51.6 L 532.2 41.9 L 533.2 31.0 L 534.0 24.8 L 534.8 20.9 L 536.0 17.9 L 538.8 16.8 L 541.0 17.5 L 542.5 19.7 L 544.8 26.9 L 546.2 29.6 L 550.0 30.5 L 552.2 29.8 L 553.8 27.5 L 556.0 20.4 L 557.5 17.7 L 561.2 16.7 L 563.5 17.4 L 565.0 19.7 L 567.2 26.9 L 568.8 29.6 L 572.5 30.5 L 574.8 29.8 L 576.2 27.5 L 578.5 20.4 L 580.0 17.7 L 583.0 16.8 L 585.0 17.6 L 586.2 20.0 L 587.0 23.3 L 587.8 28.7 L 589.5 47.1 L 590.2 53.4 L 591.0 57.3 L 592.2 60.2 L 596.2 61.5 L 607.5 61.4 L 609.8 60.5 L 610.8 58.6 L 611.5 55.7 L 612.2 50.3 L 613.0 41.7 L 614.5 19.6 L 615.2 11.0 L 616.0 5.6 L 617.0 2.0 L 618.8 0.1 L 626.5 -0.1 L 628.8 0.8 L 630.2 3.5 L 632.2 10.0 L 633.8 12.7 L 642.0 13.8 L 645.5 13.3 L 647.0 11.7 L 650.0 2.9 L 651.5 0.6 L 660.5 -0.2 L 663.2 0.4 L 664.8 2.3 L 667.2 10.0 L 668.8 12.7 L 677.0 13.8 L 680.5 13.3 L 682.0 11.7 L 685.0 2.9 L 686.5 0.6 L 694.2 -0.2 L 696.8 0.4 L 698.0 2.0 L 698.8 4.4 L 699.5 8.9 L 700.2 16.4 L 702.0 41.7 L 702.8 50.3 L 703.5 55.7 L 704.5 59.3 L 706.2 61.2 L 719.8 61.5 L 722.2 60.8 L 723.5 58.9 L 724.2 56.2 L 725.0 51.6 L 726.0 41.9 L 727.0 31.0 L 727.8 24.8 L 728.5 20.9 L 729.8 17.9 L 732.5 16.8 L 734.8 17.5 L 736.2 19.7 L 738.5 26.9 L 740.0 29.6 L 743.8 30.5 L 746.0 29.8 L 747.5 27.5 L 749.8 20.4 L 751.2 17.7 L 755.0 16.7 L 757.2 17.4 L 758.8 19.7 L 761.0 26.9 L 762.5 29.6 L 766.2 30.5 L 768.5 29.8 L 770.0 27.5 L 772.2 20.4 L 773.8 17.7 L 776.8 16.8 L 778.8 17.6 L 780.0 20.0 L 780.8 23.3 L 781.5 28.7 L 783.2 47.1 L 784.0 53.4 L 784.8 57.3 L 786.0 60.2 L 790.0 61.5 L 803.0 61.7 L 805.5 62.6 L 809.0 68.5 L 812.0 69.9 L 857.5 70.0 L 857.5 70 Z" transform="translate(0 290) scale(1 1.6) translate(0 -70)" vector-effect="non-scaling-stroke" fill="#e08214" fill-opacity="0.16" stroke="#e08214" stroke-width="2"/>
-        <g class="fragment fade-out" data-fragment-index="3">
+        <g>
           <foreignObject x="267" y="124" width="80" height="40"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="color:#1a4f8b">$\mu_0$</div></foreignObject>
           <foreignObject x="617" y="134" width="80" height="40"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="color:#e08214">$\mu_1$</div></foreignObject>
         </g>
-        <!-- the transport map, with the second bullet; the animation of mu_lambda replaces it -->
-        <g class="fragment fade-in-then-out" data-fragment-index="2">
-          <defs><marker id="ot-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8a8a8a"/></marker></defs>
-          <path d="M 372 205 Q 450 160 528 236" fill="none" stroke="#8a8a8a" stroke-width="2.2" marker-end="url(#ot-head)"/>
-          <foreignObject x="425" y="140" width="50" height="40"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab gy">$\mathrm{T}$</div></foreignObject>
-        </g>
-        <!-- the displacement interpolation mu_lambda, on the same line, labelled with the current lambda; drawn and animated by the script at the end of the file -->
+        <!-- the displacement interpolation at lambda = 1/2, with the third bullet; its density is computed by the script at the end of the file -->
         <g class="fragment ot-di-trigger" data-fragment-index="3">
           <path class="ot-dens" fill-opacity="0.16" stroke-width="2"/>
-          <g class="ot-dots"></g>
-          <foreignObject class="ot-lab" width="120" height="40"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab" style="white-space:nowrap">$\mu$<sub class="ot-t">0</sub></div></foreignObject>
+          <foreignObject class="ot-lab" width="120" height="40"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-lab">$\mu_{1/2}$</div></foreignObject>
         </g>
       </svg>
     </div>
     </div></div>
       <div class="fragment thm" data-fragment-index="4">
-        <p><span class="label">Theorem</span> <span class="cite">(McCann '97)</span>. For all $\mu_0,\mu_1 \in \mathscr{P}_2(\mathbb{R}^n)$ and all $0 \le \lambda \le 1$,
+        <p><span class="label">Theorem</span> <span class="cite">(McCann '97)</span>. For all $\mu_0,\mu_1 \in \mathscr{P}_2^{\mathrm{ac}}(\mathbb{R}^n)$ and all $0 \le \lambda \le 1$,
           $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1],$$
           where $\mu_\lambda$ is the displacement interpolation between $\mu_0$ and $\mu_1$, and
           $$\mathrm{Ent}[\mu] := \int_{\mathbb{R}^n}\log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}.$$</p>
@@ -283,18 +280,18 @@
 </section>
 
 <section class="run-title" data-section="Background" data-transition="none">
-  <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">on Riemannian manifolds</span></h2>
+  <h2><span data-id="dc-title">Displacement convexity</span></h2>
   <div class="dense tight">
 
     <p>$(M,g)$ complete <span class="setting">Riemannian manifold</span>.</p>
 
     <ul>
-      <li>An <em>optimal transport map</em> between two probability measures $\mu_0,\mu_1 \in \mathscr{P}_2(M)$ is a Borel map $\mathrm{T}$ attaining
+      <li>An <em>optimal transport map</em> between two probability measures $\mu_0,\mu_1 \in \mathscr{P}_2^{\mathrm{ac}}(M)$ is a Borel map $\mathrm{T}$ attaining
         $$\min\Big\{\textstyle\int_M d(x,\mathrm{T}x)^2\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
-        <p class="gray" style="font-size:0.88em">$\mathscr{P}_2(M):=$ absolutely continuous probability measures on $M$ with finite second moment.</p></li>
-      <li>The minimizer is unique, and given by $\mathrm{T}x = \exp_x\!\big(\nabla\varphi\vert_x\big)$ for a $\tfrac{d^2}{2}$-concave function $\varphi$ on $M$. <span class="cite">McCann '01</span></li>
+        <p class="gray" style="font-size:0.88em">$\mathscr{P}_2^{\mathrm{ac}}(M):=$ absolutely continuous probability measures on $M$ with finite second moment.</p></li>
+      <li>The minimizer is unique, and given by $\mathrm{T}x = \exp_x\!\big({-\nabla\varphi}\vert_x\big)$ for a $\tfrac{d^2}{2}$-concave function $\varphi$ on $M$. <span class="cite">McCann '01</span></li>
       <li>The <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
-        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\nabla\varphi\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
+        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big({-\lambda\nabla\varphi}\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
     </ul>
 
     <!-- one theorem, two states: Ric >= 0 replaced in place by Ric >= k -->
@@ -303,7 +300,7 @@
         <p><span class="label">Theorem</span> <span class="cite">(Cordero-Erausquin, McCann &amp; Schmuckenschläger '01, von Renesse &amp; Sturm '05, Sturm '06, Lott &amp; Villani '09)</span></p>
         <p> The following are equivalent:</p>
         <p>$(i)$ $\ \mathrm{Ric} \ge 0$.</p>
-        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2(M)$ and all $0 \le \lambda \le 1$,
+        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2^{\mathrm{ac}}(M)$ and all $0 \le \lambda \le 1$,
           $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1],$$</p>
         <p>where $\mathrm{Ent}[\mu] := \textstyle\int_M\log f\,\mathrm{d}\mu$ for $\mu = f\,\mathrm{Vol}_g$.</p>
       </div>
@@ -311,7 +308,7 @@
         <p><span class="label">Theorem</span> <span class="cite">(Cordero-Erausquin, McCann &amp; Schmuckenschläger '01, von Renesse &amp; Sturm '05, Sturm '06, Lott &amp; Villani '09)</span></p>
         <p>Let ${\color{#d9730d} k} \in \mathbb{R}$. The following are equivalent:</p>
         <p>$(i)$ $\ \mathrm{Ric} \ge {\color{#d9730d} k}$.</p>
-        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2(M)$ and all $0 \le \lambda \le 1$,
+        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2^{\mathrm{ac}}(M)$ and all $0 \le \lambda \le 1$,
           $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] {\color{#d9730d} {} - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M d(x,\mathrm{T}x)^2\,\mathrm{d}\mu_0(x)},$$</p>
         <p>where $\mathrm{Ent}[\mu] := \textstyle\int_M\log f\,\mathrm{d}\mu$ for $\mu = f\,\mathrm{Vol}_g$.</p>
       </div>
@@ -319,7 +316,7 @@
         <p><span class="label">Theorem</span> <span class="cite">(Sturm '06, Lott &amp; Villani '09, Erbar, Kuwada &amp; Sturm '15)</span></p>
         <p>Let $k \in \mathbb{R}$ and ${\color{#d9730d} N} \in [1,\infty)$. The following are equivalent:</p>
         <p>$(i)$ $\ \mathrm{Ric} \ge k$ ${\color{#d9730d} \text{ and } \dim M \le N}$.</p>
-        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2(M)$ and all $0 \le \lambda \le 1$,
+        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2^{\mathrm{ac}}(M)$ and all $0 \le \lambda \le 1$,
           $$e^{-\mathrm{Ent}[\mu_\lambda]/N} \ge \sigma^{(1-\lambda)}_{k/N}\big(W_2(\mu_0,\mu_1)\big)\,e^{-\mathrm{Ent}[\mu_0]/N} + \sigma^{(\lambda)}_{k/N}\big(W_2(\mu_0,\mu_1)\big)\,e^{-\mathrm{Ent}[\mu_1]/N},$$</p>
         <p>where $\mathrm{Ent}[\mu] := \textstyle\int_M\log f\,\mathrm{d}\mu$ for $\mu = f\,\mathrm{Vol}_g$.</p>
       </div>
@@ -327,7 +324,7 @@
         <p><span class="label">Theorem</span> <span class="cite">(Sturm '06, Lott &amp; Villani '09, Erbar, Kuwada &amp; Sturm '15)</span></p>
         <p>Let $k \in \mathbb{R}$, $N \in [1,\infty)$, and let ${\color{#d9730d} \mathfrak{m}}$ be a measure on $M$ with a smooth density. The following are equivalent:</p>
         <p>$(i)$ $\ \mathrm{Ric}_{{\color{#d9730d} \mathfrak{m}},N} \ge k$.</p>
-        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2(M)$ and all $0 \le \lambda \le 1$,
+        <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_2^{\mathrm{ac}}(M)$ and all $0 \le \lambda \le 1$,
           $$e^{-\mathrm{Ent}[\mu_\lambda|{\color{#d9730d} \mathfrak{m}}]/N} \ge \sigma^{(1-\lambda)}_{k/N}\big(W_2(\mu_0,\mu_1)\big)\,e^{-\mathrm{Ent}[\mu_0|{\color{#d9730d} \mathfrak{m}}]/N} + \sigma^{(\lambda)}_{k/N}\big(W_2(\mu_0,\mu_1)\big)\,e^{-\mathrm{Ent}[\mu_1|{\color{#d9730d} \mathfrak{m}}]/N},$$</p>
         <p>where
           $$\mathrm{Ent}[\mu|{\color{#d9730d} \mathfrak{m}}] := \int_M\log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,{\color{#d9730d} \mathfrak{m}}.$$</p>
@@ -341,81 +338,34 @@
 </section>
 
 <section class="run-title" data-section="Background" data-transition="none">
-  <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">in $L^1$ optimal transport</span></h2>
-  <div class="dense tight">
+  <h2><span data-id="dc-title">Displacement convexity</span></h2>
+  <div class="dense">
 
-    <p>$(M,g)$ complete Riemannian manifold</p>
-
+    <h3>Lorentzian optimal transport</h3>
     <ul>
-      <li>An <em>${\color{#2e7d32} L^1}$-optimal transport map</em> between two probability measures $\mu_0,\mu_1 \in \mathscr{P}_1(M)$ is a Borel map $\mathrm{T}$ attaining
-        $$\min\Big\{\textstyle\int_M {\color{#2e7d32} d(x,\mathrm{T}x)}\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$
-        <p class="gray" style="font-size:0.88em">$\mathscr{P}_1(M):=$ absolutely continuous probability measures on $M$ with finite first moment.</p></li>
-      <li>A minimizer exists, and every minimizer has the form
-        $\mathrm{T}x = \exp_x\!\big(\ell(x)\nabla u\vert_x\big)$
-        for a 1-Lipschitz function $u$ and a measurable function $\ell$. <span class="cite">Evans &amp; Gangbo '99, Feldman &amp; McCann '02, Caffarelli, Feldman &amp; McCann '02</span></li>
-      <li>An <em>$L^1$ displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
-        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\,\ell(x)\nabla u\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
+      <li class="fragment" data-fragment-index="0">Optimal transport on <em>Lorentzian manifolds</em>, with time-separation cost $\ell^q$, $0 < q < 1$. <span class="cite">McCann '20, Cavalletti &amp; Mondino '24, Braun &amp; McCann '24</span></li>
+      <li class="fragment" data-fragment-index="1">Characterization of <em>timelike Ricci curvature lower bounds</em> by displacement convexity of the entropy. <span class="cite">McCann '20, Mondino &amp; Suhr '22, Cavalletti &amp; Mondino '24</span></li>
     </ul>
 
-    <div class="thm fragment" data-fragment-index="4">
-      <p><span class="label">Theorem</span> <span class="cite">(Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21)</span></p>
-      <p>Let $k \in \mathbb{R}$. The following are equivalent:</p>
-      <p>$(i)$ $\ \mathrm{Ric} \ge k$.</p>
-      <p>$(ii)$ $\ $For all $\mu_0,\mu_1 \in \mathscr{P}_1(M)$ there exists an $L^1$ displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ along which, for all $0 \le \lambda \le 1$,
-        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M \ell^2\,\mathrm{d}\mu_0.$$</p>
-    </div>
-
-  </div>
-</section>
-
-
-<section class="run-title" data-section="Background" data-transition="none">
-  <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">on Lorentzian manifolds</span></h2>
-  <div class="dense tight">
-    <p>
-      $(M,g)$ <span class="setting">globally hyperbolic Lorentzian manifold</span>
-      $$\tau(x,y) := \sup\Big\{\textstyle\int_0^1 |\dot\gamma|\,\mathrm{d}t \;:\; \gamma \text{ future-directed},\ \gamma(0) = x,\ \gamma(1) = y\Big\}, \qquad x \ll y.$$
-    </p>
+    <h3 class="fragment" data-fragment-index="2" style="margin-top:0.6em">$L^1$ optimal transport</h3>
     <ul>
-      <li>For $0 &lt; q &lt; 1$, an <em>$\ell^q$-optimal transport map</em> between two probability measures $\mu_0,\mu_1$ is a Borel map $\mathrm{T}$ attaining
-        $$\max\Big\{\textstyle\int_M \tau(x,\mathrm{T}x)^q\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$</li>
-      <li>If $\mu_0,\mu_1$ are a.c. and compactly supported, with $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0 \times \operatorname{supp}\mu_1$, then a maximizer exists, is unique, and is given by $\mathrm{T}x = \exp_x\!\big(\nabla\varphi\vert_x\big)$ for a $\tau^q$-concave function $\varphi$ on $M$. <span class="cite">McCann '20, Cavalletti &amp; Mondino '24</span></li>
-      <li>The <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
-        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\nabla\varphi\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
+      <li class="fragment" data-fragment-index="2">Solution of the <em>Monge</em> problem $\min\left\{\int d(x,T(x))\,\mathrm{d}\mu_0(x)\,\,\colon \,\, T_\sharp\mu_0 = \mu_1\right\}$: optimal maps move mass along transport rays. <span class="cite">Evans &amp; Gangbo '99, Feldman &amp; McCann '02, Caffarelli, Feldman &amp; McCann '02</span></li>
+      <li class="fragment" data-fragment-index="3"><em>Localization (needle decomposition)</em> <span class="cite">Klartag '17</span>: combine with Ricci curvature bounds to prove geometric inequalities. <span class="cite">Cavalletti &amp; Mondino '17, Ohta '18, Milman '21</span></li>
+      <li class="fragment" data-fragment-index="4">$L^1$ displacement convexity. <span class="cite">Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21</span></li>
+      <li class="fragment" data-fragment-index="5">Lorentzian $L^1$ optimal transport and localization. <span class="cite">Suhr '18, Kell &amp; Suhr '20, Cavalletti &amp; Mondino '24, Braun &amp; McCann '24</span></li>
     </ul>
-
-    <div class="thm">
-      <p><span class="label">Theorem</span> <span class="cite">(McCann '20, Suhr '18, Mondino &amp; Suhr '22, Braun '23, Braun &amp; McCann '24, Cavalletti &amp; Mondino '24)</span></p>
-      <p>Let $k \in \mathbb{R}$. The following are equivalent:</p>
-      <p>$(i)$ $\ \mathrm{Ric}(v,v) \ge k$ for every unit timelike $v$.</p>
-      <p>$(ii)$ $\ $For all $\mu_0,\mu_1$ as above and all $0 \le \lambda \le 1$,
-        $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M \tau(x,\mathrm{T}x)^2\,\mathrm{d}\mu_0(x).$$</p>
-    </div>
 
   </div>
 </section>
 
 <section class="run-title" data-section="Background" data-transition="none">
-  <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">on Lorentzian manifolds</span></h2>
-  <div class="dense tight">
-    <p>$(M,g)$ globally hyperbolic Lorentzian manifold</p>
-    <ul>
-      <li>An <em>${\color{#2e7d32} \ell^1}$-optimal transport map</em> between two probability measures $\mu_0,\mu_1$ is a Borel map $\mathrm{T}$ attaining
-        $$\max\Big\{\textstyle\int_M {\color{#2e7d32} \tau(x,\mathrm{T}x)}\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$</li>
-      <li>If $\mu_0,\mu_1$ are a.c. and compactly supported, with $x_0 \ll x_1$ for all $(x_0,x_1) \in \operatorname{supp}\mu_0 \times \operatorname{supp}\mu_1$, then a maximizer exists, and every maximizer has the form
-        $\mathrm{T}x = \exp_x\!\big(\tau(x,\mathrm{T}x)\,\nabla u\vert_x\big)$
-        for a function $u$ with $u(y) - u(x) \ge \tau(x,y)$ for all $x \ll y$. <span class="cite">Suhr '18, Kell &amp; Suhr '20, Braun &amp; McCann '24</span></li>
-      <li>A <em>displacement interpolation</em> between $\mu_0$ and $\mu_1$ is:
-        $$\mu_\lambda = (\mathrm{T}_\lambda)_\sharp\mu_0, \qquad \mathrm{T}_\lambda x := \exp_x\!\big(\lambda\,\tau(x,\mathrm{T}x)\,\nabla u\vert_x\big), \qquad 0 \le \lambda \le 1.$$</li>
-    </ul>
-
-
-  </div>
-</section>
-
-<section class="run-title" data-section="Background" data-transition="none">
-  <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">in an electromagnetic field</span></h2>
-  <div class="big-q">?</div>
+  <h2><span data-id="dc-title">Displacement convexity</span> <span class="h2-setting">in an electromagnetic field?</span></h2>
+  <br>
+  <div class="qs"><ol>
+    <li class="fragment">How should optimal transport be formulated for charged particles moving in an electromagnetic field?</li>
+    <li class="fragment">Under what conditions on the field is the entropy convex along displacement interpolations?</li>
+    <li class="fragment">Which properties of the field can be characterized synthetically via optimal transport?</li>
+  </ol></div>
 </section>
 
 <!-- ============================================================
@@ -445,12 +395,12 @@
     <li class="fragment" data-fragment-index="2">$M$ is <em>time-oriented</em>, i.e. endowed with a timelike vector field $Z$.</li>
     <li class="fragment" data-fragment-index="3">A timelike or null $v$ is <em>future-directed</em> if $\langle Z,v\rangle &gt; 0$. </li>
     <li class="fragment" data-fragment-index="4">A curve $\gamma$ is <em>timelike</em> or <em>future-directed</em> if $\dot\gamma(t)$ is, for all $t$.</li>
-    <li class="fragment" data-fragment-index="5">$x_0 \ll x_1$ if a future-directed timelike curve joins $x_0$ to $x_1$.</li>
-    <li class="fragment" data-fragment-index="6">$M$ is <em>globally hyperbolic</em>, i.e. there are no closed future-directed curves and every <em>chronological diamond</em>
-      $\{z \in M : x \ll z\} \cap \{z \in M : z \ll y\}$ is precompact.
-      <div class="fragment" data-fragment-index="7">Equivalently, $M \cong \mathbb{R} \times M'$ with $g = \beta\,\mathrm{d}t^2 - h_t$, where $\beta : M \to (0,\infty)$ is a smooth function and $h_t$ is a smooth family of Riemannian metrics on $M'$.</div></li>
+    <li class="fragment" data-fragment-index="5">Write $x_0 \ll x_1$ if there exists a future-directed timelike curve joining $x_0$ to $x_1$ and $\ x_0 \le x_1$ if there exists a future-directed curve joining $x_0$ to $x_1$ or $x_0 = x_1$.</li>
+    <li class="fragment" data-fragment-index="6">$M$ is <em>globally hyperbolic</em>, i.e. there are no closed future-directed curves and every <em>causal diamond</em>
+      $\{z \in M : x \le z\} \cap \{z \in M : z \le y\}$ is compact.
+      <div class="fragment" data-fragment-index="7">Equivalently, $M \cong \mathbb{R} \times M'$ with $g = \beta\,\mathrm{d}t^2 - h_t$, where $\beta : M \to (0,\infty)$ is a smooth function and $h_t$ is a smooth family of Riemannian metrics on $M'$. <span class="cite">Geroch '70, Bernal &amp; Sánchez '05</span></div></li>
   </ul>
-  <!-- three figures in one place: the light cone (0-3), a timelike curve (4-5), a chronological diamond (6-) -->
+  <!-- three figures in one place: the light cone (0-3), a timelike curve (4-5), a causal diamond (6-) -->
   <div class="fig-row">
   <div class="r-stack">
   <div class="fragment fade-out" data-fragment-index="4">
@@ -522,9 +472,9 @@
     </svg>
   </div></div>
 
-  <!-- a chronological diamond: the future of x meets the past of y -->
+  <!-- a causal diamond: the causal future of x meets the causal past of y -->
   <div class="fragment" data-fragment-index="6">
-    <svg viewBox="30 20 320 290" role="img" aria-label="The chronological diamond between x and y: the intersection of the future of x and the past of y">
+    <svg viewBox="30 20 320 290" role="img" aria-label="The causal diamond between x and y: the intersection of the causal future of x and the causal past of y">
       <!-- the cones continued beyond the diamond -->
       <g stroke="#bbbbbb" stroke-width="1.4" stroke-dasharray="5 5">
         <line x1="70" y1="164" x2="36" y2="130"/><line x1="310" y1="164" x2="344" y2="130"/>
@@ -559,7 +509,7 @@
   <div class="dense">
   <p>$(M,g)$ Lorentzian manifold, $A \in \Omega^1(M)$ one-form on $M$,
     $$F := \mathrm{d}A.$$</p>
-  <p class="fragment">If $M$ oriented and $\dim M = 4$, and $V$ is a future-directed unit vector field (an <em>observer</em>), then the <em>electric</em> and <em>magnetic</em> fields measured by \(V\) are
+  <p class="fragment">If $M$ is oriented and $\dim M = 4$, and $V$ is a future-directed unit vector field (an <em>observer</em>), then the <em>electric</em> and <em>magnetic</em> fields measured by \(V\) are
     $$\mathbf{E}_V := F^\sharp V, \qquad \mathbf{B}_V := (\star F)^\sharp V,$$
     where $F^\sharp$ is the $(1,1)$-tensor defined by $\langle\,\cdot\,,F^\sharp\,\cdot\,\rangle = F$.</p>
   <p class="fragment">The <em>current</em>  is the one-form
@@ -585,7 +535,7 @@
   <p class="fragment">Define a <em>cost function</em> by:
     $$\mathrm{c}(x,y) := \inf_\gamma \int_\gamma\bigl(-|\dot\gamma| - A(\dot\gamma)\bigr),$$
     where the infimum is over future-directed timelike curves joining $x$ to $y$. Unit-speed minimizers solve (LFE).</p>
-  <p class="fragment">For every $r \in (0,1)$, timelike curves attaining the infimum and parametrized by unit speed, are exactly free-time minimizers of the action $\int L(\dot\gamma)$, where $L$ is the Lagrangian
+  <p class="fragment">For every $r \in (0,1)$, unit-speed minimizers are exactly the <em>free-time minimizers</em> of $\int_0^T L(\dot\gamma)\,\mathrm{d}t$ (minimizing also over $T &gt; 0$), where $L$ is the strictly convex Lagrangian
     $$L(v) := \begin{cases} -\frac1r|v|^r + \frac1r - 1 - A(v), & v \text{ is future-directed or } v = 0,\\ \infty, & \text{otherwise.}\end{cases}$$
   </p>
   </div>
@@ -603,7 +553,7 @@
       where</p>
     </div>
     <ul>
-      <li class="fragment" data-fragment-index="2">$V_0$ is a vector field on $\operatorname{supp}\mu_0$,</li>
+      <li class="fragment" data-fragment-index="2">$V_0$ is a future-directed unit vector field on $\operatorname{supp}\mu_0$,</li>
       <li class="fragment" data-fragment-index="2">$\ell \ge 0$ is a function on $\operatorname{supp}\mu_0$ (the <em>duration function</em>),</li>
       <li class="fragment" data-fragment-index="3">$\mathrm{T} := \mathrm{T}_1$ is an optimal transport map from $\mu_0$ to $\mu_1$, i.e. $\mathrm{T}$ attains
         $$\min\Big\{\textstyle\int_M \mathrm{c}(x,\mathrm{T}x)\,\mathrm{d}\mu_0(x) \;:\; \mathrm{T}_\sharp\mu_0 = \mu_1\Big\}.$$</li>
@@ -680,7 +630,7 @@
   <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
   <h3 class="subtitle">Displacement interpolations</h3>
   <div class="dense">
-    <p><em>Monotone</em>: for all $x,y$ and all $\tau \ge 0$,
+    <p><em>Monotone</em>: for all $x,y \in \operatorname{supp}\mu_0$ and all $\tau \ge 0$,
       $$\dot\gamma_{V_0\vert_x}(\tau) = V_0\vert_y \quad\implies\quad \ell(x) \le \ell(y) + \tau.$$</p>
     <div class="figure tall">
       <svg viewBox="150 30 260 266" role="img" aria-label="Monotonicity: the particle from x terminates no later than the one from y">
@@ -789,9 +739,10 @@
       $$\mathrm{Ric}_F(V) = \mathrm{Ric}(V,V) - \rho_V + \tfrac12|\mathbf{B}_V|^2 - |\mathbf{E}_V|^2.$$</p>
   </div>
   <div class="fragment thm" data-fragment-index="3">
-    <p><em>Kaluza–Klein metric</em> on $\tilde M := M\times S^1$: $\ \tilde g = g - (\mathrm{d}\varphi - A)^2$. <span class="cite"></span></p>
+    <p><em>Kaluza–Klein metric</em> on $\tilde M := M\times S^1$: $\ \tilde g = g - (\mathrm{d}\varphi - A)^2$.</p>
     <p>For every future-directed unit vector $V$,
       $$\mathrm{Ric}_F(V) = \mathrm{Ric}_{\tilde g}(\tilde V,\tilde V), \qquad \text{where} \qquad \tilde V := V + (1 + A(V))\partial_\varphi.$$</p>
+    <p>Solutions of (LFE) are projections of null geodesics of $\tilde g$.</p>
   </div>
 </section>
 
@@ -800,19 +751,19 @@
   <h2>Main result</h2>
   <div class="def" style="font-size:0.85em">
     <p>$$\mathrm{Ent}[\mu] := \int_M \log f\,\mathrm{d}\mu \qquad \text{for } \mu = f\,\mathrm{Vol}_g.$$</p>
-    <p>For $k \in \mathbb{R}$, we say that $\mathrm{Ent}$ is <em>$k$-displacement convex</em> along a monotone displacement interpolation $(\mu_\lambda)$ if,
+    <p>For $k \in \mathbb{R}$, we say that $\mathrm{Ent}$ is <em>$k$-displacement convex</em> along a monotone displacement interpolation $(\mu_\lambda)$ if
       $$\mathrm{Ent}[\mu_\lambda] \le (1-\lambda)\mathrm{Ent}[\mu_0] + \lambda\,\mathrm{Ent}[\mu_1] - \tfrac{k}{2}\cdot\lambda(1-\lambda)\cdot \textstyle\int_M\ell^2\,\mathrm{d}\mu_0, \qquad 0 \le \lambda \le 1,$$
       where $\ell$ is the duration function. We say that $\mathrm{Ent}$ is <em>displacement convex</em> if this holds with $k = 0$.</p>
   </div>
   <div class="fragment" data-fragment-index="1">
   <div class="r-stack thm-stack">
   <div class="thm fragment fade-out" data-fragment-index="2">
-      <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B \subseteq SM$, the following are equivalent:</p>
+      <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B \subseteq SM$, the following are equivalent:</p>
       <p data-id="mt-i">$(i)$ $\ \mathrm{Ric}_F \ge 0$ on the set $B$.</p>
       <p data-id="mt-ii">$(ii)$ $\ \mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ between $(\mu_0,\mu_1) \in \mathscr{P}_A$ for which $\dmu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$.</p>
     </div>
   <div class="thm fragment" data-fragment-index="2">
-      <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic, time-oriented Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B \subseteq SM$ and every ${\color{#d9730d} k} \in \mathbb{R}$, the following are equivalent:</p>
+      <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g)$ be a globally hyperbolic Lorentzian manifold, let $A$ be a one-form on $M$, and let $F = \mathrm{d}A$. Then for every relatively open set $B \subseteq SM$ and every ${\color{#d9730d} k} \in \mathbb{R}$, the following are equivalent:</p>
       <p data-id="mt-i">$(i)$ $\ \mathrm{Ric}_F \ge {\color{#d9730d} k}$ on the set $B$.</p>
       <p data-id="mt-ii">$(ii)$ $\ \mathrm{Ent}$ is ${\color{#d9730d} k}$-displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ between $(\mu_0,\mu_1) \in \mathscr{P}_A$ for which $\dmu_\lambda(B) = 1$ for all $0 \le \lambda \le 1$.</p>
     </div>
@@ -831,17 +782,14 @@
   </div>
   <div class="fragment">
     <p><em>Proof</em>: For $\mathrm{Ric}\vert_x = 0$ and a future-directed unit vector $V \in \mathrm{T}_xM$,
-      $$\begin{aligned}
-        \mathrm{Ric}_F(V) &= \mathrm{Ric}(V,V) + \delta F(V) + \tfrac14\langle F,F\rangle - \tfrac12 F^2(V,V)\\[2pt]
-        &= \class{ub ub1}{\underbrace{\class{ub-base}{\mathrm{Ric}(V,V)}}_{0}} \qquad\class{ub ub2}{\underbrace{\class{ub-base}{-\ \rho_V}}_{\text{linear in } V}} \qquad\class{ub ub3}{\underbrace{\class{ub-base}{+\ \tfrac14\langle F,F\rangle}}_{\text{observer-independent}}} \qquad\class{circ-term}{-\ \tfrac12|\mathbf{E}_V|^2}
-      \end{aligned}$$</p>
+      $$\mathrm{Ric}_F(V) = \class{ub ub1}{\underbrace{\class{ub-base}{\mathrm{Ric}(V,V)}}_{0}} \qquad\class{ub ub2}{\underbrace{\class{ub-base}{+\ \delta F(V)}}_{\text{linear in } V}} \qquad\class{ub ub3}{\underbrace{\class{ub-base}{+\ \tfrac14\langle F,F\rangle}}_{\text{observer-independent}}} \qquad\class{circ-term}{-\ \tfrac12F^2(V,V)}$$</p>
     <!-- empty steps revealing the underbraces (see .ub in the CSS) -->
     <span class="fragment ub-step1"></span><span class="fragment ub-step2"></span><span class="fragment ub-step3"></span>
   </div>
   <div class="fragment boost-proof">
     <p>Since $n \ge 3$, there is a future-directed null $w \in \mathrm{T}_xM$ with $F^\sharp w \notin \mathbb{R}w$. Take a future-directed null $z$ with $\langle z,w\rangle = \tfrac12$ and let $V_r := \tfrac1r\,z + r\,w$. Then $V_r$ is a future-directed unit vector and
       $$
-      |\mathbf{E}_{V_r}|^2 = F^2(V_r,V_r) = r^2\underbrace{F^2(w,w)}_{-\langle F^\sharp w,F^\sharp w\rangle\,&gt;\,0} + O(1),
+      F^2(V_r,V_r) = r^2\underbrace{F^2(w,w)}_{-\langle F^\sharp w,F^\sharp w\rangle\,&gt;\,0} + O(1),
       $$
       where $F^2(w,w) &gt; 0$ because $F^\sharp w$ is orthogonal to the null vector $w$ (by skew-adjointness) but not parallel to it, hence spacelike.</p>
   </div>
@@ -871,7 +819,7 @@
     <div class="thm">
       <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Let $(M,g)$ be Minkowski space, and suppose that $F = \mathrm{d}A$ is purely magnetic and source-free:
         $$\mathbf{E} \equiv 0, \qquad \rho \equiv 0, \qquad \mathbf{j} \equiv 0.$$
-        Then $\mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ such that $\dmu_0$-almost every $v$ has speed less than $1/\sqrt2$ w.r.t $\partial_\mathrm{t}$.</p>
+        Then $\mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)$ with $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ such that $\dmu_0$-almost every $v$ has speed less than $1/\sqrt2$ with respect to $\partial_\mathrm{t}$.</p>
     </div>
     <div class="fig-side">
       <div>
@@ -995,7 +943,7 @@
     <p>If $(\mu_0,\mu_1) \in \mathscr{P}_\ll$ then $(\mu_0,\mu_1) \in \mathscr{P}_{sA}$ for all sufficiently small $|s|$, so there exists a unique monotone displacement interpolation $(\mu^s_\lambda)$ for the charge-to-mass ratio $s$ joining $\mu_0$ to $\mu_1$.</p>
   </div>
   <div class="thm small fragment">
-    <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Suppose that $(M,g)$ is globally hyperbolic and time-oriented and that $g$ is Ricci flat: $\ \mathrm{Ric} \equiv 0$.</p>
+    <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Suppose that $(M,g)$ is globally hyperbolic and that $g$ is Ricci flat: $\ \mathrm{Ric} \equiv 0$.</p>
     <p>Let $U \subseteq M$ be a precompact open set and assume that the current $J = -\delta F$ is timelike on the closure of $U$: $\ \langle J,J\rangle &gt; 0$ on $\overline U$ (e.g. $J$ is generated by massive particles whose charges all have the same sign).</p>
     <p>Fix a continuous future-directed unit vector field $Z$ on $\overline U$. Then the following are equivalent:</p>
     <p>$(i)$ The current $J$ is future-directed (resp. past-directed) on $\overline U$.</p>
@@ -1084,12 +1032,23 @@
   <div class="dense">
     <p>Lagrangian $L : TM \to \mathbb{R}\cup\{+\infty\}$ satisfying (I)&ndash;(V); $\ $ set $\mathcal{A} \subseteq M\times M$ satisfying (VI)&ndash;(VII); $\ $reference measure $\mathfrak{m}$; $\ $probability measures $\mu_0 = f_0\,\mathfrak{m} \perp \mu_1 = f_1\,\mathfrak{m}$, $\ \operatorname{supp}\mu_0\times\operatorname{supp}\mu_1 \subseteq \mathcal{A}$.</p>
     <ol class="needle">
-      <li class="fragment">The Kantorovich potential $u$ for $(\mu_0, \mu_1)$ induces a decomposition of $M$ into disjoint minimizing extremals (<em>transport rays</em>), which solve $\dot\gamma = \mathcal{L}\,\mathrm{d}u$ on the set where $u$ is differentiable. <span class="gray">$\mathcal{L}:=$ Legendre transform.</span></li>
+      <li class="fragment">The Kantorovich potential $u$ for $(\mu_0, \mu_1)$ induces a decomposition of $M$ into disjoint minimizing extremals (transport rays), which solve $\dot\gamma = \mathcal{L}\,\mathrm{d}u$ on the set where $u$ is differentiable. <span class="gray">$\mathcal{L}:=$ Legendre transform.</span></li>
       <!-- <li class="fragment"> If $L$ were finite and superlinear, Klartag's argument applies <span class="cite">(A. '26)</span>: we can disintegrate $\mathfrak{m}$ along the rays and read off the needle densities from the Hamilton&ndash;Jacobi equation.</li> -->
       <li class="fragment">Near each point on a ray, modify $L$ away from the transport direction so that it becomes finite, superlinear and strictly convex, and rays passing nearby are also transport rays of a Kantorovich potential for the regularized Lagrangian.</li>
       <li class="fragment"> Apply needle decomposition result for Tonelli Lagrangians <span class="cite">(A. '26)</span> to the regularized Lagrangian. Since it agrees with $L$ along the rays, the local needles are pieces of the global rays, and the Hamilton&ndash;Jacobi equations coincide.</li>
-      <li class="fragment">The densities of the local needle match up to multiplicative constants, so they can be glued together to form a global needle decomposition. 
+      <li class="fragment">The densities of the local needles match up to multiplicative constants, so they can be glued together to form a global needle decomposition.</li>
       <li class="fragment">Mass balance is proved as usual.</li>
+    </ol>
+  </div>
+</section>
+
+<section data-section="On the proof">
+  <h2>Proof of the main result</h2>
+  <div class="dense">
+    <ol class="needle">
+      <li>Apply needle decomposition with $\mathfrak{m} = \mathrm{Vol}_g$: along each needle, $\dot\gamma = V := -\nabla u - A^\sharp$ for some local solution $u$ of Hamilton-Jacobi $|\mathrm{d}u + A| = 1$, and $-\dot\psi_\gamma = \operatorname{div}V$.</li>
+      <li class="fragment">Apply the Bochner inequality: $\ \ddot\psi_\gamma \ge \dfrac{\dot\psi_\gamma^2}{n-1} + \mathrm{Ric}_F(\dot\gamma) \ge k$.</li>
+      <li class="fragment">Use one-dimensional $k$-displacement convexity on each needle and integrate.</li>
     </ol>
   </div>
 </section>
@@ -1166,12 +1125,12 @@
   // mu_0 is a Gaussian, mu_1 a sandcastle (a wall, two towers and a keep, all crenellated: a sum of boxes with
   // logistic edges); their densities are drawn statically in the svg. In one dimension the
   // optimal map is T = F_1^{-1} o F_0, so the quantile function of mu_lambda is (1 - lambda) F_0^{-1} + lambda F_1^{-1};
-  // its density is drawn on the same line, with its label above its peak showing the current value of lambda.
-  // The dots are T_lambda x for x at the quantiles (k + 1/2)/11. lambda sweeps 0 -> 1 -> 0, pausing at the ends.
+  // the density of mu_{1/2} is drawn (statically) on the same line, with its label above its peak.
   (function () {
     const svg = document.querySelector('svg.ot-di');
     if (!svg) return;
     const sec = svg.closest('section'), trig = svg.querySelector('.ot-di-trigger');
+    if (!trig) return;
     const NS = 'http://www.w3.org/2000/svg';
     const X0 = 470, SX = 125, Y = 290, H = 152;              // x -> X0 + SX x; density rho -> height H rho above the line Y
     const g = (x, m, s) => Math.exp(-0.5 * ((x - m) / s) ** 2) / (s * Math.sqrt(2 * Math.PI));
@@ -1195,52 +1154,22 @@
     const P = 600, ps = Array.from({ length: P + 1 }, (_, i) => 0.0005 + 0.999 * i / P);
     const Q0 = ps.map(p => quantile(F0, p)), Q1 = ps.map(p => quantile(F1, p));
     const M0 = Q0.reduce((t, a) => t + a, 0) / Q0.length, M1 = Q1.reduce((t, a) => t + a, 0) / Q1.length;
-    const K = 11, D0 = [], D1 = [];
-    for (let k = 0; k < K; k++) { D0.push(quantile(F0, (k + 0.5) / K)); D1.push(quantile(F1, (k + 0.5) / K)); }
-    const dens = svg.querySelector('.ot-dens'), lab = svg.querySelector('.ot-lab'), num = lab.querySelector('.ot-t');
-    const dots = D0.map(() => {
-      const c = document.createElementNS(NS, 'circle'); c.setAttribute('r', 3.6);
-      svg.querySelector('.ot-dots').appendChild(c); return c;
-    });
+    const dens = svg.querySelector('.ot-dens'), lab = svg.querySelector('.ot-lab');
+    const l = 0.5, X = x => X0 + SX * x;
+    const q = Q0.map((a, i) => (1 - l) * a + l * Q1[i]);
+    let d = 'M ' + X(q[1]).toFixed(1) + ' ' + Y, top = 0;
+    for (let i = 1; i < P; i++) {
+      const rho = (ps[i + 1] - ps[i - 1]) / (q[i + 1] - q[i - 1]);
+      top = Math.max(top, rho);
+      d += ' L ' + X(q[i]).toFixed(1) + ' ' + (Y - H * rho).toFixed(1);
+    }
+    d += ' L ' + X(q[P - 1]).toFixed(1) + ' ' + Y + ' Z';
     const BLUE = [0x1a, 0x4f, 0x8b], ORANGE = [0xe0, 0x82, 0x14];
-    function draw(l) {
-      const y = Y, X = x => X0 + SX * x;
-      const q = Q0.map((a, i) => (1 - l) * a + l * Q1[i]);
-      let d = 'M ' + X(q[1]).toFixed(1) + ' ' + y, top = 0;
-      for (let i = 1; i < P; i++) {
-        const rho = (ps[i + 1] - ps[i - 1]) / (q[i + 1] - q[i - 1]);
-        top = Math.max(top, rho);
-        d += ' L ' + X(q[i]).toFixed(1) + ' ' + (y - H * rho).toFixed(1);
-      }
-      d += ' L ' + X(q[P - 1]).toFixed(1) + ' ' + y + ' Z';
-      const col = 'rgb(' + BLUE.map((b, k) => Math.round(b + l * (ORANGE[k] - b))).join(',') + ')';
-      dens.setAttribute('d', d); dens.style.fill = col; dens.style.stroke = col;
-      // the label sits above the peak, centred at the mean (the peak itself hops between the merlons);
-      // the static labels of mu_0 and mu_1 fade out when it appears
-      const mean = (1 - l) * M0 + l * M1;
-      lab.setAttribute('x', X(mean) - 60); lab.setAttribute('y', y - H * top - 46); const t = l.toFixed(2); num.textContent = t === '0.00' ? '0' : t === '1.00' ? '1' : t;
-      lab.firstChild.style.color = col;
-      dots.forEach((c, k) => { c.setAttribute('cx', X((1 - l) * D0[k] + l * D1[k]).toFixed(1)); c.setAttribute('cy', y); c.style.fill = col; });
-    }
-    const HOLD = 0.9, MOVE = 3.2, T = 2 * (HOLD + MOVE);     // seconds
-    const ease = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-    function lambdaAt(t) {
-      t %= T;
-      if (t < HOLD) return 0;
-      if (t < HOLD + MOVE) return ease((t - HOLD) / MOVE);
-      if (t < 2 * HOLD + MOVE) return 1;
-      return 1 - ease((t - 2 * HOLD - MOVE) / MOVE);
-    }
-    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let t0 = null;
-    function frame(now) {
-      requestAnimationFrame(frame);
-      if (still || !sec.classList.contains('present') || !trig.classList.contains('visible')) { t0 = null; return; }
-      if (t0 === null) t0 = now;
-      draw(lambdaAt((now - t0) / 1000));
-    }
-    draw(still ? 0.5 : 0);
-    requestAnimationFrame(frame);
+    const col = 'rgb(' + BLUE.map((b, k) => Math.round(b + l * (ORANGE[k] - b))).join(',') + ')';
+    dens.setAttribute('d', d); dens.style.fill = col; dens.style.stroke = col;
+    const mean = (1 - l) * M0 + l * M1;                    // the label sits above the peak, centred at the mean
+    lab.setAttribute('x', X(mean) - 60); lab.setAttribute('y', Y - H * top - 46);
+    lab.firstChild.style.color = col;
   })();
 
   // ---- gravity -> electromagnetism transition slide ----
