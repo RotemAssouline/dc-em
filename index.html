@@ -349,7 +349,7 @@
 
     <h3>$L^1$ optimal transport</h3>
     <ul>
-      <li class="fragment" data-fragment-index="0">The <em>Monge</em> problem $$\min\left\{\int {\color{#2e7d32} d(x,T(x))}\,\mathrm{d}\mu_0(x)\,\,\colon \,\, T_\sharp\mu_0 = \mu_1\right\}.$$ Optimal maps move mass along disjoint transport rays. <span class="cite">Evans &amp; Gangbo '99, Feldman &amp; McCann '02, Caffarelli, Feldman &amp; McCann '02</span></li>
+      <li class="fragment" data-fragment-index="0">The <em>Monge</em> problem $$\min\left\{\int {\color{#2e7d32} d(x,T(x))}\,\mathrm{d}\mu_0(x)\,\,\colon \,\, T_\sharp\mu_0 = \mu_1\right\}.$$ Minimizers move mass along disjoint gradient curves of a solution to the dual (<em>Kantorovich</em>) problem; one-dimensional (non-unique) transport along each ray. <span class="cite">Evans &amp; Gangbo '99, Feldman &amp; McCann '02, Caffarelli, Feldman &amp; McCann '02</span></li>
       <li class="fragment" data-fragment-index="1"><em>Localization (needle decomposition)</em> <span class="cite">Klartag '17</span>: combine with Ricci curvature bounds to prove geometric inequalities. <span class="cite">Cavalletti &amp; Mondino '17, Ohta '18, Milman '21</span></li>
       <li class="fragment" data-fragment-index="2">$L^1$ displacement convexity. <span class="cite">Cavalletti &amp; Milman '21, Cavalletti, Gigli &amp; Santarcangelo '21</span></li>
     </ul>
@@ -394,7 +394,7 @@
   <h2 data-id="em-title">Optimal transport with electromagnetic cost</h2>
   <h3 class="subtitle">Background: Lorentzian geometry</h3>
   <div class="cols">
-  <ul class="dense tight">
+  <ul class="dense">
     <li class="fragment" data-fragment-index="0">$(M,g)$: $n$-dimensional <em>Lorentzian manifold</em>, i.e. $g = \langle\cdot,\cdot\rangle$ is a symmetric $(0,2)$-tensor on $M$ of signature $(+ - \cdots -)$.</li>
     <li class="fragment" data-fragment-index="1">$v \in TM$ is <em>timelike</em> if $\langle v,v\rangle &gt; 0$, and <em>null</em> if $\langle v,v\rangle = 0$, $v \ne 0$.</li>
     <li class="fragment" data-fragment-index="2">$M$ is <em>time-oriented</em>, i.e. endowed with a timelike vector field $Z$.</li>
@@ -516,10 +516,10 @@
     $$F := \mathrm{d}A.$$</p>
   <p class="fragment">If $M$ is oriented and $\dim M = 4$, and $V$ is a future-directed unit vector field (an <em>observer</em>), then the <em>electric</em> and <em>magnetic</em> fields measured by \(V\) are
     $$\mathbf{E}_V := F^\sharp V, \qquad \mathbf{B}_V := (\star F)^\sharp V,$$
-    where $F^\sharp$ is the $(1,1)$-tensor defined by $\langle\,\cdot\,,F^\sharp\,\cdot\,\rangle = F$.</p>
+    where $F^\sharp$ is the $(1,1)$-tensor defined by $\langle\,\cdot\,,F^\sharp\,\cdot\,\rangle = F$ and $\star$ is the Hodge star.</p>
   <p class="fragment">The <em>current</em>  is the one-form
     $$J := -\delta F = \operatorname{div} F^\sharp = \mathrm{tr}(\nabla F),$$
-    where $\delta F = \star^{-1}\mathrm{d}\star F$ is the <em>codifferential</em> of $F$ and $\star$ is the Hodge star.</p>
+    where $\delta F = \star^{-1}\mathrm{d}\star F$ is the <em>codifferential</em> of $F$.</p>
     <!-- The field is <em>source-free</em> if
     $$\delta F = 0.$$</p> -->
   <p class="fragment">Given an observer $V$, write
@@ -535,15 +535,14 @@
   <div class="dense">
   <p>Background charges are described by $J$ and generate the field $F$ through Maxwell's equations
     $$\mathrm{d}F = 0, \qquad \delta F = -J.$$</p>
-  <p class="fragment">Test particles move in the field $F$ according to the <em>Lorentz force equation</em>, but do not affect $F$: a test particle of unit charge and mass is described by a unit-speed timelike curve $\gamma$ solving
+  <p class="fragment">Test particles move in the field $F$ according to the <em>Lorentz force equation</em>, but do not affect $F$. A test particle of unit charge and mass is described by a unit-speed timelike curve $\gamma$ solving
     $$\nabla_{\dot\gamma}\dot\gamma = F^\sharp\dot\gamma. \tag{LFE}$$</p>
   <p class="fragment">Unit-speed timelike minimizers of the <em>action</em>
     $$\int_\gamma\bigl(-|\dot\gamma| - A(\dot\gamma)\bigr)$$
     among future-directed timelike curves with the same endpoints solve (LFE).</p>
-  <p class="fragment">Define a <em>cost function</em> $\mathrm{c}(x,y)$ as the infimum of the action over future-directed timelike curves joining $x$ to $y$.</p>
-  <p class="fragment">For every $r \in (0,1)$, unit-speed minimizers are exactly the <em>free-time minimizers</em> of $\int_0^T L(\dot\gamma)\,\mathrm{d}t$ (minimizing also over $T &gt; 0$), where $L$ is the strictly convex Lagrangian
-    $$L(v) := \begin{cases} -\frac1r|v|^r + \frac1r - 1 - A(v), & v \text{ is future-directed or } v = 0,\\ \infty, & \text{otherwise.}\end{cases}$$
-  </p>
+  <p class="fragment">Define a <em>cost function</em> by
+    $$\mathrm{c}(x,y) := \inf_\gamma \int_\gamma\bigl(-|\dot\gamma| - A(\dot\gamma)\bigr),$$
+    where the infimum is over future-directed timelike curves joining $x$ to $y$.</p>
   </div>
 </section>
 
@@ -816,7 +815,7 @@
   <p>Electric and magnetic fields:
     $$\mathbf{E} = E^\mathrm{x}\partial_\mathrm{x} + E^\mathrm{y}\partial_\mathrm{y} + E^\mathrm{z}\partial_\mathrm{z} \quad\text{and}\quad \mathbf{B} = B^\mathrm{x}\partial_\mathrm{x} + B^\mathrm{y}\partial_\mathrm{y} + B^\mathrm{z}\partial_\mathrm{z}.$$</p>
   <p>Charge and current densities:
-    $$\rho = \operatorname{div}_{\mathbb{R}^3}\mathbf{E} \quad\text{and}\quad \mathbf{j} = \operatorname{curl}_{\mathbb{R}^3}\mathbf{B} - \partial_\mathrm{t}\mathbf{E}.$$</p>
+    $$\rho = \operatorname{div}_{\mathbb{R}^3}\mathbf{E}, \qquad \mathbf{j} = \operatorname{curl}_{\mathbb{R}^3}\mathbf{B} - \partial_\mathrm{t}\mathbf{E}, \qquad J^\sharp = \rho\,\partial_\mathrm{t} + \mathbf{j}.$$</p>
   <p class="fragment">For every future-directed unit vector $v = v^\mathrm{t}\partial_\mathrm{t} + \mathbf{v}$,
     $$\mathrm{Ric}_F(v) = \tfrac12|\mathbf{B}|^2 - |\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 - \tfrac12|\mathbf{B}\times\mathbf{v}|^2 + v^\mathrm{t}\langle\mathbf{E}\times\mathbf{B},\mathbf{v}\rangle - \rho\,v^\mathrm{t} + \langle\mathbf{j},\mathbf{v}\rangle.$$</p>
 </section>
@@ -833,8 +832,8 @@
     </div>
     <div class="fig-side">
       <div>
-        <p class="fragment" data-fragment-index="1">$$\mathrm{Ric}_F(v) = \tfrac12\left(|\mathbf{B}|^2 - |\mathbf{B}\times\mathbf{v}|^2\right), \qquad v = v^\mathrm{t}\partial_\mathrm{t} + \mathbf{v}.$$</p>
-        <p class="fragment" data-fragment-index="2">Speed less than $1/\sqrt2$ $\implies$ $\ |\mathbf{v}| \lt 1$ $\implies \ |\mathbf{B}\times\mathbf{v}| \le |\mathbf{B}|\,|\mathbf{v}| \le |\mathbf{B}|$.</p>
+        <p class="fragment small" data-fragment-index="1">$$\mathrm{Ric}_F(v) = \tfrac12\left(|\mathbf{B}|^2 - |\mathbf{B}\times\mathbf{v}|^2\right), \qquad v = v^\mathrm{t}\partial_\mathrm{t} + \mathbf{v}.$$</p>
+        <p class="fragment small" data-fragment-index="2">Speed less than $1/\sqrt2 \implies \ |\mathbf{v}| \lt 1 \implies \ |\mathbf{B}\times\mathbf{v}| \le |\mathbf{B}|\,|\mathbf{v}| \le |\mathbf{B}|$.</p>
       </div>
       <!-- the future-directed unit vectors form the hyperbola t^2 - |x|^2 = 1; those of speed < 1/sqrt2 are exactly the
            ones with |spatial part| < 1. -->
@@ -943,24 +942,21 @@
     </svg>
   </div>
   </div>
-  <p class="small fragment" data-fragment-index="4">$$\mathrm{Ric}_F(v) = -|\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 = -\frac{q_0^2}{r^4}\left(1 + \frac{v_\perp^2}{2}\right) \qquad \text{for } v \in B_{r_1,\sigma}.$$</p>
 </section>
 
 <section data-section="Examples">
   <h2>Displacement convexity detects the sign of the charge density</h2>
-  <ul class="dense">
-    <li>$M = \mathbb{R}^{1+3}$, $\ g = \mathrm{dt}^2 - \mathrm{dx}^2 - \mathrm{dy}^2 - \mathrm{dz}^2$, $\quad U \subseteq M$ a bounded open set.</li>
-    <li class="fragment">Let $(\mu_0,\mu_1) \in \mathscr{P}_\ll$.</li>
+  <ul>
+    <li>$(\mathbb{R}^{1+3},\mathrm{dt}^2 - \mathrm{dx}^2 - \mathrm{dy}^2 - \mathrm{dz}^2)$, $\quad U \subseteq M$ bounded open set,$\quad (\mu_0,\mu_1) \in \mathscr{P}_\ll$.</li>
     <li class="fragment"><em>Displacement interpolations for the charge-to-mass ratio $s$</em> $:=$ displacement interpolations for $sA$.</li>
     <li class="fragment">$(\mu_0,\mu_1) \in \mathscr{P}_{sA}$ for all sufficiently small $|s|$, so there exists a unique monotone displacement interpolation $(\mu^s_\lambda)$ for the charge-to-mass ratio $s$ joining $\mu_0$ to $\mu_1$.</li>
-    <li class="fragment">Assume that on $\overline U$ the sources are a non-vanishing charged dust whose charges all have the same sign: $\mathbf{j} = \rho\,\mathbf{u}$, where $\rho$ is the charge density and $|\mathbf{u}| \lt 1$, so that $|\mathbf{j}| \lt |\rho|$ on $\overline U$.</li>
   </ul>
-  <div class="thm small fragment">
-    <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. The following are equivalent:</p>
+  <div class="thm fragment" style="font-size: .9em;">
+    <p><span class="label">Theorem</span> <span class="cite">(A. &amp; Manini '26)</span>. Suppose that on $\overline U$, the field is generated by a non-vanishing dust whose charges all have the same sign: $$J = \rho\,\partial_t + \mathbf{j}, \qquad \mathbf{j} = \rho\,\mathbf{u}, \qquad \rho \ne 0, \qquad |\mathbf{u}| \lt 1.$$
+    Then the following are equivalent:</p>
     <p>$(i)$ $\ \rho &gt; 0$ (resp. $\rho \lt 0$) on $\overline U$.</p>
-    <p>$(ii)$ There exist $0 \lt \sigma \lt 1$ and $s_0 &gt; 0$ such that for all $-s_0 \lt s \le 0$ (resp. $0 \le s \lt s_0$), $\mathrm{Ent}$ is displacement convex along every monotone displacement interpolation $(\mu_\lambda)_{0\le\lambda\le1}$ for the charge-to-mass ratio $s$ such that $(\mu_0,\mu_1) \in \mathscr{P}_{sA}$ and such that $\mu_\lambda(U) = 1$ and $\dmu_\lambda$-almost every $v$ has speed less than $\sigma$ with respect to $\partial_\mathrm{t}$ for every $0 \le \lambda \le 1$.</p>
+    <p>$(ii)$ There exist $0 \lt \sigma \lt 1$ and $s_0 &gt; 0$ such that for all $-s_0 \lt s \le 0$ (resp. $0 \le s \lt s_0$), $\mathrm{Ent}$ is displacement convex along every $(\mu_\lambda)_{0\le\lambda\le1}$ for the charge-to-mass ratio $s$ such that $\mu_\lambda(U) = 1$ and $\dmu_\lambda$-almost every $v$ has speed less than $\sigma$ with respect to $\partial_\mathrm{t}$ for every $0 \le \lambda \le 1$.</p>
   </div>
-  <p class="fragment small">$$\mathrm{Ric}_{sF}(v) = s\left(\langle\mathbf{j},\mathbf{v}\rangle - \rho\,v^\mathrm{t}\right) + s^2\left(\tfrac12|\mathbf{B}|^2 - |\mathbf{E}|^2 - \tfrac12|\mathbf{E}\times\mathbf{v}|^2 - \tfrac12|\mathbf{B}\times\mathbf{v}|^2 + v^\mathrm{t}\langle\mathbf{E}\times\mathbf{B},\mathbf{v}\rangle\right).$$</p>
 </section>
 
 <!-- ============================================================
@@ -970,10 +966,22 @@
      RAYCHAUDHURI / BOCHNER
      ============================================================ -->
 <section data-section="On the proof">
+  <h2>Lagrangian and Hamiltonian</h2>
+  <div>
+    <p>For every $r \in (0,1)$, unit-speed minimizers of the action are exactly the <em>free-time minimizers</em> of $\int_0^T L(\dot\gamma)\,\mathrm{d}t$ (minimizing also over $T &gt; 0$), where $L$ is the strictly convex Lagrangian
+      $$L(v) := \begin{cases} -\frac1r|v|^r + \frac1r - 1 - A(v), & v \text{ is future-directed or } v = 0,\\ \infty, & \text{otherwise.}\end{cases}$$</p>
+    <p class="fragment">The <em>Hamiltonian</em> $H(p) := \sup_v\bigl(p(v) - L(v)\bigr)$ is
+      $$H(p) = \begin{cases} \frac{1-r}{r}\left(|p + A|^{-\frac{r}{1-r}} - 1\right), & p + A \text{ is past-directed timelike},\\ \infty, & \text{otherwise.}\end{cases}$$</p>
+    <p class="fragment">The <em>Hamilton&ndash;Jacobi equation</em> $H(\mathrm{d}u) = 0$ reads
+      $$|\mathrm{d}u + A| = 1 \qquad \text{and} \qquad \mathrm{d}u + A \text{ is past-directed.}$$</p>
+  </div>
+</section>
+
+<section data-section="On the proof">
   <h2>Electromagnetic Bochner inequality</h2>
   <div class="dense">
-    <p><em>Hamilton&ndash;Jacobi equation</em>: $\ |\mathrm{d}u + A| = 1$ $\ $ and $\mathrm{d}u + A$ is past-directed.</p>
-    <p>$V := -\nabla u - A^\sharp$ is future-directed, $|V| \equiv 1$, and solves the Lorentz force equation $\nabla_V V = F^\sharp V$.</p>
+    <p>Let $u$ solve the Hamilton&ndash;Jacobi equation $H(\mathrm{d}u) = 0$, i.e. $|\mathrm{d}u + A| = 1$ and $\mathrm{d}u + A$ is past-directed.</p>
+    <p>Then $V := -\nabla u - A^\sharp$ is future-directed, $|V| \equiv 1$, and $\nabla_V V = F^\sharp V$. <em class="fragment" data-fragment-index="1">Kinematic decomposition:</em></p>
     <p class="fragment" data-fragment-index="1">
       $$\nabla V = \underbrace{\sigma}_{\substack{\text{shear}\\ \text{self-adjoint, traceless}}} + \underbrace{\omega}_{\substack{\text{rotation}\\ \text{anti-self-adjoint}}} + \underbrace{\theta}_{\substack{\text{expansion}\\ \theta\, =\, \operatorname{div}V}}\cdot\frac{\mathrm{Id} - V^\flat\otimes V}{n-1} + V^\flat\otimes F^\sharp V$$</p>
     <div class="thm fragment" data-fragment-index="2">
@@ -981,17 +989,14 @@
         $$\dot\theta = -\frac{\theta^2}{n-1} - \langle\sigma,\sigma\rangle + \langle\omega,\omega\rangle - \mathrm{Ric}(V,V) + \operatorname{div}(\nabla_V V), \qquad \dot\theta = V\operatorname{div}V.$$</p>
     </div>
     <div class="fragment" data-fragment-index="3">
-      <p>$$2\langle\omega,\omega\rangle = \tfrac12\langle F,F\rangle + F^2(V,V), \qquad \operatorname{div}(\nabla_VV) = \operatorname{div}(F^\sharp V) = -\delta F(V) - \tfrac12\langle F,F\rangle$$</p>
+      <p>$$\Big\Downarrow\rlap{\quad\langle\sigma,\sigma\rangle \ge 0}$$</p>
     </div>
-    <div class="fragment" data-fragment-index="4">
-      <p>$$\langle\sigma,\sigma\rangle \ge 0 \quad\implies\quad 0 \ge \dot\theta + \frac{\theta^2}{n-1} + \underbrace{\mathrm{Ric}(V,V) + \delta F(V) + \tfrac14\langle F,F\rangle - \tfrac12F^2(V,V)}_{\textstyle\mathrm{Ric}_F(V)}.$$</p>
-    </div>
-    <div class="thm fragment" data-fragment-index="5" style="text-align:center;">
+    <div class="thm fragment" data-fragment-index="4" style="text-align:center;">
       <div class="r-stack">
-        <div class="fragment fade-out" data-fragment-index="6">$$V\operatorname{div}V + \frac{(\operatorname{div}V)^2}{n-1} + \mathrm{Ric}_F(V) \le 0$$</div>
-        <div class="fragment" data-fragment-index="6">$$\langle\nabla\Box u,\nabla u + A^\sharp\rangle + \frac{(\Box u)^2}{n-1} + \mathrm{Ric}_F(-\nabla u - A^\sharp) \le 0$$</div>
+        <div class="fragment fade-out" data-fragment-index="5">$$V\operatorname{div}V + \frac{(\operatorname{div}V)^2}{n-1} + \mathrm{Ric}_F(V) \le 0$$</div>
+        <div class="fragment" data-fragment-index="5">$$\langle\nabla\Box u,\nabla u + A^\sharp\rangle + \frac{(\Box u)^2}{n-1} + \mathrm{Ric}_F(-\nabla u - A^\sharp) \le 0$$</div>
       </div>
-      <p class="fragment gray" data-fragment-index="6" style="font-size:0.7em; margin:0">Lorenz gauge $\delta A = 0$ $\implies$ $\operatorname{div}V = -\Box u$, where $\Box$ is the d'Alembertian.</p>
+      <p class="fragment gray" data-fragment-index="5" style="font-size:0.7em; margin:0">Lorenz gauge $\delta A = 0$ $\implies$ $\operatorname{div}V = -\Box u$, where $\Box$ is the d'Alembertian.</p>
     </div>
   </div>
 </section>
