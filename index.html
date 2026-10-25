@@ -987,7 +987,11 @@
       <p>$$\langle\sigma,\sigma\rangle \ge 0 \quad\implies\quad 0 \ge \dot\theta + \frac{\theta^2}{n-1} + \underbrace{\mathrm{Ric}(V,V) + \delta F(V) + \tfrac14\langle F,F\rangle - \tfrac12F^2(V,V)}_{\textstyle\mathrm{Ric}_F(V)}.$$</p>
     </div>
     <div class="thm fragment" data-fragment-index="5" style="text-align:center;">
-      $$V\operatorname{div}V + \frac{(\operatorname{div}V)^2}{n-1} + \mathrm{Ric}_F(V) \le 0.$$
+      <div style="display:flex; justify-content:center; align-items:center; gap:0.6em;">
+        <div>$$V\operatorname{div}V + \frac{(\operatorname{div}V)^2}{n-1} + \mathrm{Ric}_F(V) \le 0$$</div>
+        <div class="fragment" data-fragment-index="6">$$\iff \quad \langle\nabla\Box u,\nabla u + A^\sharp\rangle + \frac{(\Box u)^2}{n-1} + \mathrm{Ric}_F(-\nabla u - A^\sharp) \le 0$$</div>
+      </div>
+      <p class="fragment gray" data-fragment-index="6" style="font-size:0.7em; margin:0">Lorenz gauge $\delta A = 0$ $\implies$ $\operatorname{div}V = -\Box u$, where $\Box$ is the d'Alembertian.</p>
     </div>
   </div>
 </section>
@@ -996,7 +1000,7 @@
   <h2>Proof sketch</h2>
   <div class="dense">
     <ol class="needle">
-      <li><em>Needle decomposition</em> <span class="cite">(A. &amp; Manini '26)</span>. Assume:
+      <li><em>Needle decomposition</em>.  Assume:
         <ul>
           <li>$L : TM \to \mathbb{R}\cup\{+\infty\}$ is convex and lower semicontinuous on each tangent space, smooth with positive definite vertical Hessian on the interior of its domain, essentially smooth, and positive on the zero section; the interior of its domain meets each tangent space in the interior of the domain's fiber. $L$ may have sublinear growth.</li>
           <li>$\mu_0 = f_0\,\mathfrak{m} \perp \mu_1 = f_1\,\mathfrak{m}$ are compactly supported, and every pair of points in $\operatorname{supp}\mu_0\times\operatorname{supp}\mu_1$ is joined by a minimizing extremal, and on compact sets of such pairs the minimizing extremals have bounded durations and velocities in a compact subset of the interior of the domain.</li>
